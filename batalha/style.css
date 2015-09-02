@@ -1,0 +1,244 @@
+@font-face {
+  font-family: 'SuperMarioFont';
+  src:url('Super-Mario-World.ttf');
+}
+
+html, body {
+    background-color: black;
+    max-with: 100%;
+    max-height: 100%;
+}
+
+.header {
+  color: white;
+}
+.bubble
+{
+  margin-top: 10%;
+  margin-left: 55%;
+  position: relative;
+  width: 300px;
+  height: 110px;
+  padding: 0px;
+  background: #FFFFFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.bubble p {
+  font-family: 'SuperMarioFont', Times, serif;
+  padding: 10px;
+}
+
+.bubble:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 27px 14px 0;
+border-color: #FFFFFF transparent;
+display: block;
+width: 0;
+z-index: 1;
+bottom: -27px;
+left: 239px;
+}
+
+.canvas {
+  margin-left: 50%;
+  width : 10px;
+  height : 10px;
+  box-shadow : 290px 110px #000000,
+  290px 120px #000000,
+  320px 120px #000000,
+  320px 110px #000000,
+  290px 100px #ffffff,
+  320px 100px #ffffff,
+  340px 100px #ffffff,
+  270px 100px #ffffff,
+  280px 130px #ffffff,
+  330px 130px #ffffff,
+  270px 140px #ffffff,
+  280px 140px #ffffff,
+  290px 140px #ffffff,
+  300px 140px #ffffff,
+  310px 140px #ffffff,
+  320px 140px #ffffff,
+  330px 140px #ffffff,
+  340px 140px #ffffff,
+  330px 150px #ffffff,
+  280px 150px #ffffff,
+  270px 150px #ffffff,
+  340px 150px #ffffff,
+  340px 160px #ffffff,
+  350px 160px #ffffff,
+  350px 170px #ffffff,
+  270px 160px #ffffff,
+  260px 160px #ffffff,
+  260px 170px #ffffff,
+  290px 160px #ffffff,
+  300px 160px #ffffff,
+  310px 160px #ffffff,
+  320px 160px #ffffff,
+  320px 170px #ffffff,
+  310px 170px #ffffff,
+  300px 170px #ffffff,
+  290px 170px #ffffff,
+  290px 180px #ffffff,
+  300px 180px #ffffff,
+  310px 180px #ffffff,
+  320px 180px #ffffff,
+  300px 190px #ffffff,
+  310px 190px #ffffff,
+  290px 150px #000000,
+  300px 150px #000000,
+  310px 150px #000000,
+  320px 150px #000000,
+  280px 120px #FFB848,
+  280px 110px #FFB848,
+  280px 100px #FFB848,
+  300px 100px #FFB848,
+  300px 110px #FFB848,
+  300px 120px #FFB848,
+  290px 130px #FFB848,
+  300px 130px #FFB848,
+  310px 130px #FFB848,
+  320px 130px #FFB848,
+  310px 120px #FFB848,
+  310px 110px #FFB848,
+  310px 100px #FFB848,
+  330px 100px #FFB848,
+  330px 110px #FFB848,
+  330px 120px #FFB848,
+  340px 110px #FFB848,
+  340px 120px #FFB848,
+  270px 110px #FFB848,
+  270px 120px #FFB848,
+  280px 90px #FFB848,
+  290px 90px #FFB848,
+  300px 90px #FFB848,
+  310px 90px #FFB848,
+  320px 90px #FFB848,
+  330px 90px #FFB848,
+  340px 130px #9C001C,
+  270px 130px #9C001C,
+  260px 140px #9C001C,
+  250px 150px #9C001C,
+  240px 160px #9C001C,
+  350px 140px #9C001C,
+  360px 150px #9C001C,
+  370px 160px #9C001C,
+  260px 150px #9C001C,
+  350px 150px #9C001C,
+  250px 160px #9C001C,
+  250px 170px #9C001C,
+  240px 170px #9C001C,
+  360px 160px #9C001C,
+  360px 170px #9C001C,
+  370px 170px #9C001C,
+  240px 180px #9C001C,
+  240px 190px #9C001C,
+  240px 200px #9C001C,
+  240px 210px #9C001C,
+  240px 220px #9C001C,
+  370px 180px #9C001C,
+  370px 190px #9C001C,
+  370px 200px #9C001C,
+  370px 210px #9C001C,
+  370px 220px #9C001C,
+  250px 220px #9C001C,
+  250px 230px #9C001C,
+  260px 220px #9C001C,
+  360px 220px #9C001C,
+  360px 230px #9C001C,
+  350px 220px #9C001C,
+  260px 210px #9C001C,
+  260px 200px #9C001C,
+  260px 190px #9C001C,
+  260px 180px #9C001C,
+  350px 210px #9C001C,
+  350px 200px #9C001C,
+  350px 180px #9C001C,
+  350px 190px #9C001C,
+  360px 180px #9C001C,
+  360px 190px #9C001C,
+  360px 200px #9C001C,
+  360px 210px #9C001C,
+  250px 180px #9C001C,
+  250px 190px #9C001C,
+  250px 200px #9C001C,
+  250px 210px #9C001C,
+  270px 180px #9C001C,
+  340px 180px #9C001C,
+  270px 190px #000000,
+  270px 200px #000000,
+  270px 210px #000000,
+  340px 190px #000000,
+  340px 200px #000000,
+  270px 230px #9C001C,
+  340px 230px #9C001C,
+  270px 220px #000000,
+  340px 220px #000000,
+  340px 210px #000000,
+  270px 240px #9C001C,
+  270px 250px #9C001C,
+  260px 250px #9C001C,
+  340px 240px #9C001C,
+  340px 250px #9C001C,
+  350px 250px #9C001C,
+  280px 250px #FFB848,
+  290px 250px #FFB848,
+  300px 250px #9C001C,
+  310px 250px #9C001C,
+  320px 250px #FFB848,
+  330px 250px #FFB848,
+  270px 170px #9C001C,
+  280px 170px #9C001C,
+  280px 160px #9C001C,
+  280px 180px #9C001C,
+  280px 200px #9C001C,
+  280px 190px #9C001C,
+  290px 190px #9C001C,
+  290px 200px #9C001C,
+  300px 200px #9C001C,
+  310px 200px #9C001C,
+  320px 200px #9C001C,
+  320px 190px #9C001C,
+  330px 160px #9C001C,
+  330px 170px #9C001C,
+  340px 170px #9C001C,
+  330px 180px #9C001C,
+  330px 190px #9C001C,
+  330px 200px #9C001C,
+  330px 210px #9C001C,
+  330px 220px #9C001C,
+  330px 230px #9C001C,
+  330px 240px #9C001C,
+  280px 210px #9C001C,
+  280px 220px #9C001C,
+  280px 230px #9C001C,
+  280px 240px #9C001C,
+  290px 240px #9C001C,
+  290px 230px #9C001C,
+  290px 220px #9C001C,
+  290px 210px #9C001C,
+  300px 210px #9C001C,
+  300px 220px #9C001C,
+  300px 230px #9C001C,
+  300px 240px #9C001C,
+  310px 240px #9C001C,
+  310px 230px #9C001C,
+  310px 220px #9C001C,
+  310px 210px #9C001C,
+  320px 210px #9C001C,
+  320px 220px #9C001C,
+  320px 230px #9C001C,
+  320px 240px #9C001C,
+  380px 170px #FFB848,
+  380px 180px #FFB848,
+  380px 190px #FFB848,
+  230px 170px #FFB848,
+  230px 180px #FFB848,
+  230px 190px #FFB848;
+}

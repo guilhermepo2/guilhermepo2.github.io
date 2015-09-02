@@ -27,13 +27,13 @@
 <h2><p>Comandos Rails:</h2>
 <p>$rails new (nome-do-projeto)</p>
 <p>$rails server ou $rails s </p>
-<p>$rails generate scaffold (recurso) (atributos)</p>
+<p>$rails generate scaffold (recurso) (atributos)</p> - gera todos os arquivos necessários (Model, View e Controller) para que você tenha uma página simples e funcional do recurso criado com os atributos especificados, também faz alterações necessárias nas rotas.
 </p>
 
 <h2><p>Comandos de Banco de Dados</h2>
 <p>$rake db:create </p>
-<p>$rake db:migrate </p>
-<p>$rake db:rollback </p>
+<p>$rake db:migrate </p> - sempre que um scaffold for criado (gerado ou manualmente) será necessário migrar o banco de dados para que ele possa se atualizar.
+<p>$rake db:rollback </p> - caso você queira desfazer a última migração, esse comando serve para isso.
 </p>
 
 <h2><p>Diretórios</h2>
@@ -43,6 +43,10 @@
 <h3><p>app/controllers/exemplo_controller.rb</h3> </p>
 </p>
 
+
+<h2><p>Gems Auxiliares</h2>
+<p>Para instalar uma nova gem, abra o arquivo Gemfile na pasta raiz do seu projeto, depois execute bundle install no terminal</p>
+<p>gem 'devise', '~> 3.3.0' - permite autenticação de usuários de uma maneira fácil, 3.3.0 corresponde à versão (você pode preferir outras ou podem ter outras mais recentes) - rails generate devise:install</p>
 
 
 <hr>
