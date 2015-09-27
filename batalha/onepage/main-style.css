@@ -64,6 +64,10 @@
 =============================================================================
 */
 
+.main section.page6 .cpr {
+  bottom: 0%;
+}
+
 footer{
 	padding: 0 2.5em;
 	background-color:white;
