@@ -234,6 +234,7 @@
     color: black;
   }
   .main section.page1 h2 {
+    margin-left: 25px;
     color: rgba(0,0,0,0.85);
     text-align: center;
     width: 435px;
