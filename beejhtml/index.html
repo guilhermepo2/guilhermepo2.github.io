@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Guia de Programação para Redes, por Beej</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+    <!-- CABEÇALHO COM INFORMAÇÕES DO AUTOR -->
+    <h1>Guia de Programação para Redes, por Beej</h1>
+    <h2>Utilizando Sockets de Internet</h2>
+
+    <p>
+      <b>Brian "Beej Jorgensen" Hall</b>
+      <br>
+      <a href="mailto:beej@beej.us">beej@beej.us</a>
+      <br>
+      <b>Tradução:<br> Guilherme Pacheco de Oliveira</b>
+      <br>
+      <a href="http://guilhermepo2.github.io">website</a> | <a href="mailto:guilherme.061@gmail.com">guilherme.061@gmail.com</a>
+    </p>
+
+    <p>
+      <span>Versão 3.0.21</span>
+      <br>
+      <span>8 de Junho de 2016</span>
+    </p>
+
+    <p>
+      Copyright © 2015 Brian "Beej Jorgensen" Hall
+    </p>
+
+    <hr>
+    <!-- aqui fica um link para o conteúdo, tipo um sumário -->
+
+    <ol>
+      <li>Introdução</li>
+    </ol>
+
+    <hr>
+
+    <!--
+    =============================================================
+              INTRODUÇÃO
+    =============================================================
+    -->
+
+    <section id="#intro">
+      <h2>1. Introdução</h2>
+      <hr>
+      <p>Hey!  Programação com Sockets te deixou para baixo?  Achou isso um pouco complicado de aprender
+      	através das páginas <b>man</b>?  Você quer programar para a Internet, mas você não tem tempo para
+      	bisbilhotar as várias <b>structs</b> tentando descobrir se você deve chamar <b>bind()</b>
+      	antes de <b>connect()</b>, etc., etc.</p>
+
+        <p>Bom, adivinha só! Eu já fiz todo esse trabalho sujo, e agora estou disposto a
+        compartilhar minhas experiências com todo mundo! Você veio para o lugar certo. Esse
+        documento deve dar para um programador C competente o que ele(a) precisa para começar a
+        entender essa coisa de redes.</p>
+
+        <p>E veja só: Eu finalmente cheguei ao futuro e atualizei o Guia para IPv6! Aproveite!</p>
+    </section>
+
+    <!--
+    =============================================================
+              PÚBLICO ALVO
+    =============================================================
+    -->
+    <section id="audience">
+    <h3>Público Alvo</h3>
+
+    <p>Esse documento foi escrito como uma forma de tutorial e não uma
+    referência completa. É uma leitura melhor para indivíduos que estão apenas
+    começando com programação com sockets e estão procurando por uma base.
+    Certamente não é, de forma alguma, o guia <emp>completo e total</emp> sobre programação
+    com sockets.</p>
+
+    <p>Porém espero que seja o suficiente para que aquelas páginas man comecem
+    	a fazer sentido<smiley/></p>
+    </section>
+    <!--
+    =============================================================
+              PLATAFORMA E COMPILADOR
+    =============================================================
+    -->
+
+    <section id="platform">
+    <h3>Plataforma e Compilador</h3>
+
+    <p>O código contido nesse documento foi compilado em um computador Linux
+    utilizando o compilador GNU <b>gcc</b>. Entretanto,
+    ele deve poder ser compilado em qualquer plataforma que utiliza <b>gcc</b>.
+    Naturalmente, isso não se aplica se você está programando em um Windows, veja a
+    <a href="#windows">seção de programação para Windows</a>, abaixo</p>
+
+    </section>
+
+    <!--
+    =============================================================
+              PÁGINA OFICIAL
+    =============================================================
+    -->
+
+    <section id="homepage">
+    <h3>Página Oficial e Livros à venda</h3>
+
+    <p>A localização oficial desse documento é <a href="http://beej.us/guide/bgnet/">
+      http://beej.us/guide/bgnet/</a>. Nela você
+    irá encontrar exemplos de códigos e tradução do guia para várias
+    linguagens (Provavelmente você encontrou essa tradução nessa página).</p>
+
+    <p>Para comprar cópias impressas do guia (algumas pessoas as chamam de "livros"),
+    visite <a href="http://beej.us/guide/url/bgbuy">http://beej.us/guide/url/bgbuy</a>.
+    Eu vou ficar agradecido pela compra pois ela ajuda a sustentar meu estilo de
+    vida de escrever documentos!</p>
+
+    </section>
+
+    <!--
+    =============================================================
+              SOLARIS E SUNOS
+    =============================================================
+    -->
+
+    <section id="solaris">
+    <h3>Notas para Programadores Solaris/SunOS</h3>
+
+    <p>Quando estiver compilando para Solari ou SunOS, você precisa especificar algumas opções extras
+    na linha de comando para ligar corretamente as bibliotecas. Para fazer isso,
+    simplesmente adicione "-lnsl -lsocket -lresolv"
+    no fim do comando, por exemplo: </p>
+
+    <p><code>$ cc -o server server.c -lnsl -lsocket -lresolv</code></p>
+
+    <p>Se você ainda obtiver erros, você pode tentar adicionar "-lxnet"
+    ao comando. Eu não sei o que isso faz exatamente, mas algumas pessoas parecem
+    precisar disso.</p>
+
+    <p>Outro lugar que você pode encontrar problemas é na chamada da função
+    <b>setsockopt()</b>. O protótipo difere no meu Linux, então
+    invés de:</p>
+
+    <p><code>int yes=1;</code></p>
+
+    <p>utilize:</p>
+
+    <p><code>char yes='1';</code><p>
+
+    <p>Como eu não tenho um SunOS. Eu não testei nenhuma das informações
+    	acima, é apenas o que me disseram por email.</p>
+
+    </section>
+
+
+    <!--
+    =============================================================
+              WINDOWS
+    =============================================================
+    -->
+
+    <section id="windows">
+    <h3>Nota para programadores Windows</h3>
+
+    <p>Nesse ponto no guia, historicamente, Eu já insultei um pouco o Windows,
+    simplesmente pelo fato de que eu não gosto muito dele. Mas eu realmente devo ser justo e te dizer
+    que Windows tem muitas coisas que podem ser instalas e obviamente é um Sistema Operacional que
+    funciona perfeitamente.</p>
+
+    <p>Dizem que absência faz o coração evoluir, e nesse caso, eu acredito que
+    	isso seja verdade. (Ou talvez seja a idade.) Mas o que eu posso dizer é
+    	que depois de mais de uma década sem utilizar SO's da Microsoft para trabalho
+    	pessoal, eu estou muito mais feliz! Assim, eu posso seguramente dizer "Claro, sinta-se
+    	livre para usar Windows!" ... Ok, dizer isso faz eu ranger meus dentes.</p>
+
+    <p>Eu ainda o encorajo a utilizar <a href="https://www.linux.com">Linux</a>, <a href="http://www.bsd.org">BSD</a>, ou
+    qualquer sistema Unix</p>
+
+    <p>Mas as pessoas gostam do que elas gostam, e vocês, pessoal do Windows,
+    vão ficar felizes em saber que essa informação geralmente é aplicável a vocês,
+    com algumas pequenas mudanças, se tiver alguma.</p>
+
+    <p>Uma coisa que você pode fazer é instalar <a href="http://www.cygwin.com">Cygwin</a>, que é uma coleção de ferramentas Unix
+    para Windows. Eu ouvi dizer por aí que fazer isso permite que todos
+    esses programas sejam compilados sem nenhuma modificação</p>
+
+    <p>Mas alguns de vocês podem querer fazer as coisas do jeito Windows puro.
+    Isso é muito corajoso de sua parte, e é isso que você deve fazer: Corra
+    e comece a utilizar um sistema Unix imediatamente! Não, não, é brincadeira.
+    Eu deveria ser amigável com o Windows</p>
+
+    <p>É isso que você deve fazer (a menos que você instale <a href="http://www.cygwin.com">Cygwin</a>!): Primeiro, ignore
+    quase todos os arquivos de Header que eu mencionar aqui. Tudo o que
+    você precisa de incluir é: </p>
+
+    <p><code>#include &lt;winsock.h&gt; </code></p>
+
+    <p>Espera! Você também tem que fazer a chamada da função <b>WSAStartup()</b> antes de fazer qualquer
+    outra coisa com a biblioteca de sockets. O código para fazer isso se
+    parece com isso: </p>
+
+    <p><code>#include &lt;winsock.h&gt; <br>
+    &emsp;&emsp;{ <br>
+        &emsp;&emsp;WSADATA wsaData;   // se isso nao funcionar<br>
+        &emsp;&emsp;//WSAData wsaData; // tente isso <br>
+
+    	  &emsp;&emsp;// MAKEWORD(1,1) for Winsock 1.1, MAKEWORD(2,0) for Winsock 2.0: <br>
+
+        &emsp;&emsp;if (WSAStartup(MAKEWORD(1,1), &wsaData) != 0) { <br>
+            &emsp;&emsp;&emsp;&emsp;fprintf(stderr, "WSAStartup failed.\n"); <br>
+            &emsp;&emsp;&emsp;&emsp;exit(1); <br>
+        &emsp;&emsp;}</code></p>
+
+
+    <p>Você também deve dizer ao seu compilador para "linkar" a biblioteca Winsock,
+    	o arquivo geralmente se chama <b>wsock32.lib</b> ou <b>winsock32.lib</b>,
+    	ou <b>ws_32.lib</b> para Winsock 2.0. Se você estiver utilizando Visual C++,
+    	isso pode ser feito através do menu <b>Project</b>, em <b>Settings...</b>.
+    	Clique na aba <b>Link</b> e procure o campo denominado "Object/library modules".
+    	Adicione <b>"wsock32.lib"</b> (ou qualquer outra biblioteca da sua preferência) para essa
+    	lista. </p>
+
+    <p>Pelo menos foi o que eu ouvi dizer.</p>
+
+    <p>Finalmente, você precisa chamar a função <b>bWSACleanup()</b> quando você
+    termina de utilizar a biblioteca de sockets. Veja sua página de ajuda
+    online para detalhes.</p>
+
+    <p>Quando você fizer isso, o resto dos exemplos nesse tutorial devem
+    	funcionar, com algumas poucas exceções. Você não pode usar <b>close()</b>
+    	para fechar um socket, você precisa usar <b>closesocket()</b>. Além disso,
+      <b>select()</b> funciona apenas com descritores
+    	de sockets e não descritores de arquivos (como <em>0</em> para
+    	<b>stdin</b>).</p>
+
+    <p>Também tem uma classe de sockets que você pode usar, <b>CSocket</b>. Verifique o guia de seu
+    	compilador para mais informação.</p>
+
+    <p>Para mais informação sobre Winsock, leia o <a href="http://tangentsoft.net/wskfaq/">
+      Winsock FAQ</a> e vá a partir dele.</p>
+
+    <p>Para finalizar, eu ouvi dizer que Window não tem a chamada<b>fork()</b> que é, infelizmente, utilizada
+    em alguns exemplos. Talvez você tenha que utilizar uma biblioteca POSIX
+    ou alguma outra coisa para que isso funcione, ou você pode usar <b>CreateProcess()</b>.
+    <b>fork()</b> não possui parâmetros, e <b>CreateProcess()</b> leva,
+    aproximadamente, 48 bilhões de parâmetros. Se você não está disposto a fazer isso,
+    a função <b>CreateThread()</b> é um pouco mais
+    fácil de digerir... infelizmente a discussão sobre multithreading está além do
+    escopo desse documento.</p>
+
+  </section>
+
+
+    <!--
+    =============================================================
+              POLÍTICA DE EMAIL
+    =============================================================
+    -->
+
+    <section id="emailpolicy">
+    <h3>Política de Email</h3>
+
+    <p>Geralmente eu estou disponível para ajudar através do meu email, então sinta-se livre para me enviar um, porém eu não posso
+    garantir uma resposta. Eu ando muito ocupado ultimamente e algumas vezes eu
+    não consigo responder alguma pergunta que você tenha. Quando isso acontece,
+    eu geralmente apenas deleto a mensagem, não é nada pessoal, é só que eu nunca
+    vou ter tempo o suficiente para te dar uma resposta detalhada. </p>
+
+    <p>Por via de regra, quanto mais complexa é a pergunta, menor é a chance
+    de eu responder. Se você conseguir especificar sua pergunta e especificar
+    todas as informações pertinentes, como a plataforma, compilador, mensagens de erro e
+    qualquer outra coisa que você ache que possa ajudar, você tem mais chances
+    de conseguir uma resposta. Para mais ajuda leia: <a href="http://www.catb.org/~esr/faqs/smart-questions.html">Como Fazer
+    Perguntas de um jeito Inteligente</a>.</p>
+
+    <p>Se eu não te responder, pesquise um pouco mais e tente procurar a
+    resposta, se não encontrar, então me envie outro email com a informação
+    que você encontrou e talvez eu consiga te ajudar.</p>
+
+    <p>Agora que eu te expliquei sobre como e como não escrever para mim, Eu
+    gostaria de te informar que eu <em>realmente<em> aprecio todo o carinho que
+    esse guia tem recebido através dos anos. Isso me deixa feliz e fico orgulhoso
+    em ouvir que ele está sendo realmente utilizado! Obrigado!</p>
+
+  </section>
+
+    <!--
+    =============================================================
+              CÓPIAS
+    =============================================================
+    -->
+
+    <section id="mirroring">
+    <h3>Cópias</h3>
+
+    <p><em>Nota de Tradução: O termo utilizado exatamente é "Mirroring", basicamente é uma cópia, porém geralmente
+    é feita com o intuito de salvar o conteúdo em outros servidores espalhados pelo planeta. Isso faz com que o conteúdo
+  seja mais tolerante à falhas, caso o site original caia, existem outros servidores disponiveis para atender, também pode
+ajudar em reduzir o tempo de resposta, mas isso não é tão relevante em um documento como esse.</em></p>
+
+    <p>Você é bem vindo para criar cópias desse site em outros lugares,
+    seja público ou privado. Se você publicamente criar uma "cópia" do site e quiser que eu
+    adicione um link para ele, entre em contato comigo <a href="mailto:beej@beej.us">beej@beej.us</a>.</p>
+
+    </section>
+
+    <!--
+    =============================================================
+              TRADUTORES
+    =============================================================
+    -->
+
+    <section id="xlate">
+    <h3>Nota para Tradutores</h3>
+
+    <p>Se quiser traduzir este guia, escreva para mim em
+    <a href="mailto:beej@beej.us">beej@beej.us</a> e eu colocarei um link para a tradução na página principal.
+    Sinta-se livre para adicionar seu nome e contato na tradução</p>
+
+    <p>Por favor observe as restrições de licença na seção de Distribuição e Copyright abaixo</p>
+
+    <p>Se você quer que eu hospede a tradução, basta pedir. Eu posso também colocar um link
+    para a tradução se você quiser hospedá-la.</p>
+
+  </section>
+
+    <!--
+    =============================================================
+              COPYRIGHT
+    =============================================================
+    -->
+
+    <section id="copyright">
+      <h3>Copyright e Distribuição</h3>
+
+      <p>O Guia de Programação para Redes, por Beej é Copyright © 2015 Brian "Beej Jorgensen" Hall.</p>
+
+      <p>Com algumas exceções para código fonte e traduções, esse trabalho é licenciado sob a "Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 License".
+        Você pode ver uma cópia da licença em <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</a> ou pode enviar uma carta
+        para Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.</p>
+
+      <p>Uma exceção específica para a parte de "No Derivative Works" (Sem trabalhos derivados) é: Esse guia pode ser livremente traduzido para qualquer linguagem, considerando que a tradução esteja correta e que
+        o guia esteja totalmente traduzido. As mesmas restrições da licença se aplicam à tradução. A tradução também pode incluir nome e contato do tradutor.</p>
+
+        <p>O código fonte em C apresentado nesse documento é de domínio público, ou seja, totalmente livre de qualquer restrição de licença</p>
+
+        <p>Educadores são encorajados a recomendarem ou fornecerem cópias desse guia para seus estudantes</p>
+
+        <p>Entre em contato com <a href="beej@beej.us">beej@beej.us</a> para mais informação.</p>
+    </section>
+
+    <!--
+    =============================================================
+              NOTAS DE TRADUÇÃO
+    =============================================================
+    -->
+    <section id="notas-traducao">
+      <h3>Notas de Tradução</h3>
+      <p>Olá! Meu nome é Guilherme e eu atualmente estudo Ciência da Computação na Universidade Federal de Uberlândia.</p>
+      <p>Eu me deparei com esse guia enquanto fazia a disciplina de <b>Sistemas Distribuidos</b>, uma disciplina do sétimo período da graduação,
+      o guia me ajudou muito e eu achei ele um tanto quanto divertido de se ler, e quando olhei as traduções, percebi que não havia uma em português.</p>
+
+      <p>Sempre me interessei em escrever e traduzir, gosto da lingua inglesa porém nunca havia tentado traduzir um documento, ou um guia, desse porte, essa tradução não está de modo algum
+      finalizada ou livre de erros, muito pelo contrário. Mas caso encontre erros ou fique em dúvidas sobre algum trecho, peço que tenha paciência comigo e entre em contato para que eu possa fazer uma revisão,
+    ou então caso você tenha uma correção, também sinta-se à vontade para me enviar.</p>
+
+    <p>Você pode entrar em contato comigo através do meu email: <a href="mailto:guilherme.061@gmail.com">guilherme.061@gmail.com</a>, Se quiser entrar em contato de outra forma, ou por algum motivo queira saber mais sobre mim,
+      você pode encontrar meu github, minha conta no medium e outras informações no meu website: <a href="http://guilhermepo2.github.io" target="BLANK">http://guilhermepo2.github.io</a>
+
+      <p>Espero que você possa aprender alguma coisa com esse guia que foi traduzido por mim, boa leitura!</p>
+    </section>
+
+
+    <!--
+    =============================================================
+              O QUE SÃO SOCKETS
+    =============================================================
+    -->
+    <section id="theory">
+      <h2>O que são sockets?</h2>
+      <hr>
+    </section>
+
+  </div>
+  </body>
+</html>
