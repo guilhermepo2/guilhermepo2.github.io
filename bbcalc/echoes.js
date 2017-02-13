@@ -8,7 +8,42 @@ p_single.textContent = "";
 p_multiple.textContent = "";
 
 var echoes_to_level = function(x) {
-  return Math.round(((0.02 * x * x * x) + (3.06 * x * x) + (105.6 * x) - 895));
+  switch(x) {
+    case 5:
+    return 724;
+    break;
+
+    case 6:
+    return 741;
+    break;
+
+    case 7:
+    return 758;
+    break;
+
+    case 8:
+    return 775;
+    break;
+
+    case 9:
+    return 793;
+    break;
+
+    case 10:
+    return 811;
+    break;
+
+    case 11:
+    return 829;
+    break;
+
+    case 12:
+    return 847;
+    break;
+
+    default:
+    return Math.round(((0.02 * x * x * x) + (3.06 * x * x) + (105.6 * x) - 895));
+  }
 }
 
 var calculate_single = function() {
