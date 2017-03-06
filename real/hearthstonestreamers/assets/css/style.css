@@ -1,0 +1,30 @@
+.content {
+  background: pink;
+  margin: 0 auto;
+  width: 600px;
+}
+
+.content img {
+  max-width: 100%;
+}
+
+#streaming {
+  background: red;
+}
+
+.online {
+  background: green;
+}
+
+.offline {
+  background: gray;
+}
+
+.streamer {
+  color: blue;
+  text-transform: uppercase;
+}
+
+.status {
+  color: pink;
+}
