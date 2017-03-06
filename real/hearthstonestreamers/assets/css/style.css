@@ -1,30 +1,75 @@
+@font-face {
+  font-family: "Belwe Medium";
+  src: ("assets/fonts/OPTIBelwe-Medium.otf");
+}
+
 .content {
-  background: pink;
+  font-family: "Belwe Medium", Verdana;
+  background: #6A84B2;
   margin: 0 auto;
-  width: 600px;
+  padding-bottom: 20px;
+  max-width: 600px;
+  border: 2px solid #ccc;
 }
 
 .content img {
   max-width: 100%;
 }
 
-#streaming {
-  background: red;
+div, p {
+  margin: 0;
+}
+
+p {
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 25px 0;
+  color: #333;
+}
+
+.streamerImg {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  float: left;
+}
+
+.online, .offline {
+  border: 1px solid #ccc;
+  line-height: 50px;
 }
 
 .online {
-  background: green;
+  background: #007F22;
+  color: #eee;
 }
 
 .offline {
-  background: gray;
+  background: #888;
+  color: white;
 }
 
 .streamer {
-  color: blue;
   text-transform: uppercase;
+  line-height: 50px;
+  padding-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #003C7F;
+}
+
+a:visited {
+  color: #032940;
 }
 
 .status {
-  color: pink;
+  float: right;
 }
