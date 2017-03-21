@@ -15,13 +15,13 @@ var makeObject = function(channel) {
     if(data.stream === null) {
       $.getJSON(makeUrl("channels", channel), function(channelData) {
         if(channelData.name === undefined) {
-          $("#streaming").append("<p class='offline'><span class='streamer'>" + channel + "</span> <span class='status'>Doesn't exist</span></p>");
+          $("#streaming").append("<div class='offline row'><div class='streamer col-sm-5'>" + channel + "</div> <div class='status col-sm-7'>Doesn't exist</div></div>");
         } else {
-          $("#streaming").append("<p class='offline'><a target='blank' href='https://twitch.tv/"+channelData.name+"'><img class='streamerImg' src='"+channelData.logo+"'><span class='streamer'>"+channelData.name+"</span></a> <span class='status'>Offline</span></p>");
+          $("#streaming").append("<div class='offline row'><div class='col-sm-5 streamer'><a target='blank' href='https://twitch.tv/"+channelData.name+"'><img class='streamerImg' src='"+channelData.logo+"'>"+channelData.name+"</a></div> <div class='status col-sm-7'>Offline</div></div>");
         }
       });
     }  else {
-      $("#streaming").append("<p class='online'><a target='blank' href='https://twitch.tv/"+data.stream.channel.name+"'><img class='streamerImg' src='"+data.stream.channel.logo+"'><span class='streamer'>"+data.stream.channel.name+"</span></a> <span class='status'> "+data.stream.game + ": "+data.stream.channel.status+"</span></p>");
+      $("#streaming").append("<div class='online row'><div class=' streamer col-sm-5'><a target='blank' href='https://twitch.tv/"+data.stream.channel.name+"'><img class='streamerImg' src='"+data.stream.channel.logo+"'>"+data.stream.channel.name+"</a></div> <div class='status col-sm-7'>"+data.stream.game + ": "+data.stream.channel.status+"</div></div>");
     }
   });
 }

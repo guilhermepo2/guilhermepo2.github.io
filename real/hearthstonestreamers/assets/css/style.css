@@ -3,6 +3,12 @@
   src: ("assets/fonts/OPTIBelwe-Medium.otf");
 }
 
+.row {
+  max-width: 100%;
+  margin: 0;
+  padding: 10px;
+}
+
 .content {
   font-family: "Belwe Medium", Verdana;
   background: #6A84B2;
@@ -16,12 +22,24 @@
   max-width: 100%;
 }
 
-div, p {
-  margin: 0;
+.streamer, .status {
+  height: 50px;
 }
 
-p {
-  padding: 10px;
+.streamer {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-left: 10px;
+}
+
+.status {
+  /*
+    WTF I LOVE FLEXBOX NOW
+  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 h1 {
@@ -33,16 +51,15 @@ h1 {
 }
 
 .streamerImg {
+  margin-right: 10px;
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.2);
-  float: left;
 }
 
 .online, .offline {
   border: 1px solid #ccc;
-  line-height: 50px;
 }
 
 .online {
@@ -55,12 +72,6 @@ h1 {
   color: white;
 }
 
-.streamer {
-  text-transform: uppercase;
-  line-height: 50px;
-  padding-left: 10px;
-}
-
 a {
   text-decoration: none;
   color: #003C7F;
@@ -68,9 +79,4 @@ a {
 
 a:visited {
   color: #032940;
-}
-
-.status {
-  float: right;
-  font-size: 0.8vw;
 }
