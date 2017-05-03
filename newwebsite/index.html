@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Guilherme Oliveira</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,81 +13,100 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-3">
-          <img src="me.jpg" class="img img-responsive profile-picture">
+        <div class="col-xs-offset-1 col-xs-10">
+
+
+          <!-- HEADER -->
+          <section id="header">
+            <div class="row">
+              <div class="col-md-3">
+                <img src="me.jpg" class="img img-responsive profile-picture">
+              </div>
+              <div class="col-md-9">
+                <p>Hey There! My name is Guilherme Oliveira, I'm some kind of a breed of a designer, artist and engineer. Passionate about game development and things that are somehow related to user experience.</p>
+                <p>In my free time I'm a Computer Science Undergraduate at Federal University of Uberlandia, currently working for an educational group inside the university and researching on the subject of Information Visualization on an Intelligent Tutoring System.</p>
+                <p>I code at <a href="https://www.github.com/guilhermepo2" target="_blank">github</a>, write at <a href="https://medium.com/@guilhermepo2" target="_blank">medium</a> and sometimes <a href="https://www.twitter.com/guilhermepo2" target="_blank">tweet</a>. Currently writing on my <a href="https://gpolive.wordpress.com">blog</a> about my adventures on game development while trying to develop a game all by myself. Also you can reach me at <a href="mailto:guilherme.061@gmail.com">guilherme.061@gmail.com</a></p>
+                <p>I also happen to work in my other free time as a freelancer in mobile development, frontend development and game development with a colleague</p>
+                <p>Hey! I know this is a terrible website but It's way better than the old one! Believe me! I'm working on improving it and making it more beautiful</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- BUTTONS -->
+          <section id="buttons">
+            <div class="row">
+              <div class="col-md-3 col-xs-3">
+                <a href="#working-section"><button class="nav-button" id="working">Working On</button></a>
+              </div>
+              <div class="col-md-3 col-xs-3">
+                <a href="#what-section"><button class="nav-button" id="what">What I Do</button></a>
+              </div>
+              <div class="col-md-3 col-xs-3">
+                <a href="#projects-section"><button class="nav-button" id="projects">Projects</button></a>
+              </div>
+              <div class="col-md-3 col-xs-3">
+                <a href="#hobbies-section"><button class="nav-button" id="hobbies">Hobbies</button></a>
+              </div>
+            </div>
+          </section>
+
+          <section id="working-section">
+            <h1>Working On</h1>
+            <ul>
+              <li><strong>Conclusion Thesis: </strong> 2017 is my last year as an Undergraduate! Hooray! Working on Genetic Algorithms to produce strategies to play Roguelike games.</li>
+              <li><strong>Inverse Kinomatics: </strong>Final project for the Computer Graphics classes, I want to make a Limbo style controller using Inverse Kinematics, I want to do something so I can use in a portfolio.</li>
+              <li><strong>Midnight Journey:</strong> this is currently my biggest project, doing a simple RPG game based on old Zelda games where I will do the game programming, art and music composition.</li>
+              <li><strong>Jade Reno Pirates:</strong> Basically a rock paper scissors, but Hearthstone themed, to remember everyone how the ladder felt on the Mean Streets of Gadgetzan meta.</li>
+              <li><strong>Learning Pixel Art:</strong> Someday I had this great idea of doing a game all by myself...</li>
+              <li><strong>Learning Game Music Composition:</strong> for Midnight Journey!</li>
+            </ul>
+          </section>
+
+          <section id="what-section">
+            <h1>What I Do</h1>
+            <ul>
+              <li><strong>University:</strong> I'm a Computer Science Undergraduate, getting my degree at the end of 2017 probably.</li>
+              <li><strong>CompPET:</strong> This is an educational group inside university. We work on extracurricular activities such as Teaching, Research and Extension.</li>
+              <li><strong>Research:</strong> Currently researching on the topic of visualizing information on an intelligent tutoring system, in the past I worked with Genetic Algorithms on the Protein Structure Prediction using Model 3D-HP </li>
+              <li><strong>Game Dev:</strong> This is my projects/hobby nowadays, I want to get money working on something related to games.</li>
+              <li><strong>Web Dev:</strong> In my humble opinion every computer scientist or programmer should know the basics of Web Development, so I study it sometimes and work on some small projects or websites for showcasing something for CompPET.</li>
+              <li><strong>Freelancing:</strong> I need money to live, I like developing, so it fits. Freelancing mainly on Mobile Development (iOS and Android) and Game Development, but I can also do it when Frontend Development is on the table.</li>
+            </ul>
+          </section>
+
+          <section id="projects-section">
+            <h1>Portfolio</h1>
+            <h3>Game Development</h3>
+            <p>I will provide more information, links and images soon.</p>
+            <ul>
+              <li><strong>FACOM Souls: </strong> I did this for a university project on my 5th therm, I had to use 5 design patterns in anything I wanted, It is a Dark Souls style combat system using them.</li>
+              <li><strong>Simon Game: </strong> I was bored and did this. Soon I will put it on Google Play.</li>
+              <li><strong><a href="https://play.google.com/store/apps/details?id=com.toplelCompany.Flappy45">Flappy45</a>: </strong> A Flappy Bird Clone in form of a Political Joke. This does not reflect any political opinion.</li>
+              <li><strong>Save Hyrule:</strong> Another project for university, It's a pathfinding algorithm (A*) that needs to walk through Hyrule, finish three dungeons and get the Master Sword.</li>
+            </ul>
+
+            <h3>Web Development</h3>
+            <ul>
+              <li><strong><a href="https://guilhermepo2.github.io/real/hearthstonestreamers/" target="_blank">Hearthstone Streamers</a>:</strong> Show some Hearthstone streamers and who is online and who isn't. I did it based on a Freecodecamp Coding Challenge.</li>
+              <li><strong><a href="http://guilhermepo2.github.io/real/tresponsive/" target="_blank">Trump Responsive</a>: </strong> Make Responsive Great Again. This website does not reflect any political opinion.</li>
+              <li><strong><a href="http://guilhermepo2.github.io/real/bbcalc/" target="_blank">Bloodborne Level Up Calculator</a>: </strong>I just wanted to play Bloodborne without having to calculate by hand how many Blood Echoes I needed to level up. I'm that Lazy.</li>
+              <li><strong><a href="http://guilhermepo2.github.io/real/tribute/" target="_blank">Nikola Tesla Tribute</a>: </strong>Free Code Camp Project, a tribute to Nikolas Tesla.</li>
+              <li><strong>Bootstrap show off: </strong>I did a simple <a href="http://comppet.github.io/minicursoFrontend/galeria" target="_blank">Image Gallery</a> and a <a href="http://comppet.github.io/minicursoFrontend/landing" target="_blank">Landing Page</a> for a course that I teached for CompPET about Frontend Development as examples of websites with Bootstrap</li>
+            </ul>
+          </section>
+
+          <section id="hobbies-section">
+            <h1>Hobbies</h1>
+            <ul>
+              <li>I like having hobbies that isn't related to computer science at all.</li>
+              <li><strong>Photography: </strong>I can't practice it as much as I wished but it's cool, from time to time I mess with my DSLR, take some pictures, learn new stuff, yup.</li>
+              <li><strong>Writing: </strong> I like writing, anything.</li>
+              <li><strong>Yoga: </strong> This is the newest one, yoga and meditation are really cool!</li>
+            </ul>
+          </section>
         </div>
-        <div class="col-xs-9">
-          <p>Hey There! My name is Guilherme Oliveira, I'm some kind of a breed of a designer, an artist and an engineer. Passionate about game development and things that are somehow related to user experience.</p>
-          <p>In my free time I'm a Computer Science Undergraduate at Federal University of Uberlandia, currently working for an educational group inside the university and researching on the subject of Information Visualization on an Intelligent Tutoring System.</p>
-          <p>I code at github, write at medium and sometimes tweet. Currently writing on my blog about my adventures on game development while I try to develop a game all by myself.</p>
-          <p>I also happen to work as a freelancer in mobile development, frontend development and game development with a colleague</p>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-3 col-xs-3">
-          <a href="#"><button id="working">Working On</button></a>
-        </div>
-        <div class="col-md-3 col-xs-3">
-          <a href="#"><button id="what">What I Do</button></a>
-        </div>
-        <div class="col-md-3 col-xs-3">
-          <a href="#"><button id="projects">Projects</button></a>
-        </div>
-        <div class="col-md-3 col-xs-3">
-          <a href="#"><button id="hobbies">Hobbies</button></a>
-        </div>
-      </div>
-
-      <section id="working-section">
-        <h1>Working On</h1>
-        <ul>
-          <li><strong>Mignight Journey:</strong> this is currently my biggest project, doing a simple RPG game based on old Zelda games where I will do the game programming, art and music composition.</li>
-          <li><strong>Jade Reno Pirates:</strong> Basically a rock paper scissors, but Hearthstone themed, to remember everyone how the ladder felt on the Mean Streets of Gadgetzan meta.</li>
-          <li><strong>Learning Pixel Art:</strong> Someday I had this great idea of doing a game all by myself...</li>
-          <li><strong>Learning Game Music Composition:</strong> for Midnight Journey!</li>
-          <li><strong>Conclusion Thesis: </strong> 2017 is my last year as an Undergraduate! Hooray! Working on Genetic ALgorithms to produce strategies to play Roguelike games.</li>
-        </ul>
-      </section>
-
-      <section id="what-section">
-        <h1>What I Do</h1>
-        <ul>
-          <li><strong>CompPET:</strong> This is an educational group inside university. We work on extracurricular activities such as Teaching, Research and Extension.</li>
-          <li><strong>Research:</strong> Currently researching on the topic of visualizing information on an intelligent tutoring system, in the past I worked with Genetic Algorithms on the Protein Structure Prediction using Model 3D-HP </li>
-          <li><strong>Game Dev:</strong> This is my projects/hobby nowadays, I want to get money working on something related to games.</li>
-          <li><strong>Web Dev:</strong> In my humble opinion every computer scientist or programmer should know the basics of Web Development, so I study it sometimes and work on some small projects or websites for showcasing something for CompPET.</li>
-          <li><strong>Freelancing:</strong> I need money to live, I like developing, so it fits. Freelancing mainly on Mobile Development (iOS and Android) and Game Development, but I can also do it when Frontend Development is on the table.</li>
-        </ul>
-      </section>
-
-      <section id="projects-section">
-        <h1>Projects</h1>
-        <ul>
-          <li><strong>Game Development</strong></li>
-          <li><strong>FACOM Souls: </strong> I did this for a university project on my 5th therm, I had to use 5 design patterns in anything I wanted, I did a Dark Souls style combat system using them.</li>
-          <li><strong>Simon Game: </strong> I was bored and did this. Soon I will put it on Google Play.</li>
-          <li><strong>Flappy45: </strong> A political joke. Not proud of this one.</li>
-          <li><strong>Save Hyrule:</strong> Another project for university, It's a pathfinding algorithm (A*) that needs to walk through Hyrule, finish three dungeons and get the Master Sword.</li>
-
-          <li><strong>Web Development</strong></li>
-          <li><strong>Hearthstone Streamers:</strong> Show some Hearthstone streamers and who is online and who isn't</li>
-          <li><strong>Trump Responsive: </strong> Make Responsive Great Again.</li>
-          <li><strong>Bloodborne level up calculator: </strong>I just wanted to play Bloodborne without having to calculate by hand how many Blood Echoes I needed to level up.</li>
-          <li><strong>Nikola Tesla Tribute: </strong>Free Code Camp Project, a tribute to Nikolas Tesla.</li>
-          <li><strong>Bootstrap show off: </strong>I did a simple <a href="http://comppet.github.io/minicursoFrontend/galeria" target="_blank">Image Gallery</a> and a <a href="http://comppet.github.io/minicursoFrontend/landing" target="_blank">Landing Page</a> for a course that I teached for CompPET about Frontend Development as examples of websites with Bootstrap</li>
-        </ul>
-      </section>
-
-      <section id="hobbies-section">
-        <h1>Hobbies</h1>
-        <ul>
-          <li>I like having hobbies that isn't related to computer science at all.</li>
-          <li><strong>Photography: </strong>I can't practice it as much as I wished but it's cool, from time to time I mess with my DSLR, take some pictures, learn new stuff, yup.</li>
-          <li><strong>Writing: </strong> I like writing, anything.</li>
-          <li><strong>Yoga: </strong> This is the newest one, yoga and meditation are really cool!</li>
-        </ul>
-      </section>
     </div>
 
     <script type="text/javascript" src="webpage.js"></script>
