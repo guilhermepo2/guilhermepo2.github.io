@@ -6,13 +6,13 @@ var hobbiesSection = $("#hobbies-section");
 // selecting buttons
 var working = $("#working");
 var what = $("#what");
-var projects = $("#projects");
+var portfolio = $("#portfolio");
 var hobbies = $("#hobbies");
 
 working.click(function(){
   workingSection.toggle();
   whatSection.hide();
-  .hide();
+  portfolioSection.hide();
   hobbiesSection.hide();
 });
 
@@ -23,7 +23,7 @@ what.click(function() {
   hobbiesSection.hide();
 });
 
-projects.click(function() {
+portfolio.click(function() {
   workingSection.hide();
   whatSection.hide();
   portfolioSection.toggle();
