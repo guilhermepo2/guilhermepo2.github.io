@@ -2,46 +2,46 @@
 var workingSection = $("#working-section");
 var whatSection = $("#what-section");
 var portfolioSection = $("#portfolio-section");
-var hobbiesSection = $("#hobbies-section");
+var randomSection = $("#random-section");
 // selecting buttons
 var working = $("#working");
 var what = $("#what");
 var portfolio = $("#portfolio");
-var hobbies = $("#hobbies");
+var random = $("#random");
 
 working.click(function(){
   workingSection.toggle();
   whatSection.hide();
   portfolioSection.hide();
-  hobbiesSection.hide();
+  randomSection.hide();
 });
 
 what.click(function() {
   workingSection.hide();
   whatSection.toggle();
   portfolioSection.hide();
-  hobbiesSection.hide();
+  randomSection.hide();
 });
 
 portfolio.click(function() {
   workingSection.hide();
   whatSection.hide();
   portfolioSection.toggle();
-  hobbiesSection.hide();
+  randomSection.hide();
 });
 
-hobbies.click(function() {
+random.click(function() {
   workingSection.hide();
   whatSection.hide();
   portfolioSection.hide();
-  hobbiesSection.toggle();
+  randomSection.toggle();
 });
 
 var init = function() {
   workingSection.hide();
   whatSection.hide();
   portfolioSection.hide();
-  hobbiesSection.hide();
+  randomSection.hide();
 }
 
 init();
