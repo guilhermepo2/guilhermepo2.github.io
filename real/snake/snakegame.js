@@ -67,6 +67,15 @@ var drawModule = (function(){
     // border to the canvas
     gameCanvas.fillStyle = 'white';
     gameCanvas.fillRect(0, 0, width + 50, height + 50);
+
+    for(var i = 0; i < (width / snakeSize); i++) {
+      for(var j = 0; j < (width / snakeSize); j++) {
+        gameCanvas.strokeStyle = '#f5f5f5';
+        gameCanvas.strokeRect(i * snakeSize, j * snakeSize, snakeSize, snakeSize);
+      }
+    }
+      
+
     gameCanvas.strokeStyle = 'black';
     gameCanvas.strokeRect(0, 0, width, height);
 
