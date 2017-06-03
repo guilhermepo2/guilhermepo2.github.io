@@ -1,8 +1,16 @@
-#jogos {
+body {
+  background: #1f1f1f;
+}
+
+#jogos, #campeonatos {
   padding: 1em;
   background: #1f1f1f;
   color: #f1f1f1;
   text-align: center;
+}
+
+.navbar {
+  margin-bottom: 0;
 }
 
 h1 {
