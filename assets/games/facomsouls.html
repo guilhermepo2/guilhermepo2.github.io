@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FACOM Souls</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style media="screen">
+      body {
+        text-align: justify;
+        font-size: 1.8em;
+      }
+
+      .heading, h2, .video {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-offset-2 col-xs-8">
+          <div class="heading">
+            <h1>FACOM Souls</h1>
+            <div class="video">
+              <iframe width="420" height="345" src="https://www.youtube.com/embed/cgFsdmuyYwE">
+              </iframe>
+            </div>
+          </div>
+          <hr>
+          <p>FACOM Souls is a Dark Souls based combat system learning experience. I developed it on my 5th semester at University (Second Semester of 2015) as a final project for Object Oriented Programming 2.</p>
+
+          <p>The main character (Elite Knight) was modeled and textured by me, rigging and animations are from Mixamo, also, everything related to code is also my own.</p>
+
+          <p>The purpose of this essay was to develop <em>anything</em> using at least 5 design patterns. I've chosen to do this Dark Souls combat style because it was something that I've been wanting to do for some time.</p>
+
+          <p>I used the following Design Patterns: </p>
+
+          <p><strong>Strategy:</strong> The Strategy design pattern allows you to use different behaviours in a way that they can easily be changed. In this project it was used for the weapons, each weapon has its own damage and animations, and they can easily be changed using this design pattern.</p>
+
+          <p><strong>Mediator:</strong> The Mediator Design Pattern is useful to avoid objects referencing each other, they reference the mediator instead. It is used on the combat, instead of the player object checking for enemies, it just tells the mediators that he is attacking, the mediator does the rest.</p>
+
+          <p><strong>Memento:</strong> The Memento Design Patern is useful to take a "picture" of the state of your program, so you can go back to that state at any given time. In this project it is used for the save game.</p>
+
+          <p><strong>Observer:</strong> Instead of the enemies always checking for the Elite Knight, our hero has a characteristic that warns the enemies when he is near them. This way the complexity of changing enemy behaviour according to the distance to the player is all on the main character (which is only one) and not on the enemies (which are many)</p>
+
+          <p><strong>State:</strong> The State Pattern makes automatic update of object behaviour, when an enemy's state changes, his behaviour also changes. The state can go from idle to alert and from alert to attacking, each one with its own set of behaviours.</p>
+
+          <p><strong>Singleton:</strong> The Singleton Design Pattern ensures that a class will have only instance and that instance is accessible anywhere. This one is used on the User Interface and on the Mediator. Because there is only one User Interface and Mediator. The Main Character just gives a call to the singleton and the UI adapts or the Mediator acts.</p>
+
+          <p>That's pretty much it for <strong>FACOM Souls</strong>! If you like you can follow my <a href="https://gpolive.wordpress.com">blog</a>, where I will be doing monthly updates on what I'm working on. You can also go to my <a href="http://guilhermepo2.github.io">website</a> for more information about me and how to contact me.</p>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
