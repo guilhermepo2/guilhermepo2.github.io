@@ -2,11 +2,17 @@
     <head>
         <title>Pizza Clicker</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+        <style>
+            #gameContent {
+                text-align: center;
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Pizza Clicker</h1>
         <div class="container">
+            <h1>Pizza Clicker</h1>
             <div class="row" id="gameContent">
                 <div class="col-md-4">
                     <h2 id="header">Clicking</h2>
@@ -15,7 +21,7 @@
                     <button id="pizzaClick">PIZZA!</button>
                 </div>
                 
-                <div class="col-md-4"><h1>:) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) </h1></div>
+                <div class="col-md-4"><h1>Developed by <a href="http://gueepo.me" target="blank">Guilherme Oliveira</a></h1></div>
 
                 <div class="col-md-4">
                     <h2>Store</h2>
@@ -28,32 +34,32 @@
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
     <script>
         var player = {
-            "name": "show show pizzeria",
+            "name": "show show",
             "pizzaPerClick": 1,
             "pps": 0,
             "pizzas": 0
         }
 
         var buildings = {
-            "cursor": {
+            "Cursor": {
                 "level": 0,
                 "baseCost": 10,
                 "cost": 10,
                 "pps": 0.1
             },
-            "gennaro": {
+            "Gennaro": {
                 "level": 0,
                 "baseCost": 100,
                 "cost": 100,
                 "pps": 1,
             },
-            "autoOven": {
+            "Auto Oven": {
                 "level": 0,
                 "baseCost": 400,
                 "cost": 400,
                 "pps": 5
             },
-            "factory": {
+            "Factory": {
                 "level": 0,
                 "baseCost": 2500,
                 "cost": 2500,
@@ -86,7 +92,7 @@
         }
 
         $(document).ready(function() {
-            $("#header").text(player.name);
+            $("#header").text(player.name + "'s pizzeria");
             updateUI();
             updateStore();
 
