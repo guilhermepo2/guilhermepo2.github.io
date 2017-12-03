@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>Pizza Clicker</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+
+    <body>
+        <h1>Pizza Clicker</h1>
+        <div class="container">
+            <div class="row" id="gameContent">
+                <div class="col-md-4">
+                    <h2 id="header">Clicking</h2>
+                    <p id="pizzas">pizzas: 0</p>
+                    <p id="pps">pps: 0</p>
+                    <button id="pizzaClick">PIZZA!</button>
+                </div>
+                
+                <div class="col-md-4"><h1>:) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) </h1></div>
+
+                <div class="col-md-4">
+                    <h2>Store</h2>
+                    <div id="store"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+    <script>
+        var player = {
+            "name": "show show pizzeria",
+            "pizzaPerClick": 1,
+            "pps": 0,
+            "pizzas": 0
+        }
+
+        var buildings = {
+            "cursor": {
+                "level": 0,
+                "baseCost": 10,
+                "cost": 10,
+                "pps": 0.1
+            },
+            "gennaro": {
+                "level": 0,
+                "baseCost": 100,
+                "cost": 100,
+                "pps": 1,
+            },
+            "autoOven": {
+                "level": 0,
+                "baseCost": 400,
+                "cost": 400,
+                "pps": 5
+            },
+            "factory": {
+                "level": 0,
+                "baseCost": 2500,
+                "cost": 2500,
+                "pps": 15
+            }
+        }
+
+        var pizzaSelector = $("#pizzas");
+        var ppsSelector = $("#pps");
+        var pizzaButton = $("#pizzaClick");
+        var store = $("#store");
+
+        var updateUI = function() {
+            pizzaSelector.text("Pizzas: " + player.pizzas.toFixed(2));
+            ppsSelector.text("PpS: " + player.pps.toFixed(2));
+        }
+
+        var updateStore = function() {
+            store.html("");
+            Object.keys(buildings).forEach(function(key) {
+                store.html(store.html() + "<div class='store-item'><div class='col-md-9'><button class='btn btn-block btn-default btn-lg' id='"+key+"'><h4>"+key+"</h4><p>"+buildings[key].cost.toFixed(2)+" pizzas</p></button></div><div class='col-md-3'><h4>"+buildings[key].level+"</h4><p><strong>PpS: </strong>"+buildings[key].pps.toFixed(2)+"</p></div></div>");
+            });
+        }
+
+        var calculatePrice = function(baseCost, level) {
+            var multiplier = 1.12;
+            var price = (baseCost * (multiplier ** level));
+
+            return price;
+        }
+
+        $(document).ready(function() {
+            $("#header").text(player.name);
+            updateUI();
+            updateStore();
+
+            pizzaButton.click(function(e) {
+                player.pizzas += player.pizzaPerClick;
+                updateUI();
+            });
+
+            Object.keys(buildings).forEach(function(key) {
+                selectorString = ("#" + key);
+                $("#gameContent").on("click", selectorString, function() {
+                    if(player.pizzas > buildings[key].cost) {
+                        player.pizzas -= buildings[key].cost;
+                        player.pps += buildings[key].pps;
+                        buildings[key].level += 1;
+                        buildings[key].cost = calculatePrice(buildings[key].baseCost, buildings[key].level);
+                    }
+                    updateUI();
+                    updateStore();
+                });
+            });
+
+            window.setInterval(function() {
+                player.pizzas += player.pps;
+                updateUI();
+            }, 1000);
+        });
+    </script>
+</html>
