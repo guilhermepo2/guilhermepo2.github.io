@@ -19,22 +19,19 @@
                     </div>
                     <div class="col-md-10">
                             <p>
-                                Hey there, I'm Guilherme Oliveira and I like studying and developing games on my free time. 
-                                This page is only so I can show a little bit of what I did and what I'm doing.
-                                You can know more about me at <a href="http://gueepo.me">gueepo.me</a> and reach me on <a href="http://www.twitter.com/guilhermepo2">twitter</a>
-                                or, if you prefer, send me an email at <a href="mailto:guilherme.061@gmail.com">guilherme.061@gmail.com</a>
+                                Hey there, I'm Guilherme Oliveira and I like studying and developing games on my free time. This page is only so I can show a little bit of what I did and what I'm doing. You can know more about me at <a href="http://gueepo.me">gueepo.me</a> and on my <a href="https://gpolive.wordpress.com">gamedev blog</a>, you can reach me on <a href="http://www.twitter.com/guilhermepo2">twitter</a>, or, if you prefer, send me an email at <a href="mailto:guilherme.061@gmail.com">guilherme.061@gmail.com</a>.
                             </p>
-                            <blockquote>I would write a nice phrase here. But I don't have one.</blockquote>
                     </div>
                 </div>
             </div>
+
             <div class="section working-on">
                 <h2>Working On <button id="workingButton"><i id="workingOnIcon" class="fa fa-caret-right"></i></button></h2>
                 <div id="workingOnContent" class="row">
                     <div class="col-md-4">
                         <div class="thumbnail">
-                            <img class="img-responsive" src="./assets/portfolio/img/mj.png">
-                            <p>Midnight Journey</p>
+                            <a id="midnightJourneyLink" href="#midnightJourneyModal"><img class="img-responsive" src="./assets/portfolio/img/mj.png">
+                            <p>Midnight Journey</p></a>
                             <p>Unity | Gamemaker</p>
                             <p><span class="programming">Programming</span> | <span class="art">Pixel Art</span> | <span class="others">Music Composition</span></p>
                         </div>
@@ -118,8 +115,35 @@
                     </div>            
                 </div>
         </div>
+
+        <div id="modals">
+            <div id="midnightJourneyModal" class="easy-modal">
+                <h2>Midnight Journey</h2>
+                <p>Developing a game all by myself were always something I wanted to do. Midnight Journey is an Action RPG and also me trying to accomplish this ambition. As I have a programming background, little I knew about music and art, and little practice I had with design, so I started studying these aspects. It all started with a small prototype called "Zelda Souls", which led me to <a target="blank" href="https://www.youtube.com/watch?v=nGrTwX7sdd0">this first alpha</a>.</p>
+                <p>After some time on thinking about what I wanted to do and what I was doing, I took a break from this project. When I got back at it I decided to use Gamemaker, I took a course on Udemy and <a href="https://www.youtube.com/watch?v=5rj5E3DbGkw">this</a> is the final result, which is a nice base for what I want to do.</p>
+                <h3>The Future</h3>
+                <p>I'm currently working on the game aesthetics, changing how the main character should look like and which colors I will use, next steps are drawing animations and using them on Gamemaker.</p>
+                <hr>
+                <p>You can know more about Midnight Journey <a href="./assets/games/mj.html">here</a> and occasionally at my <a href="https://gpolive.wordpress.com">blog</a></p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-3">
+                        <img src="./assets/portfolio/img/EthanWinner.png">
+                        <p>Current Ethan Design</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="./assets/portfolio/img/frontViewRunning.png">
+                        <p>First Alpha Ethan</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="./assets/portfolio/img/firstEnemy.png">
+                        <p>First Alpha Enemy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
-    <script src="./assets/portfolio/slides.js"> </script>
+    <script src="./assets/portfolio/jquery.easyModal.js"></script>
+    <script src="./assets/portfolio/script.js"> </script>
 </html>

@@ -7,6 +7,8 @@ $(document).ready(function() {
     $("#postponedContent").slideUp(1000);
     $("#finishedContent").slideUp(1000);    
 
+    // SLIDES
+
     var myShow = function(content, icon) {
         $(content).slideDown(1000);
         $(icon).removeClass();
@@ -57,5 +59,16 @@ $(document).ready(function() {
         }
 
         finishedShown = !finishedShown;
+    });
+
+    // MODALS
+    $("#midnightJourneyModal").easyModal({
+        top: 25
+    });
+
+    $("#midnightJourneyLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
     });
 });
