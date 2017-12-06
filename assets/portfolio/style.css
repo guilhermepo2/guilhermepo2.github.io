@@ -1,0 +1,59 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+.thumbnail p {
+    text-align: center;
+    margin: 0;
+}
+.thumbnail {
+    padding: .5%;
+    border: 15px;
+    margin: 0;
+}
+
+.thumbnail img {
+    width: 280px;
+    height: 220px;
+}
+
+.img-responsive {
+    border-radius: 15px;
+}
+
+.section h2 {
+    margin: .5%;
+    background-color: #eee;
+    padding: .5%;
+    border-radius: 15px;
+    padding-left: 5%;
+}
+
+.programming {
+    color: rgb(38, 38, 112);
+}
+
+.art {
+    color: rgb(158, 55, 55);
+}
+
+.others {
+    color: rgb(63, 63, 16);
+}
+
+button {
+    background: none;
+    border: none;
+    float: right;
+    padding-right: 5%;
+}
+
+.jumbotron{
+    background: none;
+    margin-bottom: 0;
+    padding-bottom: 24px;
+    padding-top: 24px;
+}
+
+.jumbotron blockquote, p {
+    margin: 0;
+}
