@@ -42,30 +42,35 @@
 
         var buildings = {
             "Cursor": {
+                "id": "cursor",
                 "level": 0,
                 "baseCost": 10,
                 "cost": 10,
                 "pps": 0.1
             },
             "Gennaro": {
+                "id": "gennaro",
                 "level": 0,
                 "baseCost": 100,
                 "cost": 100,
                 "pps": 1,
             },
             "Wood Oven": {
+                "id": "woodOven",
                 "level": 0,
                 "baseCost": 1200,
                 "cost": 1200,
                 "pps": 10
             },
             "Factory": {
+                "id": "factory",
                 "level": 0,
                 "baseCost": 14000,
                 "cost": 14000,
                 "pps": 50
             },
             "Eletric Oven": {
+                "id": "eletricOven",
                 "level": 0,
                 "baseCost": 150000,
                 "cost": 150000,
@@ -86,7 +91,7 @@
         var updateStore = function() {
             store.html("");
             Object.keys(buildings).forEach(function(key) {
-                store.html(store.html() + "<div class='store-item'><div class='col-md-9'><button class='btn btn-block btn-default btn-lg' id='"+key+"'><h4>"+key+"</h4><p>"+buildings[key].cost.toFixed(2)+" pizzas</p></button></div><div class='col-md-3'><h4>"+buildings[key].level+"</h4><p><strong>PpS: </strong>"+buildings[key].pps.toFixed(2)+"</p></div></div>");
+                store.html(store.html() + "<div class='store-item'><div class='col-md-9'><button class='btn btn-block btn-default btn-lg' id='"+buildings[key].id+"'><h4>"+key+"</h4><p>"+buildings[key].cost.toFixed(2)+" pizzas</p></button></div><div class='col-md-3'><h4>"+buildings[key].level+"</h4><p><strong>PpS: </strong>"+buildings[key].pps.toFixed(2)+"</p></div></div>");
             });
         }
 
@@ -108,7 +113,7 @@
             });
 
             Object.keys(buildings).forEach(function(key) {
-                selectorString = ("#" + key);
+                selectorString = ("#" + buildings[key].id);
                 $("#gameContent").on("click", selectorString, function() {
                     if(player.pizzas > buildings[key].cost) {
                         player.pizzas -= buildings[key].cost;
