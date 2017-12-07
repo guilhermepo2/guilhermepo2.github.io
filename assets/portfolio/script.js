@@ -62,11 +62,23 @@ $(document).ready(function() {
     });
 
     // MODALS
-    $("#midnightJourneyModal").easyModal({
-        top: 25
-    });
+    $("#midnightJourneyModal").easyModal({top: 25});
+    $("#theAceProgrammerModal").easyModal({top: 25});
+    $("#pizzaClickerModal").easyModal({top:25});
 
     $("#midnightJourneyLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
+    });
+
+    $("#theAceProgrammerLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
+    })
+
+    $("#pizzaClickerLink").click(function(e) {
         var target = $(this).attr('href');
         $(target).trigger('openModal');
         e.preventDefault();

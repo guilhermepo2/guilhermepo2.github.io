@@ -61,7 +61,7 @@ button {
 
 .easy-modal {
     width: 960px;
-    padding: 2em;
+    padding: 0 2em;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.35);
     background-color: white;
     font-size: 1.2em;
@@ -69,13 +69,9 @@ button {
 
 .easy-modal p {
     margin-bottom: 10px;
-    text-align: center;
+    text-align: justify;
 }
 
 .easy-modal h2, .easy-modal h3 {
-    text-align: center;
-}
-
-.mj-img {
-    width: 50%;
+    text-align: center; 
 }

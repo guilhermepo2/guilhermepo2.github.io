@@ -38,16 +38,16 @@
                     </div>
                     <div class="col-md-4">
                         <div class="thumbnail">
-                            <img class="img-responsive" src="./assets/portfolio/img/aceprogrammer.png">
-                            <p>The Ace Programmer <em>(temp. photo)</em></p>
+                            <a id="theAceProgrammerLink" href="#theAceProgrammerModal"><img class="img-responsive" src="./assets/portfolio/img/aceprogrammer.png">
+                            <p>The Ace Programmer <em>(temp. photo)</em></p></a>
                             <p>Unity</p>
                             <p><span class="programming">Programming</span> | <span class="others">Writing</span></p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="thumbnail">
-                            <img class="img-responsive" src="./assets/portfolio/img/pizzaclicker.png">
-                            <p>Pizza Clicker <em>(temp. photo)</em></p>
+                            <a id="pizzaClickerLink" href="#pizzaClickerModal"><img class="img-responsive" src="./assets/portfolio/img/pizzaclicker.png">
+                            <p>Pizza Clicker <em>(temp. photo)</em></p></a>
                             <p>Javascript</p>
                             <p><span class="programming">Programming</span> | <span class="art">Pixel Art</span></p>
                         </div>
@@ -58,6 +58,10 @@
             <div class="section postponed">
                 <h2>Postponed Projects<button id="postponedButton"><i id="postponedIcon" class="fa fa-caret-right"></i></button></h2>
                 <div id="postponedContent" class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <h3>Whoops... There is nothing in here yet... come back in a few days...</h3>
+                    </div>
+                    <!--
                     <div class="col-md-6">
                             <div class="thumbnail">
                                 <img class="img-responsive" src="https://placeimg.com/280/220/people">
@@ -73,13 +77,17 @@
                             <p>Unity</p>
                             <p><span class="programming">Programming</span> | <span class="art">Pixel Art</span></p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <div class="section finished">
                 <h2>Finished Projects<button id="finishedButton"><i id="finishedIcon" class="fa fa-caret-right"></i></button></h2>
                 <div id="finishedContent" class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <h3>Whoops... There is nothing in here yet... come back in a few days...</h3>
+                    </div>
+                    <!--
                     <div class="col-md-3">
                             <div class="thumbnail">
                                 <img class="img-responsive" src="https://placeimg.com/280/220/animals">
@@ -111,7 +119,7 @@
                                 <p>Unity</p>
                                 <p><span class="programming">Programming</span> | <span class="programming">AI Programming</span></p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>            
                 </div>
         </div>
@@ -119,10 +127,18 @@
         <div id="modals">
             <div id="midnightJourneyModal" class="easy-modal">
                 <h2>Midnight Journey</h2>
-                <p>Developing a game all by myself were always something I wanted to do. Midnight Journey is an Action RPG and also me trying to accomplish this ambition. As I have a programming background, little I knew about music and art, and little practice I had with design, so I started studying these aspects. It all started with a small prototype called "Zelda Souls", which led me to <a target="blank" href="https://www.youtube.com/watch?v=nGrTwX7sdd0">this first alpha</a>.</p>
-                <p>After some time on thinking about what I wanted to do and what I was doing, I took a break from this project. When I got back at it I decided to use Gamemaker, I took a course on Udemy and <a href="https://www.youtube.com/watch?v=5rj5E3DbGkw">this</a> is the final result, which is a nice base for what I want to do.</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive mj-img" src="./assets/portfolio/img/mjpresent.jpg">
+                    </div>
+                    <div class="col-md-8">
+                        <p>Developing a game all by myself were always something I wanted to do. Midnight Journey is an Action RPG and also me trying to accomplish this ambition. As I have a programming background, little I knew about music and art, and little practice I had with design, so I started studying these aspects. It all started with a small prototype called "Zelda Souls", which led me to <a target="blank" href="https://www.youtube.com/watch?v=nGrTwX7sdd0">this first alpha</a>.</p>
+                        <p>After some time on thinking about what I wanted to do and what I was doing, I took a break from this project.</p>
+                    </div>
+                </div>
+                <p>When I got back at it I decided to use Gamemaker, I took a course on Udemy and <a href="https://www.youtube.com/watch?v=5rj5E3DbGkw">this</a> is the final result, which is a nice base for what I want to do.</p>
                 <h3>The Future</h3>
-                <p>I'm currently working on the game aesthetics, changing how the main character should look like and which colors I will use, next steps are drawing animations and using them on Gamemaker.</p>
+                <p>I'm currently working on the game aesthetics, changing how the main character should look like and which colors I will use, next steps are drawing animations, using them on Gamemaker and improving/working on a Game Design Document and a Story.</p>
                 <hr>
                 <p>You can know more about Midnight Journey <a href="./assets/games/mj.html">here</a> and occasionally at my <a href="https://gpolive.wordpress.com">blog</a></p>
                 <div class="row">
@@ -139,6 +155,31 @@
                         <p>First Alpha Enemy</p>
                     </div>
                 </div>
+            </div>
+
+            <div id="theAceProgrammerModal" class="easy-modal">
+                <h2>The Ace Programmer</h2>
+                <h3>What is it?</h3>
+                <p>The Ace Programmer came to me when I was playing... Phoenix Wright: Ace Attorney (whoah...), it is a Visual Novel Adventure Game, meaning that it is part Visual Novel (lots of dialogues and story heavy), but it also has something more interactable, on Ace Attorney you work as an... Attorney and to defend your clients you sort of have to solve puzzles. The Ace Programmer would follow a similar idea, it would have a story, it would have dialogues and a puzzle/adventure part, in this case it would be related to programming.</p>
+                <h3>What I've done</h3>
+                <p>I actually have done a MVP for this one, you can play it <a href="https://gueepo.itch.io/ace-programmer-0001" target="blank">here</a>, it has all the elements I want (except of graphics of course) which is basic dialogs and the puzzle working.</p>
+                <p>I got some pretty bad feedback on this because people where getting stuck not knowing what to do when the puzzle began, so I went back to thoughts, pen and paper to think through what I should do.</p>
+                <h3>The future</h3>
+                <p>I rewrote the script of the MVP (above) part, making it better and longer and I want to have it corrected by a pro. I also introduced a new character which will guide you through how to use the puzzle system, basically they will teach you how to play the game.</p>
+                <p>Next step is doing another prototype with a proper VN Engine and with temporary graphics, considering hiring a freelancer to draw the characters and consider changing to Gamemaker (as I have a license)</p>
+                <p></p>
+            </div>
+
+            <div id="pizzaClickerModal" class="easy-modal">
+                <h2>Pizza Clicker</h2>
+                <h3>What is It?</h3>
+                <p>Pizza Clicker is a simple clicker, or idle, game, where you click to earn something (in this case, pizzas) and you spend this something to earn more something, the perfect addiction formula. You can be rewarded by clicking more but, usually, this kind of game turns out to be more about how to spend your somethings more efficiently and just being idle with the game open, while you earn somethings per second.</p>
+                <p>Examples of games like that are <a href="http://orteil.dashnet.org/cookieclicker/">Cookie Clicker</a>(the most famous one) and <a href="https://dogeminer.se">Doge Miner</a>, there are plenty of others, you can check it.</p>
+                <h3>What I've done</h3>
+                <p>I did two MVPs (Minimum Viable Product) for this project, one using PhaserJS (a Javascript Game Engine) and one using plain JavaScript. The one with <strong>Phaser</strong> was more of how to display everything on screen to have an overview of how it would be aesthetically. The <strong>Javascript</strong> one is where I coded the logic, earning pizzas, buying buildings, price raising, etc... You can play the javascript version <a href="./pizzaclicker2/index.html" target="blank">here.</a></p>
+                <h3>The Future</h3>
+                <p>I'm still thinking of which technology I should use, being the options <strong>plain javascript, html, css</strong>, <strong>PhaserJS</strong> and <strong>plain javascript with PixiJS</strong>. After that I will start drawing some sprites, there shouldn't be a lot, and then work on balancing the game progression and writing a simple story.</p>
+                <p><strong>Why?</strong> Why not?</p>
             </div>
         </div>
     </body>
