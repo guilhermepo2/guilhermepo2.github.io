@@ -65,6 +65,8 @@ $(document).ready(function() {
     $("#midnightJourneyModal").easyModal({top: 25});
     $("#theAceProgrammerModal").easyModal({top: 25});
     $("#pizzaClickerModal").easyModal({top:25});
+    $("#facomSoulsModal").easyModal({top:25});
+    $("#jadeRenoPiratesModal").easyModal();
 
     $("#midnightJourneyLink").click(function(e) {
         var target = $(this).attr('href');
@@ -79,6 +81,18 @@ $(document).ready(function() {
     })
 
     $("#pizzaClickerLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
+    });
+
+    $("#facomSoulsLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
+    });
+
+    $("#jadeRenoPiratesLink").click(function(e) {
         var target = $(this).attr('href');
         $(target).trigger('openModal');
         e.preventDefault();

@@ -58,8 +58,13 @@
             <div class="section postponed">
                 <h2>Postponed Projects<button id="postponedButton"><i id="postponedIcon" class="fa fa-caret-right"></i></button></h2>
                 <div id="postponedContent" class="row">
-                    <div class="col-md-offset-1 col-md-10">
-                        <h3>Whoops... There is nothing in here yet... come back in a few days...</h3>
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <a id="jadeRenoPiratesLink" href="#jadeRenoPiratesModal"><img class="img-responsive" src="./assets/portfolio/img/face.png">
+                            <p>Jade Reno Pirates</p></a>
+                            <p>Unity</p>
+                            <p><span class="programming">Programming</span> | <span class="art">Pixel Art</span></p>
+                        </div>
                     </div>
                     <!--
                     <div class="col-md-6">
@@ -70,36 +75,26 @@
                                 <p><span class="programming">Programming</span> | <span class="art">Pixel Art</span></p>
                             </div>
                         </div>
-                    <div class="col-md-6">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="https://placeimg.com/280/220/tech">
-                            <p>Jade Reno Pirates</p>
-                            <p>Unity</p>
-                            <p><span class="programming">Programming</span> | <span class="art">Pixel Art</span></p>
-                        </div>
-                    </div> -->
+                    -->
                 </div>
             </div>
 
             <div class="section finished">
                 <h2>Finished Projects<button id="finishedButton"><i id="finishedIcon" class="fa fa-caret-right"></i></button></h2>
                 <div id="finishedContent" class="row">
-                    <div class="col-md-offset-1 col-md-10">
-                        <h3>Whoops... There is nothing in here yet... come back in a few days...</h3>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a id="facomSoulsLink" href="#facomSoulsModal"><img class="img-responsive" src="./assets/portfolio/img/facomsouls.jpg">
+                            <p>Facom Souls</p></a>
+                            <p>Unity 3D</p>
+                            <p><span class="programming">Programming</span> | <span class="art">3D Modelling</span></p>
+                        </div>
                     </div>
                     <!--
                     <div class="col-md-3">
                             <div class="thumbnail">
                                 <img class="img-responsive" src="https://placeimg.com/280/220/animals">
                                 <p>Inverse Kinomatics</p>
-                                <p>Unity</p>
-                                <p><span class="programming">Programming</span> | <span class="art">3D Modelling</span></p>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img class="img-responsive" src="https://placeimg.com/280/220/architecture">
-                                <p>FACOM Souls</p>
                                 <p>Unity</p>
                                 <p><span class="programming">Programming</span> | <span class="art">3D Modelling</span></p>
                             </div>
@@ -180,6 +175,34 @@
                 <h3>The Future</h3>
                 <p>I'm still thinking of which technology I should use, being the options <strong>plain javascript, html, css</strong>, <strong>PhaserJS</strong> and <strong>plain javascript with PixiJS</strong>. After that I will start drawing some sprites, there shouldn't be a lot, and then work on balancing the game progression and writing a simple story.</p>
                 <p><strong>Why?</strong> Why not?</p>
+            </div>
+
+            <div id="jadeRenoPiratesModal" class="easy-modal">
+                <h2>Jade Reno Pirates</h2>
+                <h3>What is it</h3>
+                <p>Jade Reno Pirates is just a Rock Paper Scissors game, but Hearthstone Themed. Hearthstone once had a metagame that felt like playing rock paper scissors (Pirate Warrior, Renolock and Jade Druid), you would choose one deck and you face a mirror match or 2 other options, one of them you knew you would lose, the other one you knew you would win. So I made a rock paper scissors to remember how this metagame felt :)</p>
+                <h3>What I've Done</h3>
+                <p>I've drawn the basic sprites that you clicked to get to this modal page and I programmed all the game logic (which is not complex), I also developed a rock paper scissors AI to play against you :)</p>
+                <h3>Why Postponed?</h3>
+                <p>Because this is not an interesting game at all. But I want to get back at it one day and finish it, I just to draw a background, some UI elements and compose a simple music.</p>
+            </div>
+
+            <div id="facomSoulsModal" class="easy-modal">
+                <h2>Facom Souls</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <iframe width="420" height="345" src="https://www.youtube.com/embed/cgFsdmuyYwE"></iframe>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>What was It?</h3>
+                        <p>Facom Souls is a Dark Souls based combat system learning experience. I developed it on my 5th semester at University as a final project for Object Oriented Programming 2.</p>
+                        <p>The purpose of the essay was to develop <em>anything</em> using 5 or more design patterns. I had in my mind the idea of doing something related to Dark Souls for a long time, so I tried.</p>
+                        <h3>What I've done</h3>
+                        <p>I basically programmed everything from scratch, with some help of the wonderful land of internet, of course, and used 5 different design patterns: Strategy, Mediator, Memento, Observer, State and Singleton.</p>
+                    </div>
+                </div>
+                <p>Also the main character modelling was made by me, animations from Mixamo and environment/enemies are free assets from the Unity Asset Store!</p>
+                <p>Click <a href="./assets/games/facomsouls.html">here</a> for more detailed information.</p>
             </div>
         </div>
     </body>
