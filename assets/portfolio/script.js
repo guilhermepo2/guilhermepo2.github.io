@@ -67,6 +67,8 @@ $(document).ready(function() {
     $("#pizzaClickerModal").easyModal({top:25});
     $("#facomSoulsModal").easyModal({top:25});
     $("#jadeRenoPiratesModal").easyModal();
+    $("#inverseKinomaticsModal").easyModal();
+    $("#ghostGameModal").easyModal({top:25});
 
     $("#midnightJourneyLink").click(function(e) {
         var target = $(this).attr('href');
@@ -81,6 +83,18 @@ $(document).ready(function() {
     })
 
     $("#pizzaClickerLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
+    });
+
+    $("#inverseKinomaticsLink").click(function(e) {
+        var target = $(this).attr('href');
+        $(target).trigger('openModal');
+        e.preventDefault();
+    });
+
+    $("#ghostGameLink").click(function(e) { 
         var target = $(this).attr('href');
         $(target).trigger('openModal');
         e.preventDefault();
