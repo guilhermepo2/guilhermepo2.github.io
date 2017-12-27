@@ -3,6 +3,9 @@ var height = window.innerHeight;
 
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', {preload: preload, create: create, update: update, render: render, onClickPizza: onClickPizza});
 
+var stage = new Phaser.Stage(game);
+stage.disableVisibilityChange = true;
+
 var pizzaText = "Pizza Clicker"
 
 /*
