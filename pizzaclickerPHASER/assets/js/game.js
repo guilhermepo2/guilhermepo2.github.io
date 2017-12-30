@@ -1,5 +1,7 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
+const CURRENT_VERSION = 'v0.0.2';
+const MULTIPLIER = 1.12;
 
 var game = new Phaser.Game(width, height, Phaser.AUTO, '', {preload: preload, create: create, update: update, render: render, onClickPizza: onClickPizza});
 
@@ -18,24 +20,27 @@ var pizzaText = "Pizza Clicker"
 
 function preload() {
   game.load.image('pizza', 'assets/images/pizza2.png');
-  game.load.image('cursor', 'assets/images/pizza1.png');
-  game.load.image('pizzaman', 'assets/images/pizza1.png');
+  game.load.image('cursor', 'assets/images/cursore.png');
+  game.load.image('pizzaman', 'assets/images/gennaro.png');
   game.load.image('auto-oven', 'assets/images/pizza1.png');
   game.load.image('factory', 'assets/images/pizza1.png');
   this.deltaTime = 0;
 
-  // player
+  /* ==============================================================
+              PLAYER
+  ================================================================= */
   this.player = {
     name: "SHOW SHOW",
     pizzaPerClick: 1,
     pizzaPerSec: 0,
-    pizzas: 0
+    pizzas: 0,
+    pizzasOnLifetime: 0
   };
 
 
-  /*
-    GAME SCREEN SECTIONS
-  */
+   /* ==============================================================
+              GAME SCREEN SECTIONS
+    ================================================================= */
   this.pizzaInfoUIPositions = {
     initialX: 0,
     finishX: width / 4
@@ -99,15 +104,15 @@ function create() {
   this.pizzaAreaPanel = this.game.add.image(0, 0, this.game.cache.getBitmapData('pizzaAreaBackground'));
   this.buildingsPanel = this.game.add.image(this.storeUI.initialX, 0, this.game.cache.getBitmapData('buildingsPanel'));
 
-                /*
-                =================================================================
-                =================================================================
-                    PIZZA INFO UI (LEFT PART)
-                =================================================================
-                =================================================================
-                */
+  /*
+  =================================================================
+  =================================================================
+      PIZZA INFO UI (LEFT PART)
+  =================================================================
+  =================================================================
+  */
   var pizzaSprite = game.add.sprite(this.pizza.positionX, this.pizza.positionY, 'pizza');
-  pizzaSprite.scale.setTo( 3, 3);
+  pizzaSprite.scale.setTo( 4, 4);
   pizzaSprite.angle += 180;
   pizzaSprite.anchor.setTo(0.5, 0.5);
 
@@ -120,7 +125,7 @@ function create() {
   var ppCText;
   for(var i = 0; i < 50; i++) {
     ppCText = this.add.text(0, 0, '1', {
-      font: '42px Arial Black',
+      font: '24px Arial Black',
       fill: '#fff',
       strokeThickness: 4
     });
@@ -138,15 +143,25 @@ function create() {
     this.pizzaTextPool.add(ppCText);
   }
 
-  // Text of how much pizza you have
+  // PIZZA UI
   this.pizzaInfoUI = this.game.add.group();
   this.pizzaInfoUI.position.setTo((this.pizzaInfoUIPositions.finishX / 2), this.pizza.positionY - 200);
 
+  // GAME VERSION
+  this.gameVersion = this.pizzaInfoUI.addChild(this.game.add.text(-140, height - 90, CURRENT_VERSION, {
+    font: '16px Arial Black',
+    fill: '#fff',
+    strokeThickness: 4
+  }));
+
+   // Pizzeria Text
   this.pizzeriaNameText = this.pizzaInfoUI.addChild(this.game.add.text(0, 0, (this.player.name + "'s Pizzeria"), {
     font: '18px Arial Black',
     fill: '#fff',
     strokeThickness: 4
   }));
+
+   // Pizza Count Text
   this.pizzaCountText = this.pizzaInfoUI.addChild(this.game.add.text(0, 50, ("Pizzas: " + this.player.pizzas), {
     font: '42px Arial Black',
     fill: '#fff',
@@ -163,11 +178,11 @@ function create() {
   this.pizzaPerSecondText.anchor.set(0.5);
 
   /*
-                =================================================================
-                =================================================================
-                    STORE (RIGHT PART)
-                =================================================================
-                =================================================================
+    =================================================================
+    =================================================================
+        STORE (RIGHT PART)
+    =================================================================
+    =================================================================
   */
   this.storeInfoUI = this.game.add.group();
   this.storeInfoUI.position.setTo(( this.storeUI.initialX + ((this.storeUI.finishX - this.storeUI.initialX) / 2)), 100);
@@ -185,28 +200,31 @@ function create() {
 
   var buildingsButtonData = [
     {
-      icon: 'cursor', name: 'Cursor', level: 0, cost: 10, ppc: 0.1
+      icon: 'cursor', name: 'Cursore', level: 0, cost: 10, baseCost: 10, pps: 0.1
     },
     {
-      icon: 'pizzaman', name: 'Gennaro', level: 0, cost: 100, ppc: 1
+      icon: 'pizzaman', name: 'Gennaro', level: 0, cost: 100, baseCost: 100, pps: 1
     },
     {
-      icon: 'auto-oven', name: 'Auto Oven', level: 0, cost: 500, ppc: 10
+      icon: 'auto-oven', name: 'Forno a Legna', level: 0, cost: 1200, baseCost: 1200, pps: 10
     },
     {
-      icon: 'factory', name: 'Factory', level: 0, cost: 2500, ppc: 50
+      icon: 'factory', name: 'Fabbrica', level: 0, cost: 14000, baseCost: 14000, pps: 50
     }
   ];
 
   var button;
   buildingsButtonData.forEach(function(buttonData, index) {
     button = state.game.add.button(0, (50 * index), state.game.cache.getBitmapData('button'));
-    button.icon = button.addChild(state.game.add.image(6, 6, buttonData.icon));
-    button.text = button.addChild(state.game.add.text(42, 6, (buttonData.name + ": " + buttonData.level), {
+    button.icon = button.addChild(state.game.add.image(0, 6, buttonData.icon));
+    button.text = button.addChild(state.game.add.text(42, 6, (buttonData.name), {
       font: '16px Arial Black'
     }));
+    button.levelText = button.addChild(state.game.add.text(250, 6, buttonData.level), {
+      font: '16px Arial Black'
+    })
     button.details = buttonData;
-    button.costText = button.addChild(this.game.add.text(42, 24, ("Cost: " + buttonData.cost), {
+    button.costText = button.addChild(this.game.add.text(42, 24, (buttonData.cost), {
       font: '16px Arial Black'
     }));
     button.events.onInputDown.add(onBuildingButtonClick, state);
@@ -215,14 +233,23 @@ function create() {
   });
 }
 
-function update() {
+/* ========================================================
+        UPDATE FUNCTION
+======================================================== */
+var theta = 0;
 
+function update() {
   this.deltaTime += game.time.elapsed/1000;
 
   if(this.deltaTime > 0.1) {
     this.player.pizzas += (this.player.pizzaPerSec * this.deltaTime);
+    this.player.pizzasOnLifetime += (this.player.pizzaPerSec * this.deltaTime);
     this.deltaTime = 0;
   }
+
+  theta += this.deltaTime;
+  console.log(theta);
+  console.log(this.pizzaSprite);
 
   this.pizzaCountText.text = ("Pizzas: " + (this.player.pizzas).toFixed(2));
   this.pizzaPerSecondText.text = ("per second: " + (this.player.pizzaPerSec).toFixed(2));
@@ -232,21 +259,25 @@ function render() {
 
 }
 
-/*
-
-*/
-
+/* ========================================================
+        CLICKED ON BUILDING
+======================================================== */
 function onBuildingButtonClick(button, pointer) {
   if(this.player.pizzas - button.details.cost >= 0) {
     console.log(button);
     this.player.pizzas -= button.details.cost;
-    this.player.pizzaPerSec += button.details.ppc;
+    this.player.pizzaPerSec += button.details.pps;
     button.details.level++;
-    button.text.text = (button.details.name + ": " + button.details.level);
+    button.details.cost = calculatePrice(button.details.baseCost, button.details.level);
+    button.levelText.text = (button.details.level);
+    button.costText.text = (button.details.cost.toFixed(2));
     // upgrade here how much of the building the player have
   }
 }
 
+/* ========================================================
+        CLICKED ON PIZZA
+======================================================== */
 function onClickPizza(pizza, pointer) {
   var ppCText = this.pizzaTextPool.getFirstExists(false);
   if(ppCText) {
@@ -256,5 +287,19 @@ function onClickPizza(pizza, pointer) {
     ppCText.tween.start();
   }
 
+  pizza.scale.setTo(pizza.scale.x - 0.1, pizza.scale.y - 0.1);
+  setTimeout(function(){
+    pizza.scale.setTo(4,4);
+  }, 100);
+
   this.player.pizzas += this.player.pizzaPerClick;
+  this.player.pizzasOnLifetime += this.player.pizzaPerClick;
+}
+
+/* ========================================================
+  THE EXPONENTIAL FUNCTION THAT DICTATES THE WHOLE GAME
+======================================================== */
+function calculatePrice(baseCost, level) {
+  var price = (baseCost * (MULTIPLIER ** level));
+  return price;
 }
