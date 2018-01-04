@@ -1,0 +1,163 @@
+/*
+=============================================================================
+ PAGINA 1
+=============================================================================
+*/
+.main section.page1 {
+  background-color: #57a84f;
+}
+.main section.page1 img {
+  right: 5%;
+  bottom: 15%;
+  size: 10%;
+  height: 55%;
+  width: 35%;
+}
+
+/*
+=============================================================================
+ PAGINA 2
+=============================================================================
+*/
+.main section.page2 p {
+  color: rgba(255,255,255,0.85);
+  font-size: 1.1em;
+  text-align: center;
+}
+
+/*
+=============================================================================
+ PAGINA 3
+=============================================================================
+*/
+
+.main section.page3 {
+  background-color: #97000e;
+}
+.main section.page3 > img {
+  position: absolute;
+  left: 10%;
+  top: 25%;
+}
+
+.main section.page3 ul {
+  list-style: none;
+  text-align: left;
+  padding-left: 0;
+}
+/*
+=============================================================================
+ PAGINA 4
+=============================================================================
+*/
+
+.main section.page4 {
+  background-color: #ffd44a;
+}
+.main section.page4 > img {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+}
+
+.main section.page4 h1 {
+  text-align: left;
+  padding: 0;
+  margin-bottom: 25px;
+  font-size: 70px;
+  color: black;
+}
+
+.main section.page4 ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
+}
+
+.main section.page4 li {
+  margin-bottom: 10px;
+}
+
+/*
+=============================================================================
+ PAGINA 5
+=============================================================================
+*/
+
+.main section.page5 {
+  background-color: #2a42be;
+}
+.main section.page5 > img {
+  width: 25%;
+  right: 35%;
+}
+.main section.page5 .page_container {
+  margin-top: 250px;
+}
+.main section.page5 h1 {
+  text-align: center;
+  padding: 0;
+  margin-bottom: 15px;
+  font-size: 70px;
+  letter-spacing: -1px;
+  color: white;
+}
+
+.main section.page5 h2 {
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  line-height: 160%;
+  font-weight: 100;
+}
+
+/*
+=============================================================================
+ PAGINA 6
+=============================================================================
+*/
+.main section.page6 {
+  background-color: white;
+}
+
+.main section.page6 h1 {
+  color: black;
+  font-size: 70px;
+  padding: 0;
+}
+
+
+.realizacao-imagens {
+  padding-top: 7em;
+  padding-bottom: 7em;
+  width: 100%;
+  align-content: center;
+}
+
+.realizacao-imagens img {
+  max-height: 10%;
+  padding-right: 35px;
+}
+
+/*
+=============================================================================
+ FOOTER
+=============================================================================
+*/
+/*
+.comppet, .petsi {
+  width: 6em;
+}
+.comppet, .facom {
+  padding-bottom: 0.5em;
+}
+
+.facom {
+  width: 4em;
+}
+
+.ufu {
+  padding-bottom: 1em;
+  height: 3em;
+  width: 8em;
+} */

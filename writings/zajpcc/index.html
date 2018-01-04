@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Do Zero ao Jogo para Cientistas da Computação (e/ou Programadores)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h1>Do zero ao jogo para Cientistas da Computação (e/ou Programadores)</h1>
+        <h3>Guilherme Pacheco de Oliveira</h3>
+
+        <ul>
+          <li><a href="#introducao">Introdução</a></li>
+          <li><a href="#tudonaoprogramacao">Tudo que não é programação de jogos In a Nutshell</a>
+            <ol>
+              <li>Game Design</li>
+              <li>Arte</li>
+              <li>Sound Design</li>
+              <li>Level Design</li>
+            </ol>
+          </li>
+
+          <li><a href="#saber">O que você precisa saber</a>
+            <ol>
+              <li>Inglês</li>
+              <li>O que é um jogo?</li>
+              <li>Conceitos de Computação em Jogos</li>
+              <li>Matemática para Jogos?</li>
+              <li>Engine de Física</li>
+              <li>Motor Gráfico</li>
+              <li>Motor de Jogos</li>
+              <li>Lidar com Input</li>
+              <li>Teoria?</li>
+            </ol>
+          </li>
+
+          <li><a href="#asepensar">Coisas a se pensar</a>
+            <ol>
+            </ol>
+          </li>
+
+          <li><a href="#contornando">Contornando possíveis limitações</a>
+            <ol>
+              <li><a href="#contornandoArte">Arte</li></a>
+              <li><a href="#contornandoSom">Som</li></a>
+              <li><a href="#contornandoDesign">Design</li></a>
+              <li><a href="#contornandoProgramacao">Programação</li></a>
+            </ol>
+          </li>
+
+          <li><a href="#finalmenteprogramacao">Programando seus Jogos(finalmente!)</a>
+            <ol>
+              <li>O jeito Dificil (C++ e OpenGL)</li>
+              <li>Um pouco menor díficil... (Java?) </li>
+              <li>Interfaces Gráficas (Swing e sei lá qual)</li>
+              <li>Engines!</li>
+              <li>Corona!</li>
+              <li>Unreal Engine</li>
+              <li>Cry Engine</li>
+              <li>Source Engine</li>
+              <li>Unity</li>
+            </ol>
+          </li>
+
+          <li><a href="#eagora">Terminei meu jogo, e agora?</a></li>
+
+          <li><a href="#dicas">Minhas dicas pessoais</a></li>
+        </ul>
+
+
+        <section id="introducao">
+          <h3>Introdução</h3>
+          <hr>
+          <p>Olá! Meu nome é Guilherme Pacheco, atualmente estudo Ciência da Computação na Universidade Federal de Uberlândia e gosto de mexer com computação gráfica, desenvolvimento de jogos e um monte de outras coisas.</p>
+
+          <p>Eu já tive a oportunidade de ministrar minicursos de desenvolvimento de jogos com Unity, já organizei Batalha de Games na Universidade aí em cima citada, já tive oportunidade de ouvir e conversar com muitas pessoas também e há o sentimento comum de que todos querem desenvolver jogos. Mas na minha (limitada) experiência, eu vejo que as pessoas não comparecem nos tais minicursos de Unity, que seriam um bom pontapé pra começar essa vida. Vejo que as pessoas tendem a não participar da batalha de games (um evento onde você tem que desenvolver um jogo com um tema e concorre a prêmios), então eu acredito que as pessoas não estão desenvolvendo jogos e não estão aprendendo como fazer isso.</p>
+
+          <p>Após pensar um pouco e quase me convencer de que, na verdade, ninguém quer fazer joguinhos, eu pensei em escrever essa coisa aqui, onde vou colocar toda minha experiência e conhecimento, voltado especialmente para pessoas que cursam Ciência da Computação e/ou programadores. Veja bem, eu não tenho muita experiência, mas eu já fiz um jogo, já fiz mais de um na verdade, o intuito disso aqui é dar a base para que a pessoa consiga fazer ao menos um jogo, ou pelo menos saiba onde ir para aprender as ferramentas necessárias para fazer um jogo.</p>
+
+          <p>Por último, tenha em mente que tudo que você vai ler aqui é voltado totalmente para iniciantes e muito focado em pessoas que vão desempenhar o papel de Programador em um jogo, mas talvez tenha uma coisa ou outra que artistas e designers podem tirar daqui. Além disso, vai acontecer de eu misturar opiniões e julgamentos no meio dos textos, então nada aqui é absoluto e incontestável, caso ache que eu falei alguma besteira ou queira saber sobre o porquê de eu pensar de tal jeito, pode entrar em contato, eu respondo com muita boa vontade.</p>
+        </section>
+
+        <section id="tudonaoprogramacao">
+          <h3>Tudo que não é programação de jogos In a Nutshell</h3>
+          <hr>
+          <p>
+            Ok... Ok... Eu sei que você quer fazer tudo sozinho no seu jogo. E você vai mesmo. Mas antes eu vou falar um pouco sobre as funções que as pessoas podem desempenhar no desenvolvimento de um jogo (nessa brincadeira você provavelmente fará papel do programador, mas se você prefere arte, design, composição de música e é bom nisso e ainda sabe programar você tá bem demais meu irmãozinho)
+          </p>
+
+          <p>Todos esses guias de jogos pela internet falam pra você não querer criar um MMORPG e para pensar pequeno para seu primeiro jogo, tudo isso é verdade, mas eu acho que ninguém tem essa mentalidade de querer fazer um RPG ou um jogo nível de indústria quando nem sabem por onde começar, então não vou falar mais do que isso aqui (se você veio aqui sem saber nada pensando em criar o próximo Final Fantasy eu acabei de te xingar).</p>
+
+          <p>
+            A seguir vou falar um pouco sobre os papeis que as pessoas podem desempenhar no desenvolvimento de um jogo, falar um pouco sobre a função dele no desenvolvimento e como você pode fazer o papel dessa pessoa no seu primeiro e simples jogo.
+          </p>
+
+
+          <h3>O cara das ideias</h3>
+          <p>Todo mundo já sabe o que é o cara das ideias, tenho certeza que alguém já te falou que tem ideias ótimas de jogos e que precisa de pessoas para fazer o jogo, ou ideias otimas de qualquer coisa no geral, o cara das ideias acha que tem boas ideias, acha que vai ficar rico e que só precisa de gente para executar as idéias dele.</p>
+          <p>Não existe cara das ideias.</p>
+          <p>Desculpa.</p>
+          <p>Se você é esse cara, saiba que nunca é tarde para mudar.</p>
+
+          <h3>Game Design</h3>
+          <p>Primeira coisa: você é Game Designer.</p>
+          <p>O principal trabalho de um Game Designer é basicamente incomodar todo mundo.</p>
+          <p>É sério, você é um Game Designer. tudo que você precisa para ser um game designer é respirar fundo, estufar seu peito e falar em voz alta: Eu sou um Game Designer! (cuidado para os vizinhos não te ouvirem). No entanto, a diferença entre um <strong>bom</strong> Game Designer e um Game Designer é assunto pra outro textão que provavelmente teria que ser escrito por um Game Designer.</p>
+          <p>O que falar dos Game Designers? Na minha humilde opinião esse é um dos trabalhos mais dificeis que existem</p>
+
+          <h3>Arte</h3>
+          <p>Primeira coisa: você não é artista.</p>
+
+          <h3>Sound Design</h3>
+          <p>Primeira coisa: você não é músico.</p>
+
+          <h3>Level Design</h3>
+          <p>Primeira coisa: você não é... Level Designer?</p>
+
+          <p><strong>PS:</strong> Se você de fato é artista, músico ou qualquer uma dessas coisas e também é programador ou está aqui de bobeira, desculpa por falar que você não era tá.</p>
+        </section>
+
+        <section id="saber">
+          <h3>O que você precisa saber</h3>
+          <hr>
+          <h4>Inglês</h4>
+          <p>É.</p>
+          <h4>O que é um jogo?</h4>
+
+          <div id="saberConceitos">
+            <h4>Conceitos da Computação em Jogos</h4>
+            <p>Aqui eu falo sobre conceitos de computação que aparecem constantemente em games e pretendo dar exemplos de como eles podem ser utilizados, como por exemplo, autômatos e máquinas de estados serem utilizados em diálogos, padrões de projetos, grafos também funcionam como diálogos e podem ser outras coisas, coisas de cálculo e métodos para fazer a transição entre os frames de uma animação 3D, métodos matemáticos como simplex que podem ser utilizados para geração procedural de ilhas ou arvores (eu já vi gente fazendo isso)</p>
+          </div>
+
+
+          <h4>Física</h4>
+          <h4>Motor Gráfico</h4>
+          <h4>Lidar com Input</h4>
+          <h4>Teoria sobre Desenvolvimento de Jogos</h4>
+        </section>
+
+        <section id="asepensar">
+          <h3>Coisas a se pensar antes de começar seu jogo</h3>
+          <hr>
+        </section>
+
+        <section id="contornando">
+          <h4>Contornando possíveis limitações</h4>
+          <hr>
+          <p>Acontece...</p>
+
+          <div id="contornandoArte">
+            <h4>Contornando Arte</h4>
+          </div>
+
+          <div id="contornandoSom">
+            <h4>Contornando Som</h4>
+          </div>
+
+          <div id="contornandoDesign">
+            <h4>Contornando Design</h4>
+          </div>
+
+          <div id="contornandoProgramacao">
+            <h4>Contornando Programação</h4>
+          </div>
+        </section>
+
+        <section id="finalmenteprogramacao">
+          <h3>Programando seus Jogos</h3>
+          <hr>
+          <div id="cppopengl">
+            <h4>C++ e OpenGL, o jeito difícil</h4><hr>
+            <p>
+              Só faça isso aqui se você quiser realmente aprender sobre computação gráfica, ou se tiver muito tempo livre...
+            </p>
+          </div>
+
+          <div id="java">
+            <h4>Um pouco menor díficil usando... Java?</h4><hr>
+            <p>
+              Esse aqui é tipo o de cima só que mais fácil (porque é Java) e mais lento (porque é Java), e
+              totalmente inútil na indústria (porque é Java, ninguém programa jogos de verdade com Java).
+            </p>
+          </div>
+
+          <div id="webdesigner">
+            <h4>Se você é um webdesigner, leia essa parte (HTML5/CSS3/Javascript)</h4><hr>
+            <p>
+              Pessoalmente, eu acho essa parte muito divertida, se você sabe HTML, CSS e Jquery, você tem todas as ferramentas
+              necessárias para criar um jogo que roda no navegador, não precisará nem quebrar a cabeça com distribuição, precisará
+              saber sobre algumas teorias já citadas
+            </p>
+          </div>
+
+          <h3>Engine de Jogos</h3><hr>
+
+          <div id="corona">
+            <h4>Corona Engine</h4><hr>
+            <p>
+              Eu não sei muito sobre isso aqui... mas conheço um pessoal que sabe ./game
+            </p>
+          </div>
+
+          <div id="unreal">
+            <h4>Unreal Engine</h4><hr>
+            <p>
+              Não sei nada, mas faz jogos bonitos, talvez a maior curva de aprendizado.
+            </p>
+          </div>
+
+          <div id="source">
+            <h4>Source Engine</h4><hr>
+            <p>
+              As últimas notícias eram animadoras
+            </p>
+          </div>
+
+          <div id="unity">
+            <h4>Unity</h4><hr>
+            <p>Ah... a Unity...</p>
+          </div>
+        </section>
+
+        <section id="eagora">
+          <h3>Terminei meu jogo, e agora?</h3>
+          <hr>
+          <p>Você é foda!</p>
+          <p>Você não tá achando que acabou né? Rapaz... existe outra indústria inteira aqui só para cuidar do que acontece quando os jogos são terminados.</p>
+        </section>
+
+        <section id="dicas">
+          <h3>Minhas dicas pessoais</h3>
+          <hr>
+          <p><strong>Mantenha um blog</strong>. Eu comecei com essa ideia porque eu queria desenvolver algumas ideias e postar por aí na internet, mas eu percebi que apenas de manter um blog eu me sentia bem melhor em relação ao meu desenvolvimento, o blog te ajuda a controlar o que você fez, o que você vai fazer, o que você quer fazer e coisas desse tipo, use-o para relatar suas ideias, o que você desenvolveu e vai desenvolver. Uma boa plataforma e que é gratuíta é o wordpress.</p>
+
+          <p><strong>Gamejams.</strong> Infelizmente eu nunca tive a oportunidade de participar de uma gamejam porque eu moro em algum lugar perto do meio do nada, mas se você mora em uma cidade maior ou tem uma locomoção fácil para uma, grandes de que em algum momento vai acontecer alguma gamejam por lá, GameJams são legais para desenvolver ideias, conhecer pessoas e fazer algo diferente e fugir da sua vida chata (não se preocupe, a minha também é chata).</p>
+
+          <p><strong>Pessoas.</strong> Isso vale para tudo na vida não só desenvolvimento de jogos, pessoas são importantes, aprenda a lidar com elas e não seja chato. Agora falando de desenvolvimento de jogos, pessoas são importantes para avaliar o que você está fazendo, te dar algum feedback e até para você olhar o que elas estão fazendo e aprender coisas novas. Talvez não existam muitas pessoas que desenvolvem jogos por perto de você, para isso existe a internet, crie uma conta no reddit e se inscreva nos subreddits de desenvolvimento (para isso você vai precisar saber falar inglês), não tenho medo de criar tópicos, responder tópicos, divulgar seu blog, pedir opiniões, etc...</p>
+
+          <p><strong>Desenvolvimento Web.</strong> Eu odeio falar e quem fala coisas do tipo "pessoas deviam fazer isso", "pessoas deviam usar isso", "pessoas deviam saber usar isso", mas eu abro uma exceção, todo mundo nesse mundo de programação/computação deveria saber desenvolvimento web, e eu nem estou falando de PHP, backend e frameworks, estou falando de saber o mínimo de Frontend para que você consiga, caso precisar, colocar uma página online com um visual minimamente agradável. Estou falando de um conhecimento básico de HTML5/CSS3 e Bootstrap, se você gostar mesmo disso aprenda JavaScript e JQuery.</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
