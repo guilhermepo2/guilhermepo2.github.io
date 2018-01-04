@@ -1,19 +1,34 @@
----
-layout: main
----
-{% for post in paginator.posts %}
-<article class="post">
-  {% if post.img %}
-    <a class="post-thumbnail" style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : post.img}})" href="{{post.url | prepend: site.baseurl}}"></a>
-  {% else %}
-  {% endif %}
-  <div class="post-content">
-    <h2 class="post-title"><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h2>
-    <p>{{ post.content | strip_html | truncatewords: 15 }}</p>
-    <span class="post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
-    <span class="post-words">{% capture words %}{{ post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words | plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}</span>
-  </div>
-</article>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Guilherme Oliveira</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>body,html{height: 100%;background-color: #ddd;}h4{margin: 0;padding-bottom: 10px;}.container{max-width: 500px;height: 100%;font-family: 'Roboto', sans-serif;display: flex;align-items: center;justify-content: center;}.info {max-width: 100%;display: flex;flex-direction:column;align-items: center;justify-content: center;padding: 25px;background-color: #eee;}.thumbnail {text-align: center;margin-top:5%;margin-bottom: 0;}.thumbnail p {margin: 0;padding: 5px 0;}.social-media{padding-top: 2.5%;}.social-media i {font-size: 2.5em;padding: 0 10px;}</style>
+  </head>
 
-{% include pagination.html %}
+  <body>
+    <div class="container">
+        <div class="info">
+            <h4>gueepo.me is under construction</h4>
+            <h4>I got tired of my old (terrible) website</h4>
+
+            <div class="social-media">
+                <a title="github" href="https://github.com/guilhermepo2" target="blank"><i class="fa fa-github-alt"></i></a>
+                <a title="twitter" href="https://twitter.com/guilhermepo2" target="blank"><i class="fa fa-twitter"></i></a>
+                <a title="email" href="mailto:guilherme.061@gmail.com" target="blank"><i class="fa fa-envelope"></i></a>
+                <a title="gamedev blog" href="https://gpolive.wordpress.com" target="blank"><i class="fa fa-book"></i></a>
+                <a title="gamedev portfolio" href="port.html" target="blank"><i class="fa fa-gamepad"></i></a>
+            </div>
+
+            <div class="img-responsive thumbnail">
+                <img class="img-responsive" src="./assets/jj2.jpg" />
+                <p>our dog, joe joe</p>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
