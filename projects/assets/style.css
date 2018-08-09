@@ -1,0 +1,55 @@
+.portfolio-header {
+    justify-content: center;
+    padding-top: 2%;
+}
+
+.description-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.description {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.selfie {
+    border-radius: 20%;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.selfie:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+}
+
+.portfolio-content {
+    justify-content: center;
+}
+
+.portfolio-nav, .card-body {
+    text-align: center;
+}
+
+.portfolio-nav a {
+    padding: 0 2%;
+}
+
+.portfolio-nav p {
+    padding-top: 5px;
+}
+
+.card-info {
+    color: brown;
+}
+
+.portfolio-item {
+    padding-top: 10px;
+}
+
+.portfolio-item:not(:first-child) {
+    margin-left: 2%;
+}

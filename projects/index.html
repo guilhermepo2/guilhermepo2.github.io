@@ -1,0 +1,177 @@
+<html>  
+    <head>  
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Guilherme Oliveira's Personal Website">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Guilherme Oliveira - Portfolio</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="portfolio-header row">
+                <div class="col-2">
+                    <a href="http://gueepo.me"><img class="selfie" alt="Guilherme Oliveira" src="../assets/portrait.png"></a>
+                </div>
+                <div class="col-8 description-content">
+                    <h2 class="description">I'm a Gameplay Programmer on a mission to produce polished and juiced games. I'm graduated in Computer Science having worked on projects related to AI in Games.</h2>
+                </div>
+            </div>
+
+            <div class="portfolio-nav">
+                <a href="http://gueepo.me">home page</a>
+                <a href="mailto:guilherme.061@gmail.com">email</a>
+                <a href="https://gueepo.itch.io/" target="_blank">itch.io</a>
+                <p>This is some of my most recent, polished or finished games. <a href="#">Click here</a> for full portfolio.</p>
+            </div>
+
+            <hr> 
+            
+            <div class="row portfolio-content">
+                <div class="portfolio-item col-md-3 card" style="width: 18rem;">
+                    <a href="#" data-toggle="modal" data-target="#spaceJourneyModal"><img class="card-img-top" src="./assets/imgs/spacejourney-resized.png" alt="Puzzle Game"></a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Space Journey</h5>
+                        <p class="card-text">Mobile game inspired by Flappy Bird mechanics.</p>
+                        <p class="card-info">Mobile | Unity</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 card portfolio-item" style="width: 18rem;">
+                    <a href="#" data-toggle="modal" data-target="#puzzleGameModal"><img class="card-img-top" src="./assets/imgs/m3rl-resized.png" alt="Puzzle Game"></a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Puzzle Game</h5>
+                        <p class="card-text">Puzzle Game inspired by Pokemon Puzzle Challenge with roguelike progression.</p>
+                        <p class="card-info">Desktop | GameMaker Studio</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 card portfolio-item" style="width: 18rem;">
+                    <a href="#" data-toggle="modal" data-target="#tetrisCloneModal"><img class="card-img-top" src="./assets/imgs/tetris-pc-resized.png" alt="Tetris Clone"></a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Tetris Clone</h5>
+                        <p class="card-text">Tetris as a learning project.</p>
+                        <p class="card-info">Desktop, Mobile | Unity</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Modals -->
+        <!-- SPACE JOURNEY -->
+        <div class="modal fade" id="spaceJourneyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Space Journey</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="card-img-top" src="./assets/imgs/spacejourney-resized.png" alt="Puzzle Game">
+                            </div>
+                            <div class="col-md-8">
+                                <p><strong>What is it:</strong> Space Journey is a simple casual game based on the famous Flappy Bird, but space themed. You have to tap to help the space core avoid the obstacles, which are satellites, and enjoy its journey through space.</p>
+
+                                <p>A point of difference that makes <em>Space Journey</em> not just another Flappy Bird clone is that I wanted a different feel with it, as it takes place on space I wanted more of a "floaty" feel. I did that by making movements slower, gravity weaker and tried to used sound effects on a lower frequency.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                <p>Space Journey is the first game I developed for Fourth Dimension Studio. It can currently be download on <a href="https://play.google.com/store/apps/details?id=com.FourthDimension.SpaceJourney">Play Store</a>.</p>
+
+                <p><strong>My Contributions:</strong> Basically, I did everything. Design, programming, art and the sound effects.
+                If you want to know more, you can access the <a href="https://fourthdimension.studio/devlog/2018-08-07-Space-Journey/">postmortem</a> I wrote for the Fourth Dimension Devlog.</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- PUZZLE GAME -->
+        <div class="modal fade" id="puzzleGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Puzzle Game</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="card-img-top" src="./assets/imgs/m3rl-resized.png" alt="Puzzle Game">
+                            </div>
+                            <div class="col-md-8">
+                                <p><strong>What is it:</strong> This "Puzzle Game", which I'm calling temporarily of Match 3 Roguelike is, well, as the name says, a Match 3 style game with some elements of Roguelike. It is heavily inspired by games such as Panel de Pon, Tetris Attack and Pokemon Puzzle Challenge.</p>
+
+                                <p>I always had this goal of creating a game all by my self, and each day I'm getting closer of achieving it with this game, I'm doing all of its programming, art and I'm slowly getting into music composition and sound effects production.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                <p>An early version of this puzzle game is available on <a href="https://gueepo.itch.io/puzzle-game">itch.io</a>, the page also includes gameplay footage, screenshots and a download link.</p>
+
+                <p><strong>My Contributions:</strong> As I said, I'm doing pretty much everything in this game. I'm constantly writing about this game on the <a href="https://fourthdimension.studio/devlog/">Fourth Dimension Devlog</a>, there I also show some code and get more into technical details.</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Tetris Clone -->
+        <div class="modal fade" id="tetrisCloneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tetris Clone</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="card-img-top" src="./assets/imgs/tetris-pc-resized.png" alt="Puzzle Game">
+                            </div>
+                            <div class="col-md-8">
+                                <p><strong>What is it:</strong> This is a Tetris Clone project developed for Web and Mobile on Unity, I did its Programming. This tetris implementation was based on the Udemy Course "Make a Tetris-style puzzler in Unity" by Walmer Lin with some subtle changes.</p>
+
+                                <p>Changes includes gameplay elements such as button pressing delay (and whether they exist or not), order of input processing (player input, piece drop, check game over, etc...), I removed the "Hold" functionality and, originally, the queue had 3 pieces, I changed it to have just one.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                <p>A playable version can be found at <a href="https://gueepo.itch.io/tetrisclone">itch.io</a>, you can also check the <a href="https://gueepo.itch.io/tetrisclone/devlog/41146/first-devlog">devlog</a> explaining it a bit better.</p>
+
+                <p>This was mostly a learning project to check if my guesses on how to write a tetris were correct and it was useful to get some practice on my weak points in Unity such as User Interface and Particles.</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- BOOTSTRAP JAVASCRIPT -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+    </body>
+</html>
