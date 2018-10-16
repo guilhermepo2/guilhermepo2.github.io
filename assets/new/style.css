@@ -53,6 +53,7 @@ body {
 
 a {
     color: indigo;
+    text-decoration: none;
 }
 
 .wrapper {
