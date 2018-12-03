@@ -1,11 +1,11 @@
 /* ICOMOON FONTS */
 @font-face {
     font-family: 'icomoon';
-    src:  url('fonts/icomoon.eot?yy09k4');
-    src:  url('fonts/icomoon.eot?yy09k4#iefix') format('embedded-opentype'),
-      url('fonts/icomoon.ttf?yy09k4') format('truetype'),
-      url('fonts/icomoon.woff?yy09k4') format('woff'),
-      url('fonts/icomoon.svg?yy09k4#icomoon') format('svg');
+    src:  url('fonts/icomoon.eot?o5tamu');
+    src:  url('fonts/icomoon.eot?o5tamu#iefix') format('embedded-opentype'),
+      url('fonts/icomoon.ttf?o5tamu') format('truetype'),
+      url('fonts/icomoon.woff?o5tamu') format('woff'),
+      url('fonts/icomoon.svg?o5tamu#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -13,7 +13,6 @@
   [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -24,20 +23,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  .icon-gamepad:before {
-    content: "\e902";
-  }
   
+  .icon-gamepad:before {
+    content: "\e900";
+  }
   .icon-envelope-o:before {
     content: "\e901";
   }
-  .icon-github-alt:before {
-    content: "\e900";
+  .icon-home3:before {
+    content: "\e902";
   }
   .icon-twitter:before {
     content: "\ea96";
-  }
+  }  
   /* ICOMOON FONTS */
 
 .portfolio-header {
