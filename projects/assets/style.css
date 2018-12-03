@@ -38,6 +38,46 @@
   }  
   /* ICOMOON FONTS */
 
+/* ======================================================================
+                    HEADER 
+ ====================================================================== */
+
+.header-home {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header-home .selfie {
+    width: 125px;
+    margin-bottom: 25px;
+    border-radius: 100%;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.header-home .selfie:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+}
+
+.header-home .title {
+    font-size: 2rem;
+    margin: 0 0 13px;
+    color: #222;
+    font-weight: 700;
+}
+
+.header-home .description {
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: normal;
+    color: #aaa;
+    width: 70%;
+    margin: 0 auto 30px;
+}
+
 .portfolio-header {
     justify-content: center;
     padding-top: 2%;
