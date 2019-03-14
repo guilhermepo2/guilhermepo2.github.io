@@ -2,10 +2,10 @@
     <section>
         <img v-if="contentImage" class="img-fluid" v-bind:src="contentImage" alt="">
         <div class="portfolio-content container">
-            <h1> {{ title }} </h1>
-            <p><strong>Available On:</strong> {{ platform }}.</p>
-            <p><strong>Made With:</strong> {{ builtWith }}.</p>
-            <p><strong>Context of the Project:</strong> {{ context }}.</p>
+            <h1 v-if="title"> {{ title }} ({{ year }})</h1>
+            <p v-if="platform"><strong>Available On:</strong> {{ platform }}.</p>
+            <p v-if="builtWith"><strong>Made With:</strong> {{ builtWith }}.</p>
+            <p v-if="context"><strong>Context of the Project:</strong> {{ context }}.</p>
             <div v-html="description"></div>
 
             <nav v-if="links" class="links">
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props: ['title', 'contentImage', 'platform', 'builtWith', 'context', 'description', 'links']
+    props: ['title', 'year', 'contentImage', 'platform', 'builtWith', 'context', 'description', 'links']
 }
 </script>
 
@@ -35,6 +35,7 @@ export default {
 .links ul {
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
     
     list-style: none;
     margin: 0;

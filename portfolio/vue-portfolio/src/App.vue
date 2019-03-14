@@ -6,7 +6,7 @@
         <portfolio-info>
           <div class="row">
             <div class="portfolio-block-lg col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
-              <div @click="UpdateRenderedProject(game.title, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
+              <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
 
             <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
@@ -14,7 +14,7 @@
             </div> -->
 
             <div class="portfolio-block-md col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier2works">
-              <div @click="UpdateRenderedProject(game.title, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
+              <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
 
             <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier2works">
@@ -22,7 +22,7 @@
             </div> -->
 
             <div class="portfolio-block-sm col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" v-for="(game, index) in works.tier3works">
-              <div @click="UpdateRenderedProject(game.title, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
+              <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
 
             <!-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" v-for="(game, index) in works.tier3works">
@@ -33,7 +33,7 @@
         
       </div>
       <div class="col-md-7">
-        <portfolio-content :description="description" :title="title" :links="links" :platform="platform" :builtWith="builtWith" :context="context" :contentImage="contentImage">
+        <portfolio-content :description="description" :title="title" :links="links" :platform="platform" :builtWith="builtWith" :context="context" :contentImage="contentImage" :year="year">
         </portfolio-content>
       </div>
     </div>
@@ -48,6 +48,7 @@ export default {
   data: function() {
     return {
       title: "",
+      year: "",
       platform: "",
       builtWith: "",
       context: "",
@@ -66,8 +67,9 @@ export default {
     printOnConsole(param) {
       console.log(param);
     },
-    UpdateRenderedProject(title, platform, builtWith, context, contentImage, description, links) {
+    UpdateRenderedProject(title, year, platform, builtWith, context, contentImage, description, links) {
       this.title = title;
+      this.year = year;
       this.platform = platform;
       this.builtWith = builtWith;
       this.context = context;

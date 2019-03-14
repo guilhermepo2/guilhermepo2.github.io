@@ -25,7 +25,13 @@
 <style scoped>
 
 .portfolio-info {
-    
+    background: #161616;
+    color: white;
+    height: 100%;
+}
+
+hr {
+    border: 1px solid white;
 }
 
 .portfolio-top {
@@ -35,6 +41,7 @@
 
 .portfolio-top img {
     border-radius: 100%;
+    border: 1px solid white;
     padding: .5rem 0;
     padding-top: 0;
     opacity: 1;
@@ -42,7 +49,7 @@
 }
 
 .portfolio-top img:hover {
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .18), 0 0 12px 0 rgba(0, 0, 0, .15);
+    box-shadow: 0 0 4px 0 rgba(255, 255, 255, .5), 0 0 12px 0 rgba(255, 255, 255, .5);
     opacity: 0.8;
 }
 
@@ -57,7 +64,7 @@
 
 .portfolio-top li {
     border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid white;
     margin: .5rem;
     padding: .5rem 1rem;
 
@@ -65,7 +72,7 @@
 }
 
 .portfolio-top a {
-    color: black;
+    color: white;
 }
 
 .portfolio-top a:hover {
@@ -84,7 +91,7 @@
 }
 
 .portfolio-bg:hover {
-    opacity: .8;
+    opacity: .5;
 }
 
 .portfolio-block-lg {
@@ -100,6 +107,7 @@
 }
 
 .portoflio-bg-img {
+    border: 1px solid black;
     background-size:cover;
     background-position: center center;
     
