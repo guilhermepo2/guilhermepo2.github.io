@@ -3,11 +3,11 @@
         {
             "title": "Mobile Roguelike",
             "year": "2019",
-            "preview": "src/assets/img/previews/mobileroguelike.png",
+            "preview": "./src/assets/img/previews/mobileroguelike.png",
             "platform": "Soon on Android",
             "builtWith": "Unity",
             "context": "Game in Development for Fourth Dimension",
-            "contentImage": "src/assets/img/content/mobileroguelike.png",
+            "contentImage": "./src/assets/img/content/mobileroguelike.png",
             "description": "<p>Mobile Roguelike is the temporary name of this project. This one is built on the Level Generation System and Turn Based System I built for Dreamlands. As the name implies it is a traditional and simple roguelike experience for mobile devices. I want to focus on how fun it is to move the character and engage in combat.</p><p>This is, right now, the biggest project I've ever worked on for Fourth Dimension Studio and I'm really proud of the result I'm getting so far. I've been focusing on System Design and Gameplay Programming, but soon focus will shift into aesthetic, art and music production. I'm studying the possibility of having a partnership with the concept art and in game art (probably will happen) and I'm still studying the possibility of having someone help me with Sound Design and Music Production, these are topics I enjoy a lot, but I do not have much experience with them at the moment.</p><p>I spent extra time and effort on the Level Generation System for this game and actually published it on the Asset Store! I know it solves a really specific problem but I think it is a highly valuable system which could help a lot of developers.",
             "links": [
                 { 
@@ -23,7 +23,7 @@
         {
             "title": "Freshman's Quest",
             "year": "2019",
-            "preview": "src/assets/img/previews/freshmansquest.png",
+            "preview": "./src/assets/img/previews/freshmansquest.png",
             "platform": "Soon on PC",
             "builtWith": "Unity",
             "context": "Game in Development for UFU Games",
@@ -43,7 +43,7 @@
         {
             "title": "Upside Down",
             "year": "2019",
-            "preview": "src/assets/img/previews/upsidedown.png",
+            "preview": "./src/assets/img/previews/upsidedown.png",
             "platform": "Android, soon on iOS",
             "builtWith": "Unity",
             "context": "Partnership with GILP Studio",
@@ -63,7 +63,7 @@
         {
             "title": "happily(never)after",
             "year": "2018",
-            "preview": "src/assets/img/previews2/happilyneverafter.png",
+            "preview": "./src/assets/img/previews2/happilyneverafter.png",
             "platform": "HTML5, Windows and Mac",
             "builtWith": "Unity",
             "context": "Game Jam",

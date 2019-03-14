@@ -6,7 +6,7 @@
         <portfolio-info>
           <div class="row">
             <div class="portfolio-block-lg col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
-              <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
+              <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + myMethod(game.preview) + ')' }"></div>
             </div>
 
             <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
@@ -56,7 +56,8 @@ export default {
       description: "",
       links: {},
 
-      works: Works
+      works: Works,
+      publicPath: process.env.BASE_URL
     }
   },
   components: {
@@ -66,6 +67,10 @@ export default {
   methods: {
     printOnConsole(param) {
       console.log(param);
+    },
+    myMethod(image) {
+      console.log(this.publicPath);
+      return image;
     },
     UpdateRenderedProject(title, year, platform, builtWith, context, contentImage, description, links) {
       this.title = title;
