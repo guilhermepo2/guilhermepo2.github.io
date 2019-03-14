@@ -35,7 +35,8 @@
 
 .portfolio-top img {
     border-radius: 100%;
-    padding-top: 1rem 0;
+    padding: .5rem 0;
+    padding-top: 0;
     opacity: 1;
     transition: all .25s;
 }
