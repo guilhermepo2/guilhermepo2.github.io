@@ -28,7 +28,7 @@
             "builtWith": "Unity",
             "context": "Game in Development for UFU Games",
             "contentImage": "src/assets/img/content/freshmansquest.png",
-            "description": "<p>Paragraph</p>",
+            "description": "<p>Freshman's Quest is a pixel platformer game that takes place at an University/Fantasy mixed Universe!</p><p>You will take control of Lily, a Philosophy Undergraduate student with a big sense of pride trying not to fail her final exams. It all takes place in a fast paced, challenging, fluid and hand crafted platformer game with intriguing characters and memorable plot! All of that in an universe with 16bit aesthetics. </p><ul><li>It is a narrative driven, single player adventure that places in an university and is written by university students!</li><li>Challenging hand crafted levels that represents a range of university courses!</li><li>Simple and accessible controls, jump and wall jump!</li><li>Lightning fast respawn so you learn faster and jump (literally) right back into action!</li><li>Pizza</li></ul><p>We currently go under the name of UFU Games, the team was born under a project run by a local indie game studio called GILP. This project was focused on introducing and building game developers, this team and this game is the result of the first iteration of this project.</p><p>Freshman's Quest currently is developed by 8 people, 3 programmers, 2 artists, 1 designer and 1 musician, these roles can change from time and according to necessity (just indie development stuff).</p>",
             "links": [
                 { 
                     "url": "http://freshmansquest.com",
@@ -48,7 +48,7 @@
             "builtWith": "Unity",
             "context": "Partnership with GILP Studio",
             "contentImage": "src/assets/img/content/upsidedown.png",
-            "description": "<p>Paragraph</p>",
+            "description": "<p>Upside Down is a simple and casual Android game developed by GILP Studio. It features a double sided world where gravity changes its direction whether you are Up or Down, this variation provides emergent complexity with just the jumping action. Although casual, it is quite challenging as it is difficult to time correctly all the jumps and get all the souls at the same time!</p><p>This project was developed and released in 2017, on early 2019 I was invited to join as an intern and work on some updates on this game, as the company is focused on other projects at the moment.</p><p>Me and other intern worked on the following tasks:</p><ul><li>Updating project version from Unity 2017.1 to 2017.4 (LTS)</li><li>Updating all dependencies on the project: Google Play Services for Unity, Firebase and Google AdMob.</li><li>Performance Optimization (Average FPS went from ~25 to ~40) by upgrading the components and optimizing UI.</li><li>Added Colorbling mode.</li><li>Added some polish/juice on the interface and improved music transition on pause/losing the game.</li><li>UI Bug Fixes</li><li>iOS Port (In Progress)</li></ul><p>A lot of these tasks are more related to the technology stack and not to game design or game programming directly, but I got a lot of experience on these tools and all the stuff that exists around a game. A lot of times these things are taken for granted (and I'm guilty of that also) but overall they help a lot on the final experience the player has.</p>",
             "links": [
                 { 
                     "url": "http://www.gilp.studio",
