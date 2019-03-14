@@ -6,7 +6,7 @@
             "platform": "Soon on Android",
             "builtWith": "Unity",
             "context": "Game in Development for Fourth Dimension",
-            "contentImage": "linkToImg",
+            "contentImage": "src/assets/img/content/mobileroguelike.png",
             "description": "<p>Paragraph</p>",
             "links": [
                 { 
@@ -51,7 +51,6 @@
             "platform": "HTML5, Windows and Mac",
             "builtWith": "Unity",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
             "description": "<p>happily(never)after is a platformer game made as an entry for Weekly Game Jam 76, where the theme was Afterlife. It is my fourth platformer in a row and it is build on the successes and failures of the previous ones and having Celeste as the main inspiration. The biggest goal is for the game to be enjoyable solely by the gameplay itself.</p> <p>You can play it in the WebGL version. There is also the option of downloading for Windows or Mac OS X, feel free to leave any comments! The game source code can be found on GitHub.</p>",
             "links": [
                 { 
