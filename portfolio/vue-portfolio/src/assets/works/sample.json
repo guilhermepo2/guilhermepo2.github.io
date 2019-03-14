@@ -27,6 +27,10 @@
                 { 
                     "url": "http://freshmansquest.com",
                     "label": "Press Page" 
+                },
+                {
+                    "url": "https://twitter.com/FreshmansQuest",
+                    "label": "Twitter"
                 }
             ]
         },
@@ -40,8 +44,12 @@
             "description": "<p>Paragraph</p>",
             "links": [
                 { 
-                    "url": "http://freshmansquest.com",
-                    "label": "Press Page" 
+                    "url": "http://www.gilp.studio",
+                    "label": "GILP Studio" 
+                },
+                {
+                    "url": "https://play.google.com/store/apps/details?id=studio.gilp.upsidedown&hl=en",
+                    "label": "Download on Play Store"
                 }
             ]
         },
@@ -71,22 +79,34 @@
             "platform": "HTML5",
             "builtWith": "Unity",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://gueepo.itch.io/light-journey",
+                    "label": "Play on itch.io"
+                },
+                {
+                    "url": "https://github.com/guilhermepo2/jimjam2",
+                    "label": "Source Code"
+                }
             ]
         },
         {
             "title": "Pizza Clicker",
-           "preview": "src/assets/img/previews2/pizzaclicker.png",
+           "preview": "src/assets/img/previews/pizzaclicker-mobile.png",
            "platform": "Android",
             "builtWith": "Unity",
             "context": "Released Game for Fourth Dimension",
-           "contentImage": "linkToImg",
            "description": "",
            "links": [
-               "#"
+               {
+                   "url": "https://play.google.com/store/apps/details?id=com.FourthDimensionStudios.PizzaClicker",
+                   "label": "Download on Play Store"
+               },
+               {
+                   "url": "http://fourthdimension.studio/pizzaclicker/",
+                   "label": "Landing Page (with Press Kit)"
+               }
            ]
         },
         {
@@ -95,10 +115,12 @@
            "platform": "HTML5",
             "builtWith": "Unity",
             "context": "Postponed game for Fourth Dimension",
-           "contentImage": "linkToImg",
            "description": "",
            "links": [
-               "#"
+               {
+                   "url": "https://fourthdimension.itch.io/dreamlands",
+                   "label": "Play Demo on itch.io"
+               }
            ]
         }
     ],
@@ -109,10 +131,16 @@
             "platform": "Android",
             "builtWith": "Unity",
             "context": "Released game for Fourth Dimension",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://play.google.com/store/apps/details?id=com.FourthDimension.SpaceJourney",
+                    "label": "Download on Play Store"
+                },
+                {
+                    "url": "https://fourthdimension.studio/spacejourney/",
+                    "label": "Landing Page (with Press Kit)"
+                }
             ]
         },
         {
@@ -121,10 +149,20 @@
             "platform": "HTML5",
             "builtWith": "Unity",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://gueepo.itch.io/secludere",
+                    "label": "Play on itch.io"
+                },
+                {
+                    "url": "https://gueepo.itch.io/secludere/devlog/49559/secludere-postmortem",
+                    "label": "Postmortem"
+                },
+                {
+                    "url": "https://github.com/guilhermepo2/becomeBetterJam",
+                    "label": "Source Code"
+                }
             ]
         },
         {
@@ -133,10 +171,12 @@
             "platform": "HTML5",
             "builtWith": "Unity",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://gueepo.itch.io/cult-cultivation",
+                    "label": "Play on itch.io"
+                }
             ]
         },
         {
@@ -145,11 +185,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Different prototypes developed on a local game dev club",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "Puzzle Game",
@@ -157,10 +193,12 @@
             "platform": "Windows and Mac",
             "builtWith": "GameMaker Studio 2",
             "context": "Postponed Game for Fourth Dimension",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://gueepo.itch.io/puzzle-game",
+                    "label": "Download on itch.io"
+                }
             ]
         },
         {
@@ -169,10 +207,12 @@
             "platform": "HTML5 and Android",
             "builtWith": "Unity",
             "context": "Learning Project",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://gueepo.itch.io/tetrisclone",
+                    "label": "Play on itch.io"
+                }
             ]
         },
         {
@@ -181,10 +221,12 @@
             "platform": "Windows",
             "builtWith": "GameMaker Studio 2",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                {
+                    "url": "https://gueepo.itch.io/zombies-on-the-basement",
+                    "label": "Download on itch.io"
+                }
             ]
         },
         {
@@ -193,10 +235,12 @@
             "platform": "Windows",
             "builtWith": "GameMaker Studio 1.4",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
             "description": "",
             "links": [
-                "#"
+                { 
+                    "url": "https://gueepo.itch.io/gmc7",
+                    "label": "Download on itch.io"
+                }
             ]
         },
         {
@@ -205,11 +249,7 @@
             "platform": "HTML5",
             "builtWith": "Phaser",
             "context": "Unfinished Game",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "Midnight Journey",
@@ -217,11 +257,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Canceled Game",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "The Ace Programmer",
@@ -229,11 +265,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Prototype",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "Inverse Kinomatics",
@@ -241,11 +273,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Learning Project",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "Ghost Game",
@@ -253,11 +281,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Canceled Game",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "Jade Reno Pirates",
@@ -265,11 +289,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Unfinished Game",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "BoxGuy",
@@ -277,11 +297,7 @@
             "platform": "Android",
             "builtWith": "Unity",
             "context": "Learning Project",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "Olympic Runner",
@@ -289,11 +305,7 @@
             "platform": "Android, Windows and Mac",
             "builtWith": "Unity",
             "context": "Game Jam",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         },
         {
             "title": "FACOM Souls",
@@ -301,11 +313,7 @@
             "platform": "Nowhere",
             "builtWith": "Unity",
             "context": "Learning Project",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
+            "description": ""
         }
    ]
 }

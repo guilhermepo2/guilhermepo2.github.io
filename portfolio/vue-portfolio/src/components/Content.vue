@@ -8,7 +8,7 @@
             <p><strong>Context of the Project:</strong> {{ context }}.</p>
             <div v-html="description"></div>
 
-            <nav class="links">
+            <nav v-if="links" class="links">
                 <ul>
                     <li v-for="(link, index) in links">
                         <a v-bind:href="link.url" target="_BLANK"><font-awesome-icon icon="link"></font-awesome-icon> {{ link.label }}</a>

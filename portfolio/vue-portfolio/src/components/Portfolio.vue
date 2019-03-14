@@ -25,7 +25,7 @@
 <style scoped>
 
 .portfolio-info {
-    background: #fff;
+    
 }
 
 .portfolio-top {
