@@ -81,4 +81,32 @@
 .portfolio-bg:hover {
     opacity: .8;
 }
+
+.portfolio-block-lg {
+    height: 150px;
+}
+
+.portfolio-block-md {
+    height: 125px;
+}
+
+.portfolio-block-sm {
+    height: 100px;
+}
+
+.portoflio-bg-img {
+    background-size:cover;
+    background-position: center center;
+    
+    min-width: 100%;
+    min-height: 100%;
+    
+    opacity: 1;
+    transition: all .25s;
+}
+
+.portoflio-bg-img:hover {
+    opacity: .8;
+    background-size: 110%;
+}
 </style>

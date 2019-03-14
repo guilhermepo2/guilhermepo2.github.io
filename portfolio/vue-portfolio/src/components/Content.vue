@@ -1,6 +1,10 @@
 <template>
     <div class="portfolio-content container">
         <h1> {{ title }} </h1>
+        <!-- <h3>{{ contentImage }}</h3> -->
+        <p><strong>Available On:</strong> {{ platform }}.</p>
+        <p><strong>Made With:</strong> {{ builtWith }}.</p>
+        <p><strong>Context of the Project:</strong> {{ context }}.</p>
         <div v-html="description"></div>
 
         <nav class="links">
@@ -15,13 +19,13 @@
 
 <script>
 export default {
-    props: ['title', 'description', 'links']
+    props: ['title', 'contentImage', 'platform', 'builtWith', 'context', 'description', 'links']
 }
 </script>
 
 <style scoped>
 .portfolio-content {
-    padding: 2rem;
+    padding: 5rem 2rem;
     text-align: justify;
 }
 

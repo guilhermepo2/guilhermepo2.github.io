@@ -2,7 +2,10 @@
     "tier1works": [
         {
             "title": "happily(never)after",
-            "preview": "src/assets/img/previews/happilyneverafter.png",
+            "preview": "src/assets/img/previews2/happilyneverafter.png",
+            "platform": "HTML5, Windows and Mac",
+            "builtWith": "Unity",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "<p>happily(never)after is a platformer game made as an entry for Weekly Game Jam 76, where the theme was Afterlife. It is my fourth platformer in a row and it is build on the successes and failures of the previous ones and having Celeste as the main inspiration. The biggest goal is for the game to be enjoyable solely by the gameplay itself.</p> <p>You can play it in the WebGL version. There is also the option of downloading for Windows or Mac OS X, feel free to leave any comments! The game source code can be found on GitHub.</p>",
             "links": [
@@ -18,7 +21,10 @@
         },
         {
             "title": "Dreamlands",
-           "preview": "src/assets/img/previews/dreamlands.png",
+           "preview": "src/assets/img/previews2/dreamlands.png",
+           "platform": "HTML5",
+            "builtWith": "Unity",
+            "context": "Postponed game for Fourth Dimension",
            "contentImage": "linkToImg",
            "description": "",
            "links": [
@@ -27,7 +33,10 @@
         },
         {
             "title": "Pizza Clicker",
-           "preview": "src/assets/img/previews/pizzaclicker-mobile.png",
+           "preview": "src/assets/img/previews2/pizzaclicker.png",
+           "platform": "Android",
+            "builtWith": "Unity",
+            "context": "Released Game for Fourth Dimension",
            "contentImage": "linkToImg",
            "description": "",
            "links": [
@@ -36,7 +45,10 @@
         },
         {
             "title": "Cult Cultivation",
-            "preview": "src/assets/img/previews/cult-resized.png",
+            "preview": "src/assets/img/previews2/cult.png",
+            "platform": "HTML5",
+            "builtWith": "Unity",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -48,6 +60,9 @@
         {
             "title": "Journey to the Light",
             "preview": "src/assets/img/previews/journeytothelight.png",
+            "platform": "HTML5",
+            "builtWith": "Unity",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -57,6 +72,9 @@
         {
             "title": "Game Development Club",
             "preview": "src/assets/img/previews/gamedevclub.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Different prototypes developed on a local game dev club",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -66,6 +84,9 @@
         {
             "title": "Secludere",
             "preview": "src/assets/img/previews/secludere.png",
+            "platform": "HTML5",
+            "builtWith": "Unity",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -77,6 +98,9 @@
         {
             "title": "Space Journey",
             "preview": "src/assets/img/previews/spacejourney.png",
+            "platform": "Android",
+            "builtWith": "Unity",
+            "context": "Released game for Fourth Dimension",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -86,6 +110,9 @@
         {
             "title": "Puzzle Game",
             "preview": "src/assets/img/previews/m3rl.png",
+            "platform": "Windows and Mac",
+            "builtWith": "GameMaker Studio 2",
+            "context": "Postponed Game for Fourth Dimension",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -95,6 +122,9 @@
         {
             "title": "Tetris Clone",
             "preview": "src/assets/img/previews/tetris-pc.png",
+            "platform": "HTML5 and Android",
+            "builtWith": "Unity",
+            "context": "Learning Project",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -104,6 +134,9 @@
         {
             "title": "Zombies on the Basement",
             "preview": "src/assets/img/previews/zombie-roguelike.png",
+            "platform": "Windows",
+            "builtWith": "GameMaker Studio 2",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -113,6 +146,9 @@
         {
             "title": "Newtons Laws of Roguelike",
             "preview": "src/assets/img/previews/newton-roguelike.png",
+            "platform": "Windows",
+            "builtWith": "GameMaker Studio 1.4",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -122,6 +158,9 @@
         {
             "title": "Pizza Clicker",
             "preview": "src/assets/img/previews/pizzaclicker.png",
+            "platform": "HTML5",
+            "builtWith": "Phaser",
+            "context": "Unfinished Game",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -131,6 +170,9 @@
         {
             "title": "Midnight Journey",
             "preview": "src/assets/img/previews/midnight-journey.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Canceled Game",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -140,6 +182,9 @@
         {
             "title": "The Ace Programmer",
             "preview": "src/assets/img/previews/ace-programmer.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Prototype",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -149,6 +194,9 @@
         {
             "title": "Inverse Kinomatics",
             "preview": "src/assets/img/previews/inverse-kino.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Learning Project",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -158,6 +206,9 @@
         {
             "title": "Ghost Game",
             "preview": "src/assets/img/previews/ghost-game.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Canceled Game",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -167,6 +218,9 @@
         {
             "title": "Jade Reno Pirates",
             "preview": "src/assets/img/previews/jade-reno-pirates.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Unfinished Game",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -176,6 +230,9 @@
         {
             "title": "BoxGuy",
             "preview": "src/assets/img/previews/boxguy.png",
+            "platform": "Android",
+            "builtWith": "Unity",
+            "context": "Learning Project",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -185,6 +242,9 @@
         {
             "title": "Olympic Runner",
             "preview": "src/assets/img/previews/olympic-runner.png",
+            "platform": "Android, Windows and Mac",
+            "builtWith": "Unity",
+            "context": "Game Jam",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -194,6 +254,9 @@
         {
             "title": "FACOM Souls",
             "preview": "src/assets/img/previews/facom-souls.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Learning Project",
             "contentImage": "linkToImg",
             "description": "",
             "links": [

@@ -5,23 +5,35 @@
 
         <portfolio-info>
           <div class="row">
-            <div class="col-md-6" v-for="(game, index) in works.tier1works">
-              <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid" v-bind:src="game.preview" alt="">
+            <div class="portfolio-block-lg col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
+              <div @click="UpdateRenderedProject(game.title, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
 
-            <div class="col-md-4" v-for="(game, index) in works.tier2works">
+            <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
               <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid" v-bind:src="game.preview" alt="">
+            </div> -->
+
+            <div class="portfolio-block-md col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier2works">
+              <div @click="UpdateRenderedProject(game.title, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
 
-            <div class="col-md-3" v-for="(game, index) in works.tier3works">
+            <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier2works">
+              <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid" v-bind:src="game.preview" alt="">
+            </div> -->
+
+            <div class="portfolio-block-sm col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" v-for="(game, index) in works.tier3works">
+              <div @click="UpdateRenderedProject(game.title, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
+            </div>
+
+            <!-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" v-for="(game, index) in works.tier3works">
               <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid portfolio-image" v-bind:src="game.preview" alt="">
-            </div>
+            </div> -->
           </div>
         </portfolio-info>
         
       </div>
       <div class="col-md-7">
-        <portfolio-content :description="description" :title="title" :links="links">
+        <portfolio-content :description="description" :title="title" :links="links" :platform="platform" :builtWith="builtWith" :context="context" :contentImage="contentImage">
         </portfolio-content>
       </div>
     </div>
@@ -36,8 +48,13 @@ export default {
   data: function() {
     return {
       title: "",
+      platform: "",
+      builtWith: "",
+      context: "",
+      contentImage: "",
       description: "",
       links: {},
+
       works: Works
     }
   },
@@ -49,10 +66,15 @@ export default {
     printOnConsole(param) {
       console.log(param);
     },
-    UpdateRenderedProject(title, description, links) {
+    UpdateRenderedProject(title, platform, builtWith, context, contentImage, description, links) {
       this.title = title;
+      this.platform = platform;
+      this.builtWith = builtWith;
+      this.context = context;
+      this.contentImage = contentImage;
       this.description = description;
       this.links = links;
+      window.scrollTo(0,0);
     }
   }
 }
@@ -63,7 +85,7 @@ body {
   width: 100%;
   min-height: 100%;
 }
-.row, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7 {
+.row, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xl-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xl-4, .col-md-4, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xl-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xl-7 {
   margin: 0;
   padding: 0;
 }
