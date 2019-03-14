@@ -1,6 +1,51 @@
 {
     "tier1works": [
         {
+            "title": "Mobile Roguelike",
+            "preview": "src/assets/img/previews/mobileroguelike.png",
+            "platform": "Soon on Android",
+            "builtWith": "Unity",
+            "context": "Game in Development for Fourth Dimension",
+            "contentImage": "linkToImg",
+            "description": "<p>Paragraph</p>",
+            "links": [
+                { 
+                    "url": "https://fourthdimension.itch.io/mobile-roguelike",
+                    "label": "Play demo on itch.io" 
+                }
+            ]
+        },
+        {
+            "title": "Freshman's Quest",
+            "preview": "src/assets/img/previews/freshmansquest.png",
+            "platform": "Soon on PC",
+            "builtWith": "Unity",
+            "context": "Game in Development for UFU Games",
+            "contentImage": "src/assets/img/content/freshmansquest.png",
+            "description": "<p>Paragraph</p>",
+            "links": [
+                { 
+                    "url": "http://freshmansquest.com",
+                    "label": "Press Page" 
+                }
+            ]
+        },
+        {
+            "title": "Upside Down",
+            "preview": "src/assets/img/previews/upsidedown.png",
+            "platform": "Android, soon on iOS",
+            "builtWith": "Unity",
+            "context": "Partnership with GILP Studio",
+            "contentImage": "src/assets/img/content/upsidedown.png",
+            "description": "<p>Paragraph</p>",
+            "links": [
+                { 
+                    "url": "http://freshmansquest.com",
+                    "label": "Press Page" 
+                }
+            ]
+        },
+        {
             "title": "happily(never)after",
             "preview": "src/assets/img/previews2/happilyneverafter.png",
             "platform": "HTML5, Windows and Mac",
@@ -18,42 +63,6 @@
                     "label": "Source Code"
                 }
             ]
-        },
-        {
-            "title": "Dreamlands",
-           "preview": "src/assets/img/previews2/dreamlands.png",
-           "platform": "HTML5",
-            "builtWith": "Unity",
-            "context": "Postponed game for Fourth Dimension",
-           "contentImage": "linkToImg",
-           "description": "",
-           "links": [
-               "#"
-           ]
-        },
-        {
-            "title": "Pizza Clicker",
-           "preview": "src/assets/img/previews2/pizzaclicker.png",
-           "platform": "Android",
-            "builtWith": "Unity",
-            "context": "Released Game for Fourth Dimension",
-           "contentImage": "linkToImg",
-           "description": "",
-           "links": [
-               "#"
-           ]
-        },
-        {
-            "title": "Cult Cultivation",
-            "preview": "src/assets/img/previews2/cult.png",
-            "platform": "HTML5",
-            "builtWith": "Unity",
-            "context": "Game Jam",
-            "contentImage": "linkToImg",
-            "description": "",
-            "links": [
-                "#"
-            ]
         }
     ],
     "tier2works": [
@@ -70,11 +79,37 @@
             ]
         },
         {
-            "title": "Game Development Club",
-            "preview": "src/assets/img/previews/gamedevclub.png",
-            "platform": "Nowhere",
+            "title": "Pizza Clicker",
+           "preview": "src/assets/img/previews2/pizzaclicker.png",
+           "platform": "Android",
             "builtWith": "Unity",
-            "context": "Different prototypes developed on a local game dev club",
+            "context": "Released Game for Fourth Dimension",
+           "contentImage": "linkToImg",
+           "description": "",
+           "links": [
+               "#"
+           ]
+        },
+        {
+            "title": "Dreamlands",
+           "preview": "src/assets/img/previews2/dreamlands.png",
+           "platform": "HTML5",
+            "builtWith": "Unity",
+            "context": "Postponed game for Fourth Dimension",
+           "contentImage": "linkToImg",
+           "description": "",
+           "links": [
+               "#"
+           ]
+        }
+    ],
+   "tier3works": [
+        {
+            "title": "Space Journey",
+            "preview": "src/assets/img/previews/spacejourney.png",
+            "platform": "Android",
+            "builtWith": "Unity",
+            "context": "Released game for Fourth Dimension",
             "contentImage": "linkToImg",
             "description": "",
             "links": [
@@ -92,15 +127,25 @@
             "links": [
                 "#"
             ]
-        }
-    ],
-   "tier3works": [
+        },
         {
-            "title": "Space Journey",
-            "preview": "src/assets/img/previews/spacejourney.png",
-            "platform": "Android",
+            "title": "Cult Cultivation",
+            "preview": "src/assets/img/previews2/cult.png",
+            "platform": "HTML5",
             "builtWith": "Unity",
-            "context": "Released game for Fourth Dimension",
+            "context": "Game Jam",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Game Development Club",
+            "preview": "src/assets/img/previews/gamedevclub.png",
+            "platform": "Nowhere",
+            "builtWith": "Unity",
+            "context": "Different prototypes developed on a local game dev club",
             "contentImage": "linkToImg",
             "description": "",
             "links": [

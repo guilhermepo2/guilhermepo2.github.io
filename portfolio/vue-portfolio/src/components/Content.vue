@@ -1,20 +1,22 @@
 <template>
-    <div class="portfolio-content container">
-        <h1> {{ title }} </h1>
-        <!-- <h3>{{ contentImage }}</h3> -->
-        <p><strong>Available On:</strong> {{ platform }}.</p>
-        <p><strong>Made With:</strong> {{ builtWith }}.</p>
-        <p><strong>Context of the Project:</strong> {{ context }}.</p>
-        <div v-html="description"></div>
+    <section>
+        <img v-if="contentImage" class="img-fluid" v-bind:src="contentImage" alt="">
+        <div class="portfolio-content container">
+            <h1> {{ title }} </h1>
+            <p><strong>Available On:</strong> {{ platform }}.</p>
+            <p><strong>Made With:</strong> {{ builtWith }}.</p>
+            <p><strong>Context of the Project:</strong> {{ context }}.</p>
+            <div v-html="description"></div>
 
-        <nav class="links">
-            <ul>
-                <li v-for="(link, index) in links">
-                    <a v-bind:href="link.url" target="_BLANK"><font-awesome-icon icon="link"></font-awesome-icon> {{ link.label }}</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+            <nav class="links">
+                <ul>
+                    <li v-for="(link, index) in links">
+                        <a v-bind:href="link.url" target="_BLANK"><font-awesome-icon icon="link"></font-awesome-icon> {{ link.label }}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -25,7 +27,8 @@ export default {
 
 <style scoped>
 .portfolio-content {
-    padding: 5rem 2rem;
+    /* background: green; */
+    padding: 2rem 1rem;
     text-align: justify;
 }
 

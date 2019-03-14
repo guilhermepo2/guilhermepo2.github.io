@@ -8,7 +8,7 @@
             <h3>Guilherme Oliveira</h3>
             <p>Here you can see some of my works!</p>
             <ul>
-                <li><a href="https://gueepo.me"><font-awesome-icon icon="home"></font-awesome-icon> home</a></li>
+                <li><a href="http://gueepo.me"><font-awesome-icon icon="home"></font-awesome-icon> home</a></li>
                 <li><a href="mailto:guilherme.061@gmail.com"><font-awesome-icon icon="envelope"></font-awesome-icon> email</a></li>
                 <li><a href="https://twitter.com/guilhermepo2" target="_BLANK"><font-awesome-icon :icon="['fab', 'twitter']"></font-awesome-icon> twitter</a></li>
             </ul>
@@ -23,6 +23,10 @@
 </script>
 
 <style scoped>
+
+.portfolio-info {
+    background: #fff;
+}
 
 .portfolio-top {
     padding-top: 2rem;
