@@ -1,0 +1,204 @@
+{
+    "tier1works": [
+        {
+            "title": "happily(never)after",
+            "preview": "src/assets/img/previews/happilyneverafter.png",
+            "contentImage": "linkToImg",
+            "description": "<p>happily(never)after is a platformer game made as an entry for Weekly Game Jam 76, where the theme was Afterlife. It is my fourth platformer in a row and it is build on the successes and failures of the previous ones and having Celeste as the main inspiration. The biggest goal is for the game to be enjoyable solely by the gameplay itself.</p> <p>You can play it in the WebGL version. There is also the option of downloading for Windows or Mac OS X, feel free to leave any comments! The game source code can be found on GitHub.</p>",
+            "links": [
+                { 
+                    "url": "https://gueepo.itch.io/happilyneverafter",
+                    "label": "Play on itch.io" 
+                },
+                {
+                    "url": "https://github.com/guilhermepo2/wgj76",
+                    "label": "Source Code"
+                }
+            ]
+        },
+        {
+            "title": "Dreamlands",
+           "preview": "src/assets/img/previews/dreamlands.png",
+           "contentImage": "linkToImg",
+           "description": "",
+           "links": [
+               "#"
+           ]
+        },
+        {
+            "title": "Pizza Clicker",
+           "preview": "src/assets/img/previews/pizzaclicker-mobile.png",
+           "contentImage": "linkToImg",
+           "description": "",
+           "links": [
+               "#"
+           ]
+        },
+        {
+            "title": "Cult Cultivation",
+            "preview": "src/assets/img/previews/cult-resized.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        }
+    ],
+    "tier2works": [
+        {
+            "title": "Journey to the Light",
+            "preview": "src/assets/img/previews/journeytothelight.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Game Development Club",
+            "preview": "src/assets/img/previews/gamedevclub.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Secludere",
+            "preview": "src/assets/img/previews/secludere.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        }
+    ],
+   "tier3works": [
+        {
+            "title": "Space Journey",
+            "preview": "src/assets/img/previews/spacejourney.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Puzzle Game",
+            "preview": "src/assets/img/previews/m3rl.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Tetris Clone",
+            "preview": "src/assets/img/previews/tetris-pc.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Zombies on the Basement",
+            "preview": "src/assets/img/previews/zombie-roguelike.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Newtons Laws of Roguelike",
+            "preview": "src/assets/img/previews/newton-roguelike.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Pizza Clicker",
+            "preview": "src/assets/img/previews/pizzaclicker.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Midnight Journey",
+            "preview": "src/assets/img/previews/midnight-journey.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "The Ace Programmer",
+            "preview": "src/assets/img/previews/ace-programmer.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Inverse Kinomatics",
+            "preview": "src/assets/img/previews/inverse-kino.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Ghost Game",
+            "preview": "src/assets/img/previews/ghost-game.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Jade Reno Pirates",
+            "preview": "src/assets/img/previews/jade-reno-pirates.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "BoxGuy",
+            "preview": "src/assets/img/previews/boxguy.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "Olympic Runner",
+            "preview": "src/assets/img/previews/olympic-runner.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        },
+        {
+            "title": "FACOM Souls",
+            "preview": "src/assets/img/previews/facom-souls.png",
+            "contentImage": "linkToImg",
+            "description": "",
+            "links": [
+                "#"
+            ]
+        }
+   ]
+}

@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+}
+
+#freshmansHeader {
+    background: pink;
+    height: 100%;
+}
+
+.horizontalAlignment {
+    text-align: center;
+}
+
+.verticalAlignment {
+    display: flex;
+    align-items: center;
+}
+
+#freshmansPress {
+    background: blue;
+    height: 100%;
+}
+
+#freshmansContact {
+    background: yellow;
+    height: 100%;
+}
