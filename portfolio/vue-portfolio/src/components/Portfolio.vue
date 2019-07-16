@@ -2,11 +2,11 @@
     <div class="portfolio-info container">
         <div class="portfolio-top">
             <a href="http://gueepo.me">
-                <img src="../assets/img/portrait.png" alt="Guilherme, that's me!">
+                <img src="../assets/img/portrait2.jpg" alt="Guilherme, that's me!">
             </a>
 
-            <h3>Guilherme Oliveira</h3>
-            <p>Here you can see some of my works!</p>
+            <h3>Guilherme de Oliveira</h3>
+            <p>Hello! I'm a Gameplay Programmer and this is my portfolio! Almost all of the projects I've ever worked on are listed below from the most recent to the oldest ones.</p>
             <ul>
                 <li><a href="http://gueepo.me"><font-awesome-icon icon="home"></font-awesome-icon> home</a></li>
                 <li><a href="mailto:guilherme.061@gmail.com"><font-awesome-icon icon="envelope"></font-awesome-icon> email</a></li>
@@ -14,7 +14,6 @@
             </ul>
             <hr>
         </div>
-
         <slot></slot>
     </div>
 </template>
@@ -40,8 +39,8 @@ hr {
 }
 
 .portfolio-top img {
+    max-width: 175px;
     border-radius: 100%;
-    border: 1px solid white;
     padding: .5rem 0;
     padding-top: 0;
     opacity: 1;
@@ -73,6 +72,12 @@ hr {
 
 .portfolio-top a {
     color: white;
+}
+
+.portfolio-top p {
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: justify;
 }
 
 .portfolio-top a:hover {
