@@ -187,21 +187,6 @@
             ]
         },
         {
-            "title": "Cult Cultivation",
-            "year": "2019",
-            "preview": "src/assets/img/previews2/cult2.png",
-            "platform": "HTML5",
-            "builtWith": "Unity",
-            "context": "Game Jam",
-            "description": "<p>A very simple incremental game for the Weekly Game Jam 78, where the theme was Grow. The idea is to grow your own cult to a Cosmic Entity! It is a base for an Incremental Game Framework I'm working for Unity.</p>",
-            "links": [
-                {
-                    "url": "https://gueepo.itch.io/cult-cultivation",
-                    "label": "Play on itch.io"
-                }
-            ]
-        },
-        {
             "title": "Puzzle Game",
             "year": "2018",
             "preview": "src/assets/img/previews/m3rl.png",
@@ -213,24 +198,6 @@
                 {
                     "url": "https://gueepo.itch.io/puzzle-game",
                     "label": "Download on itch.io"
-                }
-            ]
-        },
-        {
-            "title": "Tetris Clone",
-            "year": "2018",
-            "preview": "src/assets/img/previews/tetris-pc.png",
-            "platform": "HTML5 and Android",
-            "builtWith": "Unity",
-            "context": "Learning Project",
-            "description": "<p>This is a Tetris Clone project developed for Web and Mobile on Unity, I did its Programming. This tetris implementation was based on the Udemy Course 'Make a Tetris-style puzzler in Unity' by Walmer Lin with some subtle changes.</p><p>Changes includes gameplay elements such as button pressing delay (and whether they exist or not), order of input processing (player input, piece drop, check game over, etc...), I removed the 'Hold' functionality and, originally, the queue had 3 pieces, I changed it to have just one.</p><p>This was mostly a learning project to check if my guesses on how to write a tetris were correct and it was useful to get some practice on my weak points in Unity such as User Interface and Particles.</p>",
-            "links": [
-                {
-                    "url": "https://gueepo.itch.io/tetrisclone",
-                    "label": "Play on itch.io"
-                }, {
-                    "url": "https://gueepo.itch.io/tetrisclone/devlog/41146/first-devlog",
-                    "label": "Postmortem"
                 }
             ]
         },
@@ -265,21 +232,6 @@
             ]
         },
         {
-            "title": "Pizza Clicker",
-            "year": "2018",
-            "preview": "src/assets/img/previews/pizzaclicker.png",
-            "platform": "HTML5",
-            "builtWith": "Phaser",
-            "context": "Unfinished Game",
-            "description": "<p>Pizza Clicker is a simple clicker/idle game where you click to earn pizza and spend pizza to earn more pizza, the perfect addiction formula</p>",
-            "links": [
-                { 
-                    "url": "http://gueepo.me/pizzaclicker/",
-                    "label": "Play it here"
-                }
-            ]
-        },
-        {
             "title": "Midnight Journey",
             "year": "2017",
             "preview": "src/assets/img/previews/midnight-journey.png",
@@ -287,30 +239,6 @@
             "builtWith": "Unity",
             "context": "Canceled Game",
             "description": "<p>I always had this idea of developing a game all by myself, programming, art and sound. Not only that, with this idea I wanted to blog or vlog about it, this year I decided that I would start this project of mine and until the writing of this page, I have a small alpha of how I want the game to be, I will provide a small story on how things went so far. At this present moment I am writing a game design document for this game so I can better think through it and make better decisions</p><br><h2>Zelda Souls</h2><h4><a href='https://gueepo.wordpress.com/2017/01/24/zelda-souls/'>First Post - Zelda Souls? (2017/01/24)</a></h4><p>This was the first post on my blog where I talk about this idea, at first I was calling the game 'Zelda Souls' because I wanted a mixed feeling of Souls Games and Zelda Games, but in fact, after some time I realized that Souls' Games (Dark Souls, Bloodborne, ...) <strong>are</strong> 'Zelda Souls' and Zelda is also 'Zelda Souls'... at least I think this way.</p><p>Then I talked about some insights of what I wanted, what I was going to do and technologies, nothing special.</p><br><h4><a href='https://gueepo.wordpress.com/2017/02/07/titan-souls-impressions/'>Second Post - Titans Souls Impressions (2016/02/07)</a></h4><p>After some time I saw this game, <strong>Titan Souls</strong> and it was really an inspiration to me, click on the link above to see an analysis that I've made of the game.</p><br><h4><a href='https://gueepo.wordpress.com/2017/02/08/zelda-souls-mechanics-update-and-minimum-viable-product/'>Third Post - Zelda Souls Mechanics and Minibum Viable Product (2017/02/08)</a></h4><p>This is the post where I talk about some of the first mechanics I wanted and describe the minimum viable product for this, basically a battle system similar to Zelda, yay.</p><br><h4><a href='https://gueepo.wordpress.com/2017/03/06/assets-development/'>Fourth Post - Assets Development (2017/03/06)</a></h4><p>In this one I describe some of the assets that I have to develop in Unity for my game</p><br><h4><a href='https://gueepo.wordpress.com/2017/03/29/inverted-pyramid-in-game-development/'>Fifth Post - Inverted Pyramid in Game Dev (2017/03/29)</a></h4><p>Here I talk about something called 'Inverted Pyramid', I've seen it in a Brazilian blog and I really liked the idea, it talks about how to break your game into pieces where every piece is a finished and complete game, so you start with the smaller piece and start iterating over it.</p><br><h4><a href='https://gueepo.wordpress.com/2017/04/02/monthly-update-3/'>Sixth Post - Monthly Update and First Results (2017/04/02)</a></h4><p>This is where I started to get my first results on actually doing something. I even tried to record a small video of me explaining what I did, anyway, in this post I talk about the first prototype of Zelda Souls, that is the Battle System. You can see the video below:</p><br><br><div class='video'><iframe width='420' height='345' src='https://www.youtube.com/embed/4CDPPPanflA'></iframe></div><br><p>On the post I also talk about the next steps I should take. and <a href='https://gueepo.wordpress.com/2017/04/10/decisions-decision/'> on this one</a> I talk more about some decisions I've made for the game</p><br><h2>Midnight Journey, not Zelda Souls</h2><p>My University had some kind of a 'Showcase' of student's projects, it was announced and I thought it was a good opportunity to show this game I was doing. I also decided to name it 'Midnight Journey', no more Zelda Souls!</p><p><a href='https://gueepo.wordpress.com/2017/04/13/zelda-souls-first-demonstration/'>Here</a> is where I talk about this first demonstration, how I want it to be and talk about some other random stuff. <a href='https://gueepo.wordpress.com/2017/04/15/assets-for-midnight-journey/'>And here</a> is where I talk about what assets I will need to develop for this first demonstration</p><h4><a href='https://gueepo.wordpress.com/2017/05/'>Seventh Post - Monthly Update (2017/05/14)</a></h4><p>This post is where I show how the Alpha Version of Midnight Journey is, you can watch it below:</p><div class='video'><iframe width='420' height='345' src='https://www.youtube.com/embed/nGrTwX7sdd0'></iframe></div><br><p>The result was way less than what I really wanted to do, but giving the deadline and everything else that is what I was capable of doing, I'm really proud of that, and then... I talk about what to do next, some thoughts and these stuff that I've been talking about since January</p><p>As you can see, I had the Midnight Journey Alpha with my programming and my art! It is really cool, there is also an intro music that I composed, based on others famous one... I didn't have the time to compose a background music for the game itself, anyway, you can listen the Prelude music below:</p><div class='video'><iframe width='100%' height='166' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/317600878&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false'></iframe></div> <br><h4><a href='https://gueepo.wordpress.com/2017/06/06/monthly-update-5-life-and-also-oh-no-not-again/'>Eighth Post - Monthly Update and Midnight Journey Nowadays</a></h4><p>On the post I do some basic math and get to the conclusion that I won't have the time do to everyting that I want to do for this game, so, <strong>from now on</strong> I will write a game design document of what exactly I want it to be and then I wil do some thinking of what to do with Midnight Journey</p><p>So that's what I am doing at this present moment, writing the Game Design Document for Midnight Journey and also working on small game ideas and old ideas prototypes! Midnight Journey is a too complicated for me right now, but I am totally able to write the Game Design Document and then simplify it or make a better strategy on how to achieve the game I want to make.</p><p>You can see what I am doing on my <a href='https://gueepo.wordpress.com'>blog</a>, I post <em>at least</em> once a month, usually I post more than that. You can always reach me on twitter or by email, they are available on <a href='http://guilhermepo2.github.io'>my website</a>!</p><p>Hope you enjoyed the idea and what I have on this game!</p>"
-        },
-        {
-            "title": "Inverse Kinomatics",
-            "year": "2017",
-            "preview": "src/assets/img/previews/inverse-kino.png",
-            "platform": "Nowhere",
-            "builtWith": "Unity",
-            "context": "Learning Project",
-            "description": "<div class='video'><iframe width='420' height='345' src='https://www.youtube.com/embed/q8x3mGB-s0w'></iframe></div></div><hr><p>If you want complete information on this, see my <a href='https://gueepo.wordpress.com/2017/08/06/monthly-update-7/'>monthly update</a> of when I did this.</p><p>For short, Inverse Kinomatics is a 2.5D 'game' that served me as a learning experience. I always had this project of doing something similar to this where I would work with Inverse Kinematics in Unity and mess up a little bit with shaders.</p><p>All the programming and 3D Models are my own. Rigging and Animations are from Mixamo.</p><p>Before doing this I thought doing it were going to be pretty straightforward, but I was wrong. Pushing, Pulling and Climbing Animations are something really hard to get done correctly and this is what went most wrong in this project. As you can see in the video, climbing terrain is done pretty much by teleporting the character at the end of the animation.</p><p>As a positive side, doing it I learned that Inverse Kinematics on Unity 3D is way easier than I thought it would be, and also I could see that with hard work and a little bit of experimentation I could do a custom shader to achieve a somehow unique aesthetic.</p><p>That's pretty much it for this one! If you like you can follow my <a href='https://gueepo.wordpress.com'>blog</a>, where I will be doing monthly updates on what I'm working on. You can also go to my <a href='http://guilhermepo2.github.io'>website</a> for more information about me and how to contact me.</p>"
-        },
-        {
-            "title": "Ghost Game",
-            "year": "2017",
-            "preview": "src/assets/img/previews/ghost-game.png",
-            "platform": "Nowhere",
-            "builtWith": "Unity",
-            "context": "Canceled Game",
-            "description": "<p>Ghost Game is a puzzle platformer game, it would lie between a Mario and Limbo. The game consists of you having a physical and a ghost body, each one with their own capacities and you have to use both to solve puzzles.</p>",
-            "links": [
-                {
-                    "url": "https://www.youtube.com/watch?v=Vu8Nw9p2S6k",
-                    "label": "Gameplay Footage"
-                }
-            ]
         },
         {
             "title": "FACOM Souls",
