@@ -9,25 +9,13 @@
               <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + myMethod(game.preview) + ')' }"></div>
             </div>
 
-            <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" v-for="(game, index) in works.tier1works">
-              <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid" v-bind:src="game.preview" alt="">
-            </div> -->
-
             <div class="portfolio-block-md col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier2works">
               <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
 
-            <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier2works">
-              <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid" v-bind:src="game.preview" alt="">
-            </div> -->
-
-            <div class="portfolio-block-sm col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" v-for="(game, index) in works.tier3works">
+            <div class="portfolio-block-md col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" v-for="(game, index) in works.tier3works">
               <div @click="UpdateRenderedProject(game.title, game.year, game.platform, game.builtWith, game.context, game.contentImage, game.description, game.links)" class="portoflio-bg-img" v-bind:style="{ backgroundImage: 'url(' + game.preview + ')' }"></div>
             </div>
-
-            <!-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" v-for="(game, index) in works.tier3works">
-              <img @click="UpdateRenderedProject(game.title, game.description, game.links)" class="portfolio-bg img-fluid portfolio-image" v-bind:src="game.preview" alt="">
-            </div> -->
           </div>
         </portfolio-info>
         

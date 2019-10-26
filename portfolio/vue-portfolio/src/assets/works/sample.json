@@ -21,26 +21,6 @@
             ]
         },
         {
-            "title": "Freshman's Quest",
-            "year": "2019",
-            "preview": "./src/assets/img/previews/freshmansquest.png",
-            "platform": "Soon on PC",
-            "builtWith": "Unity",
-            "context": "Game in Development for UFU Games",
-            "contentImage": "src/assets/img/content/freshmansquest.png",
-            "description": "<p>Freshman's Quest is a pixel platformer game that takes place at an University/Fantasy mixed Universe!</p><p>You will take control of Lily, a Philosophy Undergraduate student with a big sense of pride trying not to fail her final exams. It all takes place in a fast paced, challenging, fluid and hand crafted platformer game with intriguing characters and memorable plot! All of that in an universe with 16bit aesthetics. </p><ul><li>It is a narrative driven, single player adventure that places in an university and is written by university students!</li><li>Challenging hand crafted levels that represents a range of university courses!</li><li>Simple and accessible controls, jump and wall jump!</li><li>Lightning fast respawn so you learn faster and jump (literally) right back into action!</li><li>Pizza</li></ul><p>We currently go under the name of UFU Games, the team was born under a project run by a local indie game studio called GILP. This project was focused on introducing and building game developers, this team and this game is the result of the first iteration of this project.</p><p>Freshman's Quest currently is developed by 8 people, 3 programmers, 2 artists, 1 designer and 1 musician, these roles can change from time and according to necessity (just indie development stuff).</p>",
-            "links": [
-                { 
-                    "url": "http://freshmansquest.com",
-                    "label": "Press Page" 
-                },
-                {
-                    "url": "https://twitter.com/FreshmansQuest",
-                    "label": "Twitter"
-                }
-            ]
-        },
-        {
             "title": "Upside Down",
             "year": "2019",
             "preview": "./src/assets/img/previews/upsidedown.png",
@@ -78,6 +58,25 @@
                     "label": "Source Code"
                 }
             ]
+        },
+        {
+            "title": "Pizza Clicker",
+            "year": "2018",
+           "preview": "src/assets/img/previews/pizzaclicker-mobile.png",
+           "platform": "Android",
+            "builtWith": "Unity",
+            "context": "Released Game for Fourth Dimension",
+           "description": "<p>Pizza Clicker is a really simple idle/clicker game. You just opened your own pizzeria and you have to click to produce pizza! With pizza you can hire Gennaros to help you or buy Ovens to help you produce even more pizzas, while you do that, there's a local newspaper telling your progress!</p><p>This was the second game I made for Fourth Dimension Studio, I still intend to spend some time on it adding updates and pushing the concept forward, but it's difficult with so much stuff happening right now.</p>",
+           "links": [
+               {
+                   "url": "https://play.google.com/store/apps/details?id=com.FourthDimensionStudios.PizzaClicker",
+                   "label": "Download on Play Store"
+               },
+               {
+                   "url": "http://fourthdimension.studio/pizzaclicker/",
+                   "label": "Landing Page (with Press Kit)"
+               }
+           ]
         }
     ],
     "tier2works": [
@@ -99,25 +98,6 @@
                     "label": "Source Code"
                 }
             ]
-        },
-        {
-            "title": "Pizza Clicker",
-            "year": "2018",
-           "preview": "src/assets/img/previews/pizzaclicker-mobile.png",
-           "platform": "Android",
-            "builtWith": "Unity",
-            "context": "Released Game for Fourth Dimension",
-           "description": "<p>Pizza Clicker is a really simple idle/clicker game. You just opened your own pizzeria and you have to click to produce pizza! With pizza you can hire Gennaros to help you or buy Ovens to help you produce even more pizzas, while you do that, there's a local newspaper telling your progress!</p><p>This was the second game I made for Fourth Dimension Studio, I still intend to spend some time on it adding updates and pushing the concept forward, but it's difficult with so much stuff happening right now.</p>",
-           "links": [
-               {
-                   "url": "https://play.google.com/store/apps/details?id=com.FourthDimensionStudios.PizzaClicker",
-                   "label": "Download on Play Store"
-               },
-               {
-                   "url": "http://fourthdimension.studio/pizzaclicker/",
-                   "label": "Landing Page (with Press Kit)"
-               }
-           ]
         },
         {
             "title": "Dreamlands",

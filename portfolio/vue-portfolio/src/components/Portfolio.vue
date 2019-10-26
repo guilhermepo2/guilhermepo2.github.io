@@ -6,7 +6,7 @@
             </a>
 
             <h3>Guilherme de Oliveira</h3>
-            <p>Hello! I'm a Gameplay Programmer and this is my portfolio! Almost all of the projects I've ever worked on are listed below from the most recent to the oldest ones.</p>
+            <p>Hello! I'm a Gameplay Programmer and this is my portfolio!</p>
             <ul>
                 <li><a href="http://gueepo.me"><font-awesome-icon icon="home"></font-awesome-icon> home</a></li>
                 <li><a href="mailto:guilherme.061@gmail.com"><font-awesome-icon icon="envelope"></font-awesome-icon> email</a></li>
@@ -124,7 +124,6 @@ hr {
 }
 
 .portoflio-bg-img:hover {
-    opacity: .8;
-    background-size: 110%;
+    opacity: .5;
 }
 </style>

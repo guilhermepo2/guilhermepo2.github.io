@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style scoped>
+.img {
+    width: 100%;
+}
 .portfolio-content {
     /* background: green; */
     padding: 2rem 3rem;
