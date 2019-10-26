@@ -26,9 +26,6 @@ export default {
 </script>
 
 <style scoped>
-.img {
-    width: 100%;
-}
 .portfolio-content {
     /* background: green; */
     padding: 2rem 3rem;
@@ -68,5 +65,8 @@ export default {
     color: red;
 }
 
+.img-fluid {
+    width: 100%;
+}
 
 </style>
