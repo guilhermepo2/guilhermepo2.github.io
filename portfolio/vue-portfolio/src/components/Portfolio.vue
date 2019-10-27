@@ -77,7 +77,7 @@ hr {
 .portfolio-top p {
     padding-left: 2em;
     padding-right: 2em;
-    text-align: justify;
+    text-align: center;
 }
 
 .portfolio-top a:hover {
@@ -99,12 +99,24 @@ hr {
     opacity: .5;
 }
 
-.portfolio-block-lg {
-    height: 150px;
+@media screen and (min-width: 1500px) {
+    .portfolio-block-lg {
+        height: 200px;
+    }
+
+    .portfolio-block-md {
+        height: 150px;
+    }
 }
 
-.portfolio-block-md {
-    height: 125px;
+@media screen and (max-width: 1499px) {
+    .portfolio-block-lg {
+        height: 150px;
+    }   
+    
+    .portfolio-block-md {
+        height: 125px;
+    }
 }
 
 .portfolio-block-sm {
