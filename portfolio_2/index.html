@@ -2,49 +2,89 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Guilherme de Oliveira</title>
-        <meta name="description" content="Gameplay Programmer @ Fourth Dimension">
+        <title>Guilherme de Oliveira - Portfolio</title>
+        <meta name="description" content="Gameplay Programmer">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="assets/new/style-min.css">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     <body>
-        <div class="wrapper">
-            <div class="page">
-                <header class="header-home">
-                    <a href="#"><img class="selfie" alt="Guilherme Oliveira" src="assets/img/portrait2.jpg"></a>
-                    <h1 class="title">Guilherme de Oliveira</h1>
-                    <h2 class="description">Gameplay Programmer</h2>
-                    <!-- <h2 class="description">Gameplay Programer @ <a href="http://fourthdimension.studio" target="_BLANK">Fourth Dimension</a></h2> -->
-                    
-                    <div class="social-links">
-                        <a alt="GitHub" class="link" href="http://github.com/guilhermepo2" target="_blank">
-                            <span class="icon-github-alt"></span>
-                        </a>
-                        <a alt="Twitter" class="link" href="http://twitter.com/guilhermepo2" target="_blank">
-                            <span class="icon-twitter"></span>
-                        </a>
-                        <a alt="E-Mail" class="link" href="mailto:guilherme.061@gmail.com">
-                            <span class="icon-envelope-o"></span>
-                        </a>
-                        <a alt="Itch.io" class="link" href="https://gueepo.itch.io" target="_blank">
-                            <span class="icon-gamepad"></span>
-                        </a>
-                    </div>
-                </header>
-                
-                <!-- NAV WITH BLOG AND PORTFOLIO LINKS -->
-                <nav class="nav-home">
-                    <ul class="list">
-                        <li class="item"><a class="link" href="blog">Blog</a></li>
-                        <li class="item"><a class="link" href="https://gueepo.wordpress.com" target="_blank">Devlog</a></li>
-                        <li class="item"><a class="link" href="portfolio">Portfolio</a></li>
-                    </ul>
-                </nav>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Guilherme de Oliveira</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarsExample03">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
 
-                <footer class="footer-home">
-                    Guilherme Oliveira © 2020
-                </footer>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Projects</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Resume</a>
+                </li>
+              </ul>
             </div>
+        </nav>
+
+        <!-- 
+
+          CONTAINER
+
+        -->
+        <div class="container">
+          <!-- PROJECTS -->
+          <div class="projects-section-container">
+            <div class="project-container-title">
+              <h2>Projects</h2>
+            </div>
+            
+            <div class="row">
+
+              <!-- ITEM -->
+              <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">Unity</span>
+                      <span class="badge badge-primary">C#</span>
+                      <span class="badge badge-primary">Solo Project</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Mobile Roguelike</h5>
+                    <p class="card-text project-item-description">
+                      Description goes here...
+                      <ul>
+                        <li>Contribution</li>
+                        <li>Contribution</li>
+                        <li>Contribution</li>
+                        <li>Contribution</li>
+                        <li>Contribution</li>
+                        <li>Contribution</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
+
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
 </html>
