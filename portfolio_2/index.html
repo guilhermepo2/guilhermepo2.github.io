@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Guilherme de Oliveira</a>
+            <a class="navbar-brand" href="http://gueepo.me">Guilherme de Oliveira</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,15 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarsExample03">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Projects</a>
+                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -41,7 +33,23 @@
           CONTAINER
 
         -->
+
         <div class="container">
+          <!-- ABOUT ME -->
+          <div class="about-me-container">
+            <div class="row">
+              <div class="col-sm-3 col-md-3 col-lg-3">
+                <a href="#"><img class="selfie" alt="Guilherme Oliveira" src="assets/img/portrait2.jpg"></a>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-8 about-me-text">
+                <h2>Guilherme de Oliveira</h2>
+                <h3>About me</h3>
+                <p>My name is Guilherme de Oliveira and I am a Gameplay Programmer currently taking a Master's in Game Design, with a Bachelor in Computer Science. I currently have over 5 years of experience with programming and I'm versatile in Unity/C# and Unreal 4 using C++ and Blueprints.</p>
+                <p>I am motivated by all things related to how the player interacts with the game, such as character movement and actions, how the player perceives the game, such as AI and Game Feel, as well as technical challenges, like optimization and coming up systems that are both efficient and friendly to designers!</p>
+              </div>
+            </div>
+          </div>
+
           <!-- PROJECTS -->
           <div class="projects-section-container">
             <div class="project-container-title">
@@ -50,32 +58,297 @@
             
             <div class="row">
 
-              <!-- ITEM -->
-              <div class="col-sm-6 col-md-6 col-lg-4">
+              <!--
+                PORTFOLIO TOP TWO
+                - YOUR HUMAN IS SICK
+                - PROTECT ROGUELIKE
+              -->
+
+              <!-- YHIS -->
+              <div class="col-sm-4 col-md-4 col-lg-4 project-item-outer">
                 <div class="card project-item-container">
-                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <img class="card-img-top project-item-img" src="./assets/img/yhis.png" />
                   <div class="card-body">
                     <div class="project-item-tags">
-                      <span class="badge badge-primary">Unity</span>
-                      <span class="badge badge-primary">C#</span>
-                      <span class="badge badge-primary">Solo Project</span>
+                      <span class="badge badge-primary">ue4</span>
+                      <span class="badge badge-danger">c++</span>
+                      <span class="badge badge-danger">blueprints</span>
+                      <span class="badge badge-primary">university</span>
+                      <span class="badge badge-primary">creative direction</span>
+                      <span class="badge badge-primary">under development</span>
                     </div>
-                    <h5 class="card-title project-item-title">Mobile Roguelike</h5>
+                    <h5 class="card-title project-item-title">Your Human is Sick</h5>
                     <p class="card-text project-item-description">
-                      Description goes here...
+                      3D Top Down Adventure game about exploring your immune system.
                       <ul>
-                        <li>Contribution</li>
-                        <li>Contribution</li>
-                        <li>Contribution</li>
-                        <li>Contribution</li>
-                        <li>Contribution</li>
-                        <li>Contribution</li>
+                        <li>Made base functionality in C++ for designers to implement behaviors</li>
+                        <li>Making behaviors in Blueprint for Player Character and AI</li>
+                        <li>Designed, pitched and created GDD for the game</li>
+                        <li>Acting as the Creative Director for the gamer, supervising all designers and artists</li>
                       </ul>
                     </p>
                     <a href="#" class="btn btn-primary">Read More</a>
                   </div>
                 </div>
               </div>
+              <!-- END OF ITEM (YHIS) -->
+
+              <!-- PROTECT ROGULIKE -->
+              <div class="col-sm-4 col-md-4 col-lg-4 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/ProtectRoguelike.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">unity</span>
+                      <span class="badge badge-danger">c#</span>
+                      <span class="badge badge-primary">personal project</span>
+                      <span class="badge badge-primary">html5</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Protect Roguelike</h5>
+                    <p class="card-text project-item-description">
+                      A weird mix of turn based and tower defense, with big inspirations from roguelikes
+                      <ul>
+                        <li>Developed a turn based system in C#</li>
+                        <li>Designed and implemented a wave progression system</li>
+                        <li>Created and integrated a variety of enemies</li>
+                        <li>Added extensive polish to the game, such as particles, sound effects and screen shake</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM (PROTECT ROGUELIKE) -->
+
+              <!-- ABILITY SYSTEM -->
+              <div class="col-sm-4 col-md-4 col-lg-4 project-item-outer">
+                <div class="card project-item-container">
+                  <a href="pages/AbilitySystem.html">
+                    <img class="card-img-top project-item-img" src="./assets/img/abilitysystem.png" />
+                  </a>
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">ue4</span>
+                      <span class="badge badge-danger">c++</span>
+                      <span class="badge badge-danger">blueprints</span>
+                      <span class="badge badge-primary">university</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Ability System</h5>
+                    <p class="card-text project-item-description">
+                      Ability System for a proof of concept for a shooter game.
+                      <ul>
+                        <li>Created an Ability Component in C++</li>
+                        <li>Created an Ability in C++ that can be extended and implemented in Blueprints</li>
+                        <li>Prototyped two different abilities in Blueprints</li>
+                        <li>Created an enemy spawner in Blueprints for playtesting</li>
+                      </ul>
+                    </p>
+                    <a href="pages/AbilitySystem.html" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM (PROTECT ROGUELIKE) -->
+
+              <!--
+                PORTFOLIO SECOND TIER
+                - BOPPING BLOBS & HOLIER THAN THOU
+                - UNREAL STUFF
+              -->
+
+              <!-- BB & HOLIER THAN THOU -->
+              <div class="col-sm-4 col-md-4 col-lg-4 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">unity</span>
+                      <span class="badge badge-danger">c#</span>
+                      <span class="badge badge-primary">gameplay programming</span>
+                      <span class="badge badge-primary">ai programming</span>
+                      <span class="badge badge-primary">university</span>
+                      <span class="badge badge-primary">play store</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Bopping Blobs</h5>
+                    <p class="card-text project-item-description">
+                      King of the Hill style game where you are always fighting to be the true king.
+                      <ul>
+                        <li>Worked making Gameplay (character movement and attack)</li>
+                        <li>Made AI Behavior for the enemies</li>
+                        <li>Created a simple behavior tree framework for Unity</li>
+                        <li>Added and integrated polish, such as particle and sound effects</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
+
+              <!-- UNREAL STUFF (ARPG and/or Sparrow) -->
+              <div class="col-sm-4 col-md-4 col-lg-4 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">ue4</span>
+                      <span class="badge badge-danger">c++</span>
+                      <span class="badge badge-primary">gameplay programming</span>
+                      <span class="badge badge-primary">personal project</span>
+                      <span class="badge badge-primary">practice</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Unreal Gameplay Practice</h5>
+                    <p class="card-text project-item-description">
+                      Practicing creating different gameplay mechanics in Unreal Engine during my free time.
+                      <ul>
+                        <li>Created C++ Character Controllers</li>
+                        <li>Created C++ Animation Instances</li>
+                        <li>Creating a Melee Combat System</li>
+                        <li>Creating a Ranged Combat System using Paragon Assets</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
+
+              <!-- UNREAL STUFF (ARPG and/or Sparrow) -->
+              <div class="col-sm-4 col-md-4 col-lg-4 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">ue4</span>
+                      <span class="badge badge-danger">behavior trees</span>
+                      <span class="badge badge-danger">blueprints</span>
+                      <span class="badge badge-primary">university</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Twin Stick Shooter</h5>
+                    <p class="card-text project-item-description">
+                      Twin Stick Shooter being developed over a course of 1 month with classmates.
+                      <ul>
+                        <li>Making AI Behavior in Behavior Trees in Unreal Engine 4</li>
+                        <li>Making reusable AI Behavior using Behavior Tree Tasks</li>
+                        <li>Created Enemies using Blueprints</li>
+                        <li>Created Base, Melee and Ranged enemy</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
+
+              <!--
+                PORTFOLIO THIRD TIER
+                - UPSIDE DOWN
+                - FOURTH DIMENSION
+                - PLATFORMERS
+                - GAMEJAMS IN GAMEMAKER
+              -->
+
+              <!-- UPSIDE DOWN -->
+              <div class="col-sm-3 col-md-3 col-lg-3 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">unity</span>
+                      <span class="badge badge-danger">c#</span>
+                      <span class="badge badge-primary">internship</span>
+                      <span class="badge badge-primary">google play store</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Upside Down</h5>
+                    <p class="card-text project-item-description">
+                      Had a short internship at <a href="https://www.gilp.studio/" target="_BLANK">GILP Studio</a>, where I worked updating and adding futures to an already existing game.
+                      <ul>
+                        <li>Updated Engine Version, Google Play Services, Firebase and AdMob</li>
+                        <li>Added polish on the interface and improved music transition on FMOD</li>
+                        <li>Made iOS Port (not yet published)</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
+
+              <!-- FOURTH DIMENSION -->
+              <div class="col-sm-3 col-md-3 col-lg-3 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">unity</span>
+                      <span class="badge badge-danger">c#</span>
+                      <span class="badge badge-primary">personal project</span>
+                      <span class="badge badge-primary">google play store</span>
+                    </div>
+                    <h5 class="card-title project-item-title">Fourth Dimension</h5>
+                    <p class="card-text project-item-description">
+                      Developed and released two mobile games
+                      <ul>
+                        <li>Created game studio website and identity</li>
+                        <li>Created and released a casual game</li>
+                        <li>Created and released an idle game</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
+
+              <!-- PLATFORMERS -->
+              <div class="col-sm-3 col-md-3 col-lg-3 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">unity</span>
+                      <span class="badge badge-danger">c#</span>
+                      <span class="badge badge-primary">gamejams</span>
+                    </div>
+                    <h5 class="card-title project-item-title">2D Platformer<em>s</em></h5>
+                    <p class="card-text project-item-description">
+                      Developed 4 different 2D platformers, 3 for GameJams, and iterated upon previous code.
+                      <ul>
+                        <li>Created 2D Character Controller using Raycasts</li>
+                        <li>Created walljump and dash variations</li>
+                        <li>Learned from previous projects and improved on them</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
+
+              <!-- GameMaker Projects -->
+              <div class="col-sm-3 col-md-3 col-lg-3 project-item-outer">
+                <div class="card project-item-container">
+                  <img class="card-img-top project-item-img" src="./assets/img/sample.png" />
+                  <div class="card-body">
+                    <div class="project-item-tags">
+                      <span class="badge badge-primary">gamemaker studio 2</span>
+                      <span class="badge badge-danger">gml</span>
+                      <span class="badge badge-primary">gamejams</span>
+                      <span class="badge badge-primary">open source</span>
+                    </div>
+                    <h5 class="card-title project-item-title">GameMaker Studio 2</h5>
+                    <p class="card-text project-item-description">
+                      Developed two games in GameMaker: Studio 2 for the GameMaker Community Jam 7 and for the Heartjam in 2018.
+                      <ul>
+                        <li>Procedural Dungeon Generation</li>
+                        <li>Top Down Melee Combat System</li>
+                        <li>Top Down Shooter</li>
+                      </ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF ITEM-->
 
             </div>
           </div>

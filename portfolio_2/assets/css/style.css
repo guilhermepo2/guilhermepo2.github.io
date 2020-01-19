@@ -1,6 +1,114 @@
+body {
+    background: #fafafa;
+    line-height: 1.5;
+    font: 16px, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(49, 49, 49);
+    margin: 0;
+    display:block;
+}
+
+a {
+    color: indigo;
+    text-decoration: none;
+}
+
+/*
+/* about me
+*/
+.about-me-container {
+    padding: 3%;
+}
+
+.about-me-container .about-me-text {
+    padding: 0.25%;
+}
+
+.about-me-container h2, .about-me-container h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.about-me-container .selfie {
+    max-width: 100%;
+    margin-bottom: 25px;
+    border-radius: 100%;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.about-me-container .selfie:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+}
+
+.about-me-container p {
+    text-align:justify;
+}
+
+/*
+/* projects
+*/
 .project-container-title {
     width: 100%;
     text-align: center;
     padding: 2em 0;
     background-color: gray;
+}
+
+.project-item-outer {
+    padding: 1% .25em;
+}
+
+.project-item-img {
+    padding: 2%;
+    border-radius: 100%;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.project-item-img:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+}
+
+.project-item-description {
+    text-align:justify
+}
+
+/*
+* PROJECT PAGES
+*/
+
+.project-page-header {
+    margin: 5% 0;
+    text-align: center;
+}
+
+.project-page-header table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-page-header table tr td {
+    padding: 5px;
+}
+
+.project-page-content {
+    font-size: 18px;
+    text-align: justify;
+}
+
+.project-page-img {
+    margin: 0 0 2.5em 0;
+}
+
+.accordion {
+    padding: 1% 0;
+}
+
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8 {
+  list-style-type: decimal !important;
 }

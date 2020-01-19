@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Guilherme de Oliveira - Ability System</title>
+        <meta name="description" content="Gameplay Programmer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <a class="navbar-brand" href="http://gueepo.me">Guilherme de Oliveira</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarsExample03">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Resume</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="project-page-header">
+                <h1>Ability System</h1>
+                <table>
+                    <tr>
+                        <td><em>Project Type:</em></td>
+                        <td>University (Capstone)</td>
+                    </tr>
+                    <tr>
+                        <td><em>Engine:</em></td>
+                        <td>Unreal Engine 4</td>
+                    </tr>
+                    <tr>
+                        <td><em>Languages:</em></td>
+                        <td>C++, Blueprints</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="project-page-content">
+                <img class="project-page-img" src="../assets/img/AbilitySystem/GameplayScreenshot.png">
+
+                <p>During my Master's in Game Design, I'm having the opportunity to be in a Capstone where I can work with a lot of different people to make different types of games. The best thing is that we, the students in the Capstone, can design, pitch and make our own games!</p>
+
+                <p>We wanted to make a proof of concept for a Twin Stick shooter that would have some interesting applied on it, my responsability on this one week project was to make an Ability System where player could have from 1 to 4 different ability slots, the ability slots could hold different abilities, or none, and the abilities should be easily implemented in Blueprints, by designers.</p>
+
+                <p>What I came up with was an AbilityComponent that holds a pointer to an Ability, the C++ classes would handle all the logic in creating, assigning and using the abilities, as well as keeping references to the player owner, in case the ability needs to talk with the player casting it.</p>
+            </div>
+
+            <!-- Ability Component -->
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseAbilityComponent" aria-expanded="true" aria-controls="collapseOne">
+                        Ability Component
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseAbilityComponent" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <p>The Ability Component is a class that inherits from Unreal's UActorComponent, the goal is to have components that can be attached in the Player's Blueprints.</p>
+
+                      <div class="accordion" id="abilityComponentHeaderAccordion">
+                            <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityComponentHeader" aria-expanded="true" aria-controls="collapseOne">
+                                Ability Component Header
+                                </button>
+                                </h2>
+                            </div>
+                      
+                            <!--
+                                *
+                                * ABILITY COMPONENT HEADER
+                                *
+                            -->
+                            <div id="abilityComponentHeader" class="collapse show" aria-labelledby="headingOne" data-parent="#abilityComponentHeaderAccordion">
+                                <div class="card-body">
+                                    <pre class="prettyprint linenums lang-cpp">
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class WEWENTFORTH_API UAbilityComponent : public UActorComponent
+{
+    GENERATED_BODY()
+
+public:	
+    UAbilityComponent();
+
+    UPROPERTY(BlueprintReadOnly)
+    ABaseCharacter* pOwner;
+    FORCEINLINE ABaseCharacter* GetOwnerCharacter() { return pOwner; }
+
+    /** Hold a pointer to the actual Ability */
+    UPROPERTY(BlueprintReadOnly)
+    class UAbility* AbilityBeingHold;
+    FORCEINLINE void SetAbilityBeingHold(UAbility* Ability) { AbilityBeingHold = Ability; }
+    FORCEINLINE UAbility* GetAbilityBeingHold() { return AbilityBeingHold; }
+
+    UPROPERTY(BlueprintReadOnly)
+    int CurrentKillCount;
+
+protected:
+    virtual void BeginPlay() override;
+
+public:	
+    /** Assign Ability */
+    UFUNCTION(BlueprintCallable)
+    void AssignAbilityToSlot(TSubclassOf<UAbility> Ability);
+
+    /** Use Ability */
+    UFUNCTION(BlueprintCallable)
+    void UseAbilitySlot();
+    
+    UFUNCTION(BlueprintCallable)
+    bool IsAbilityReadyToBeUsed();
+
+    UFUNCTION(BlueprintCallable)
+    void IncrementKillCount();
+};
+                                        </pre>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                            <!--
+                                *
+                                * ABILITY COMPONENT BODY
+                                *
+                            -->
+                            
+                            <div class="accordion" id="AbilityComponentBodyAccordion">
+                                <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityComponentBody" aria-expanded="true" aria-controls="collapseOne">
+                                    Ability Component Body
+                                    </button>
+                                    </h2>
+                                </div>
+
+                                <div id="abilityComponentBody" class="collapse show" aria-labelledby="headingOne" data-parent="#AbilityComponentBodyAccordion">
+                                    <div class="card-body">
+                                        <pre class="prettyprint linenums lang-cpp">
+#include "AbilityComponent.h"
+#include "AbilitySystem/Ability.h"
+#include "Engine/Engine.h"
+
+UAbilityComponent::UAbilityComponent() {
+    PrimaryComponentTick.bCanEverTick = false;
+    AbilityBeingHold = nullptr;
+}
+
+void UAbilityComponent::BeginPlay() {
+    Super::BeginPlay();
+    
+    AActor* pOwnerActor = GetOwner();
+    if (pOwnerActor != nullptr) {
+        pOwner = Cast<ABaseCharacter>(pOwnerActor);
+    }
+
+    CurrentKillCount = 0;
+}
+
+void UAbilityComponent::AssignAbilityToSlot(TSubclassOf<UAbility> Ability) {
+    UAbility* AbilityBeingAssigned = NewObject<UAbility>(this, Ability);
+
+    if (AbilityBeingAssigned != nullptr) {
+        if (AbilityBeingHold == nullptr) {
+            GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Red, TEXT("Ability was Assigned"));
+            AbilityBeingHold = AbilityBeingAssigned;
+            AbilityBeingHold->SetOwnerComponent(this);
+        }
+        else if (AbilityBeingHold == AbilityBeingAssigned) {
+            /** TODO - Find about to verify that the same Ability is being assigned */
+            GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Red, TEXT("AbilityBeingHold == AbilityBeingAssigned"));
+        }
+        else {
+            GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Red, TEXT("I'm in the else right now..."));
+        }
+    }
+}
+
+void UAbilityComponent::UseAbilitySlot() {
+    UE_LOG(LogTemp, Warning, TEXT("UAbilityComponent::UseAbilitySlot()"));
+    if (AbilityBeingHold != nullptr) {
+        AbilityBeingHold->TryUseAbility();
+        CurrentKillCount = 0;
+    } 
+    else {
+        GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Red, TEXT("There's no ability assigned!"));
+    }
+}
+
+bool UAbilityComponent::IsAbilityReadyToBeUsed() {
+    if (AbilityBeingHold != nullptr) {
+        if (AbilityBeingHold->AbilityStatus == EAbilityStatus::EAS_CanBeUsed) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void UAbilityComponent::IncrementKillCount() {
+    if (AbilityBeingHold != nullptr) {
+        GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Red, TEXT("Incrementing Kill Count..."));
+        CurrentKillCount++;
+        if (CurrentKillCount >= AbilityBeingHold->AmountOfKillsToRefresh) {
+            CurrentKillCount = 0;
+            AbilityBeingHold->RefreshAbility();
+        }
+    }
+}        
+                                            </pre>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Ability -->
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseAbility" aria-expanded="true" aria-controls="collapseOne">
+                        Ability
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseAbility" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      Ability
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Fire Rate Ability Blueprint Accordeon-->
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFireRate" aria-expanded="true" aria-controls="collapseOne">
+                        Fire Rate Ability Blueprint
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseFireRate" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <img class="card-img-top" src="../assets/img/AbilitySystem/FireRateAbilityBP.png">
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Injection Ability Blueprint Accordeon-->
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collpaseInjection" aria-expanded="true" aria-controls="collapseOne">
+                        Injection Ability Blueprint
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collpaseInjection" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <img class="card-img-top" src="../assets/img/AbilitySystem/InjectionAbilityBP.png">
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+           <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <script>
+    $('.collapse').collapse()
+    </script>
+    </body>
+</html>
