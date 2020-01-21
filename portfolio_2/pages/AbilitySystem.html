@@ -6,11 +6,30 @@
         <meta name="description" content="Gameplay Programmer">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
         <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/desert.css">
+
+        <script src="https://kit.fontawesome.com/8b7fa406c3.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
         <div class="container">
+
+          <div class="project-page-intro">
+            <a href="../index.html"><img class="selfie" alt="Guilherme Oliveira" src="../assets/img/portrait2.jpg"></a>
+            <h4>Guilherme de Oliveira</h4>
+            <p>Gameplay Programmer</p>
+          </div>
+
+          <div class="header-icons">
+            <ul class="header-icons-list">
+            <a href="../index.html"><li><i class="fas fa-home"> main page</i></li></a>
+            </ul>
+          </div>
+
             <div class="project-page-header">
                 <h1>Ability System</h1>
                 <table>
@@ -34,7 +53,7 @@
 
                 <p>During my Master's in Game Design, I'm having the opportunity to be in a Capstone where I can work with a lot of different people to make different types of games. The best thing is that we, the students in the Capstone, can design, pitch and make our own games!</p>
 
-                <p>We wanted to make a proof of concept for a Twin Stick shooter that would have some interesting applied on it, my responsability on this one week project was to make an Ability System where player could have from 1 to 4 different ability slots, the ability slots could hold different abilities, or none, and the abilities should be easily implemented in Blueprints, by designers.</p>
+                <p>We wanted to make a proof of concept for a Twin Stick shooter that would have some interesting concepts applied on it, my responsability on this one week project was to make an Ability System where player could have from 1 to 4 different ability slots, the ability slots could hold different abilities, or none, and the abilities should be easily implemented in Blueprints, by designers.</p>
 
                 <p>What I came up with was an AbilityComponent that holds a pointer to an Ability, the C++ classes would handle all the logic in creating, assigning and using the abilities, as well as keeping references to the player owner, in case the ability needs to talk with the player casting it.</p>
             </div>
@@ -45,21 +64,21 @@
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseAbilityComponent" aria-expanded="true" aria-controls="collapseOne">
-                        Ability Component
+                        <i class="fas fa-code"></i> Ability Component
                       </button>
                     </h2>
                   </div>
               
                   <div id="collapseAbilityComponent" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                      <p>The Ability Component is a class that inherits from Unreal's UActorComponent, the goal is to have components that can be attached in the Player's Blueprints.</p>
+                      <p class="card-paragraph">The Ability Component is a class that inherits from Unreal's UActorComponent, the goal is to have components that can be attached directly in the Player's Blueprints and it is activated by an Action Input. An interesting concept is that the after the ability is used and is on a cooldown, it is not time based, but kill based, so a kill counter had to be taken in consideration while creating the class.</p>
 
                       <div class="accordion" id="abilityComponentHeaderAccordion">
                             <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityComponentHeader" aria-expanded="true" aria-controls="collapseOne">
-                                Ability Component Header
+                                  <i class="fas fa-file-code"></i> Ability Component Header
                                 </button>
                                 </h2>
                             </div>
@@ -72,44 +91,52 @@
                             <div id="abilityComponentHeader" class="collapse show" aria-labelledby="headingOne" data-parent="#abilityComponentHeaderAccordion">
                                 <div class="card-body">
                                     <pre class="prettyprint linenums lang-cpp">
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "Templates/SubclassOf.h"
+#include "BaseCharacter.h"
+#include "AbilityComponent.generated.h"
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class WEWENTFORTH_API UAbilityComponent : public UActorComponent
 {
-    GENERATED_BODY()
+  GENERATED_BODY()
 
 public:	
-    UAbilityComponent();
+  UAbilityComponent();
 
-    UPROPERTY(BlueprintReadOnly)
-    ABaseCharacter* pOwner;
-    FORCEINLINE ABaseCharacter* GetOwnerCharacter() { return pOwner; }
+  UPROPERTY(BlueprintReadOnly)
+  ABaseCharacter* pOwner;
+  FORCEINLINE ABaseCharacter* GetOwnerCharacter() { return pOwner; }
 
-    /** Hold a pointer to the actual Ability */
-    UPROPERTY(BlueprintReadOnly)
-    class UAbility* AbilityBeingHold;
-    FORCEINLINE void SetAbilityBeingHold(UAbility* Ability) { AbilityBeingHold = Ability; }
-    FORCEINLINE UAbility* GetAbilityBeingHold() { return AbilityBeingHold; }
+  /** Hold a pointer to the actual Ability */
+  UPROPERTY(BlueprintReadOnly)
+  class UAbility* AbilityBeingHold;
+  FORCEINLINE void SetAbilityBeingHold(UAbility* Ability) { AbilityBeingHold = Ability; }
+  FORCEINLINE UAbility* GetAbilityBeingHold() { return AbilityBeingHold; }
 
-    UPROPERTY(BlueprintReadOnly)
-    int CurrentKillCount;
+  UPROPERTY(BlueprintReadOnly)
+  int CurrentKillCount;
 
 protected:
-    virtual void BeginPlay() override;
+  virtual void BeginPlay() override;
 
 public:	
-    /** Assign Ability */
-    UFUNCTION(BlueprintCallable)
-    void AssignAbilityToSlot(TSubclassOf<UAbility> Ability);
+  /** Assign Ability */
+  UFUNCTION(BlueprintCallable)
+  void AssignAbilityToSlot(TSubclassOf<UAbility> Ability);
 
-    /** Use Ability */
-    UFUNCTION(BlueprintCallable)
-    void UseAbilitySlot();
-    
-    UFUNCTION(BlueprintCallable)
-    bool IsAbilityReadyToBeUsed();
+  /** Use Ability */
+  UFUNCTION(BlueprintCallable)
+  void UseAbilitySlot();
 
-    UFUNCTION(BlueprintCallable)
-    void IncrementKillCount();
+  UFUNCTION(BlueprintCallable)
+  bool IsAbilityReadyToBeUsed();
+
+  UFUNCTION(BlueprintCallable)
+  void IncrementKillCount();
 };
                                         </pre>
                                 </div>
@@ -128,7 +155,7 @@ public:
                                 <div class="card-header" id="headingOne">
                                     <h2 class="mb-0">
                                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityComponentBody" aria-expanded="true" aria-controls="collapseOne">
-                                    Ability Component Body
+                                      <i class="fas fa-file-code"></i> Ability Component Body
                                     </button>
                                     </h2>
                                 </div>
@@ -224,16 +251,149 @@ void UAbilityComponent::IncrementKillCount() {
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseAbility" aria-expanded="true" aria-controls="collapseOne">
-                        Ability
+                        <i class="fas fa-code"></i> Ability Object
                       </button>
                     </h2>
                   </div>
               
+                  
                   <div id="collapseAbility" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                      Ability
+                      <p class="card-paragraph">Ability</p>
+
+                        <!--
+                        *
+                        * ABILITY OBJECT HEADER
+                        *
+                        -->
+                        <div class="accordion" id="AbilityObjectHeaderAccordion">
+                          <div class="card">
+                            <div class="card-header" id="headingOne">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityObjectHeader" aria-expanded="true" aria-controls="collapseOne">
+                                  <i class="fas fa-file-code"></i> Ability Object Header
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="abilityObjectHeader" class="collapse show" aria-labelledby="headingOne" data-parent="#AbilityObjectHeaderAccordion">
+                              <div class="card-body">
+                                <pre class="prettyprint linenums lang-cpp">
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "AbilityComponent.h"
+#include "BaseCharacter.h"
+#include "Ability.generated.h"
+
+UENUM(BlueprintType)
+enum class EAbilityStatus : uint8 {
+  EAS_CanBeUsed	UMETA(DisplayName = "CanBeUsed"),
+  EAS_OnCooldown	UMETA(DisplayName = "OnCooldown"),
+  EAS_Max			UMETA(DisplayName = "DefaultMax")
+};
+
+/**
+  * 
+  */
+UCLASS(BlueprintType, Blueprintable)
+class WEWENTFORTH_API UAbility : public UObject {
+  GENERATED_BODY()
+
+public:
+  UAbility();
+
+  UPROPERTY(BlueprintReadOnly)
+  UAbilityComponent* pOwnerComponent;
+  FORCEINLINE void SetOwnerComponent(UAbilityComponent* Owner) { pOwnerComponent = Owner; }
+
+  UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Abilities")
+  int AmountOfKillsToRefresh;
+
+  UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Abilities")
+  EAbilityStatus AbilityStatus;
+  FORCEINLINE EAbilityStatus GetAbilityStatus() { return AbilityStatus; }
+  FORCEINLINE void SetAbilityStatus(EAbilityStatus Status) { AbilityStatus = Status; }
+
+protected:
+
+public:
+  /** Try Use Ability is the entry point to be called from the Ability Component */
+  void TryUseAbility();
+
+  UFUNCTION(BlueprintImplementableEvent)
+  void UseAbility(ABaseCharacter* OwnerCharacter);
+
+  UFUNCTION(BlueprintCallable)
+  ABaseCharacter* GetReferenceToCharacter();
+
+  UFUNCTION(BlueprintCallable)
+  void RefreshAbility();
+};
+                                </pre>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 
+                          END OF ABILITY OBJECT HEADER
+                        -->
+
+                        <!--
+                        *
+                        * ABILITY OBJECT BODY
+                        *
+                        -->
+                        <div class="accordion" id="AbilityObjectBodyAccordion">
+                          <div class="card">
+                            <div class="card-header" id="headingOne">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityObjectBody" aria-expanded="true" aria-controls="collapseOne">
+                                  <i class="fas fa-file-code"></i> Ability Object Body
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="abilityObjectBody" class="collapse show" aria-labelledby="headingOne" data-parent="#AbilityObjectBodyAccordion">
+                              <div class="card-body">
+                                <pre class="prettyprint linenums lang-cpp">
+#include "Ability.h"
+
+UAbility::UAbility() {
+  AmountOfKillsToRefresh = 10;
+  AbilityStatus = EAbilityStatus::EAS_CanBeUsed;
+}
+
+void UAbility::TryUseAbility() {
+  ABaseCharacter* OwnerCharacter = GetReferenceToCharacter();
+
+  if (AbilityStatus == EAbilityStatus::EAS_CanBeUsed && IsValid(OwnerCharacter)) {
+    AbilityStatus = EAbilityStatus::EAS_OnCooldown;
+    UseAbility(OwnerCharacter);
+  }
+}
+
+void UAbility::RefreshAbility() {
+  SetAbilityStatus(EAbilityStatus::EAS_CanBeUsed);
+}
+
+ABaseCharacter* UAbility::GetReferenceToCharacter() {
+  return pOwnerComponent->GetOwnerCharacter();
+}
+                                </pre>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 
+                          END OF ABILITY OBJECT HEADER
+                        -->
+
                     </div>
                   </div>
+
+
                 </div>
             </div>
 
@@ -243,7 +403,7 @@ void UAbilityComponent::IncrementKillCount() {
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFireRate" aria-expanded="true" aria-controls="collapseOne">
-                        Fire Rate Ability Blueprint
+                        <i class="fas fa-file"></i> Blueprint: Fire Rate Ability
                       </button>
                     </h2>
                   </div>
@@ -262,7 +422,7 @@ void UAbilityComponent::IncrementKillCount() {
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collpaseInjection" aria-expanded="true" aria-controls="collapseOne">
-                        Injection Ability Blueprint
+                        <i class="fas fa-file"></i> Blueprint: Injection Ability
                       </button>
                     </h2>
                   </div>
@@ -281,8 +441,6 @@ void UAbilityComponent::IncrementKillCount() {
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-
     <script>
     $('.collapse').collapse()
     </script>

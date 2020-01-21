@@ -1,8 +1,8 @@
 body {
-    background: #fafafa;
+    background: #161616;
     line-height: 1.5;
     font: 16px, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgb(49, 49, 49);
+    color: #b0b0b0;
     margin: 0;
     display:block;
 }
@@ -57,9 +57,14 @@ a {
     justify-content:center;
 }
 
+div.header-icons > ul > a > li > i {
+    color: #b0b0b0;
+    text-decoration: none;
+}
+
 .header-icons-list li {
     border-radius: 20px;
-    border: 1px solid #000;
+    border: 1px solid #b0b0b0;
     margin: .5rem;
     padding: .5rem 1rem;
     transition: all .2s;
@@ -67,9 +72,9 @@ a {
 }
 
 .header-icons-list li:hover {
-    border: 1px solid red;
+    border: 1px solid #c44e45;
     padding: .5rem 1.5rem;
-    color: red;
+    color: #c44e45;
 }
 
 /*
@@ -79,7 +84,6 @@ a {
     width: 100%;
     text-align: center;
     padding: 2em 0;
-    background-color: gray;
 }
 
 .project-item-outer {
@@ -103,12 +107,42 @@ a {
     text-align:justify
 }
 
+.card {
+    background-color: #222222;
+    border: none;
+    border-radius: 1rem;
+}
+
 /*
 * PROJECT PAGES
 */
 
+.project-page-intro {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.project-page-intro .selfie {
+    width: 200px;
+    border-radius: 100%;
+    margin-bottom: 1rem;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+} 
+
+.project-page-intro .selfie:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+} 
+
+.card .card-paragraph {
+    text-align: justify;
+    padding: .25rem 2rem;
+}
+
 .project-page-header {
-    margin: 5% 0;
+    margin: 2.5% 0;
     text-align: center;
 }
 
@@ -137,4 +171,9 @@ a {
 li.L0, li.L1, li.L2, li.L3,
 li.L5, li.L6, li.L7, li.L8 {
   list-style-type: decimal !important;
+}
+
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8, li.L9 {
+   background: #000;
 }
