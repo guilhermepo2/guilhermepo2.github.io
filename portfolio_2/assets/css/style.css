@@ -49,6 +49,7 @@ a {
 /*
 /* header icons
 */
+
 .header-icons-list {
     padding: 0;
     margin: 0;
@@ -75,6 +76,10 @@ div.header-icons > ul > a > li > i {
     border: 1px solid #c44e45;
     padding: .5rem 1.5rem;
     color: #c44e45;
+}
+
+.page-footer {
+    padding-top: 3rem;
 }
 
 /*
@@ -176,6 +181,11 @@ div.header-icons > ul > a > li > i {
 .project-page-content {
     font-size: 18px;
     text-align: justify;
+    padding-bottom: 10%;
+}
+
+.project-img-holder {
+    text-align: center;
 }
 
 .project-page-img {
