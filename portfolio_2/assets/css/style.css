@@ -122,6 +122,15 @@ div.header-icons > ul > a > li > i {
     border-radius: 1rem;
 }
 
+.card-header button {
+    color: white;
+    background-color: #3d3d3d;
+}
+
+.card-header button:hover {
+    color: white;
+}
+
 /*
 * PROJECT PAGES
 */
