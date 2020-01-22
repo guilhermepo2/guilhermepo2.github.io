@@ -103,8 +103,17 @@ div.header-icons > ul > a > li > i {
     opacity: .8;
 }
 
+.project-item-tags {
+    margin-bottom: 1rem;
+}
+
 .project-item-description {
     text-align:justify
+}
+
+.project-item-description a {
+    color: white;
+    text-decoration: underline;
 }
 
 .card {
