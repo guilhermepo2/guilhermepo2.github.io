@@ -189,7 +189,8 @@ div.header-icons > ul > a > li > i {
 }
 
 .project-page-img {
-    margin: 0 0 2.5em 0;
+    width: 75%;
+    margin: 2.5em 0 2.5em 0;
 }
 
 .accordion {
