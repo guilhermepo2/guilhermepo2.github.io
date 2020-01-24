@@ -49,14 +49,75 @@
             </div>
 
             <div class="project-page-content">
-              <p class="project-item-description">Fourth Dimension Studio story</p>
+              <p class="project-item-description">It was late 2018 when I decided to create simple mobile games and publish them under the name of my "Company": Fourth Dimension Studios - the idea was to create a name where I could release games and experience how the life of a solo game developer would be. At the time I was unsatisfied with my job and near graduation date on my Computer Science Undergraduate, so I decided to focus almost full time on this adventure to know whether or not creating games was really where my passion was (<em>spoiler: it was, and still is</em>)</p>
+
+              <p>On the following months I created these two games, a website, an asset pack, and a devlog - for some time I also maintained a twitter account, but I decided to keep only my personal account to talk about game related content. All that to try to create the most professional environment possible. Up to this day I still maintain Fourth Dimension Studios website, devlog and ocassionaly will check everything and think of new game ideas for it, most are either very simple and fun or experimental.</p>
 
               <div class="project-img-holder">
                 <img class="img-fluid project-page-img" src="../assets/img/FourthDimension/SpaceJourney.png">
               </div>
 
               <h2>Space Journey</h2>
-              <p class="project-item-description">Space Journey</p>
+              <p class="project-item-description">Space Journey is a simple casual game where you have to tap to help a space core to avoid obstacles, which are satellites, a secondary objective is to enjoy your journey through space! As it takes place on space I went more with a "floaty" feel, which was obtained by making movements slower, gravity weaker and using sound effects on a lower frequency.</p>
+
+              <ul>
+                <li>Created a Character Controller that "jumps" when the player taps the screen</li>
+                <li>Created a simple level generation which repositions satellites</li>
+                <li>Implemented Advertisement and High Score in the game</li>
+              </ul>
+
+              <!--
+                *
+                * Space Core Movement
+                *
+                -->
+                <div class="accordion" id="SpaceCoreMovementAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#spaceCoreMovement" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Space Core Movement
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="spaceCoreMovement" class="collapse show" aria-labelledby="headingOne" data-parent="#SpaceCoreMovementAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+void FixedUpdate () {
+  if(m_isAlive) {
+    Vector3 t_position = transform.position;
+    t_position.x += m_forwardSpeed * Time.deltaTime;
+    transform.position = t_position;
+
+    if(m_jumpPressed) {
+      m_jumpPressed = false;
+      m_rigidBody2D.velocity = new Vector2(0, m_jumpSpeed);
+    }
+  } else if(m_rigidBody2D.isKinematic == true) {
+    Vector3 t_position = transform.position;
+    t_position.y = (Mathf.Sin(Time.time * 0.5f));
+    transform.position = t_position;
+  }
+  
+  // rotate the core
+  if(m_rigidBody2D.velocity.y >= 0) {
+    t_angle = Mathf.Lerp(m_rigidBody2D.transform.localEulerAngles.z, 30, m_rigidBody2D.velocity.y / 16f );
+  } else {
+    t_angle = Mathf.Lerp(m_rigidBody2D.transform.localEulerAngles.z, -90, - m_rigidBody2D.velocity.y / 256f );
+  }
+
+  transform.rotation = Quaternion.Euler(0, 0, t_angle);
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF Space Core Movement
+                -->
+
 
               <div class="page-footer">
                 <div class="header-icons">
@@ -73,7 +134,162 @@
               </div>
 
               <h2>Pizza Clicker</h2>
-              <p class="project-item-description">Pizza Clicker</p>
+              <p class="project-item-description">Pizza Clicker is a simple idle/clicker game, the premise is that you just opened your own pizzeria and now you have to click to produce pizza! With pizza you can hire Gennaros to help you or buy ovens to help you produce even more pizzas, while you do that, there's a local newspaper telling your progress!</p>
+
+              <ul>
+                <li>Designed and developed an incremental game system with exponential growth</li>
+                <li>Created multiples buildings and upgrades that changes variables in the system</li>
+                <li>Designed and developed a discovery system which reveals new game content according to player's progress</li>
+                <li>Developed a News System that shows you information according to your game progress</li>
+                <li>Made a save system to keep player's progress</li>
+                <li>Implemented ADS and published game on Play Store</li>
+              </ul>
+
+              <!--
+                *
+                * Downtime Pizza
+                *
+                -->
+                <div class="accordion" id="DownTimePizzaAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#downTimePizza" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Earning Pizza on Down Time
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="downTimePizza" class="collapse show" aria-labelledby="headingOne" data-parent="#DownTimePizzaAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+/* Check how much pizza was earned on down time */
+System.DateTime currentDate = System.DateTime.Now;
+long tempDate = System.Convert.ToInt64(t_saveState.lastSavedDate);
+System.DateTime oldDate = System.DateTime.FromBinary(tempDate);
+System.TimeSpan difference = currentDate.Subtract(oldDate);
+double obtainedPizzas = ((difference.TotalSeconds * m_pizzaPerSec) / 20);
+
+/*  Change Stuff based on how much pizza was earned on down time */
+if(obtainedPizzas > 0f && m_pizzas >= 0) {
+  UserInterfaceManager.instance.RenderReturnedText((float)obtainedPizzas);
+  m_pizzas += obtainedPizzas;
+  m_pizzasOnLifetime += obtainedPizzas;
+
+  // DISCOVERING FOR NEW THINGS
+  Discover(true);
+  Newspaper.instance.RenderOnScreen(true);
+} else if(m_pizzas < 0) {
+  m_pizzas = 0;
+  UserInterfaceManager.instance.RenderSomethingWentWrongText();
+} else {
+  UserInterfaceManager.instance.UnrenderEverything();
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF Space Core Movement
+                -->
+
+                <!--
+                *
+                * Downtime Pizza
+                *
+                -->
+                <div class="accordion" id="IncrementerAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#incrementer" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Incrementer Class
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="incrementer" class="collapse show" aria-labelledby="headingOne" data-parent="#IncrementerAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Incrementer : MonoBehaviour {
+
+  // UI RELATED
+  [Header("User Interface")]
+  public Sprite sprite;
+  public Sprite unknownImage;
+  public Image image;
+  public Text descriptionText;
+  public Text priceText;
+  public Text amountText;
+
+  // VALUES
+  [Header("Incrementer Values")]
+  public string incrementerName;
+  public int level;
+  public double cost;
+  public int baseCost;
+  public double pizzaPerSecond;
+  public double pizzaPerClick;
+  public double discoveryFactor;
+  
+  [Header("Discovery")]
+  public bool isDiscovered = false;
+
+  public void UpdateUI() {
+    priceText.text = "PZ$ " + GameController.instance.BeautifyValue(this.cost);
+    amountText.text = this.level.ToString();
+  }
+
+  public void Hide() {
+    this.image.sprite = this.unknownImage;
+    this.descriptionText.text = "Unknown";
+    this.priceText.text = "PZ$ 0";
+    amountText.text = "0";
+  }
+
+  public void Init() {
+    this.image.sprite = this.sprite;
+    this.descriptionText.text = this.incrementerName;
+    this.cost = GameController.instance.CalculatePrice(baseCost, level);
+  }
+
+  public void Buy() {
+    if(Pizzeria.instance.Buy(cost)) {
+      this.level++;
+      this.cost = GameController.instance.CalculatePrice(baseCost, level);
+
+      UpdateUI();
+      Pizzeria.instance.RecalculatePPCPPS();
+      Pizzeria.instance.Discover();
+      Newspaper.instance.RenderOnScreen();
+    }
+  }
+
+  // Force Buy is used on ADSManager to give the incrementer as a reward for the player
+  public void ForceBuy() {
+    this.level++;
+    this.cost = GameController.instance.CalculatePrice(baseCost,level);
+    UpdateUI();
+    Pizzeria.instance.RecalculatePPCPPS();
+    Pizzeria.instance.Discover();
+    Newspaper.instance.RenderOnScreen();
+  }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF Space Core Movement
+                -->
+
 
               <div class="page-footer">
                 <div class="header-icons">
@@ -84,30 +300,6 @@
                 </div>
               </div>
 
-                <!--
-                *
-                * ABILITY OBJECT BODY
-                *
-                
-                <div class="accordion" id="AbilityObjectBodyAccordion">
-                    <div class="card">
-                      <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilityObjectBody" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="fas fa-file-code"></i> Ability Object Body
-                          </button>
-                        </h2>
-                      </div>
-
-                      <div id="abilityObjectBody" class="collapse show" aria-labelledby="headingOne" data-parent="#AbilityObjectBodyAccordion">
-                        <div class="card-body">
-                          <p class="card-paragraph">Hello</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                    END OF ABILITY OBJECT HEADER
-                  -->
                 <div class="page-footer">
                   <div class="header-icons">
                     <ul class="header-icons-list">
