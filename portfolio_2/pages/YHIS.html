@@ -50,10 +50,200 @@
 
             <div class="project-page-content">
               <div class="project-img-holder">
-                <img class="img-fluid project-page-img" src="../assets/img/FourthDimension/SpaceJourney.png">
+                <img class="img-fluid project-page-img" src="../assets/img/YHIS/YHIS_combat.gif">
               </div>
 
-                <p>Quick Paragraph </p>
+                <p class="project-item-description">Your Human is Sick is the most interesting project that I've taken part of. I'm taking a Master's in Game Design, and in Capstone we, the students, can come up with our own games and make them, as long as we go through the process of pitching the game and creating the documentation for it, of course the pipeline and team should be able to do it (and the team has to agree and be motivated to do it too) - With all that being said, the idea of making a top-down adventure game inspired in The Legend of Zelda that was about the Immune System was too good for me to let pass. Time went by and with the documentation provided I was able to put the game oficially in pipeline!</p>
+
+                <p class="project-item-description">The ones who created the documentation are tasked as the Creative Director of the game, which its main job is to supervise the team and guide the team to ensure the game is always on track from a creative point of view. Besides that, it was also agreed with the team I would be able to do some development tasks, and I worked on some basic C++ behaviors and classes.</p>
+
+                <ul>
+                  <li>Created base class for Player Character and Floor Switch</li>
+                  <li>Added and integrated player animations</li>
+                  <li>Added sound effects and particle effects to varied player actions</li>
+                </ul>
+
+                <div class="project-img-holder">
+                  <img class="img-fluid project-page-img" src="../assets/img/YHIS/Boss1.png">
+                </div>
+
+                <p class="project-item-description">But after that, an interesting story started to happen, because of the nature of the game and the team, the game moved so fast and iterated so fast that Blueprints were the best approach, most of the things would slow the process if they were tackled in C++ - So I stepped down and removed my developer hat and focused on Creative Director endeavours. More often than not I will still perform reviews and tweak and add small things in Blueprints, mainly adding polish tasks (i.e. spawning particles and playing sounds) or tweaking or removing some mechanics that I, as a Creative Director, don't really see adding much to the game anymore.</p>
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="floorswitchheaderAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#floorswitchHeader" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-code"></i> Code Snippet: Floor Switch Header file
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="floorswitchHeader" class="collapse show" aria-labelledby="headingOne" data-parent="#floorswitchheaderAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cpp">
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "FloorSwitch.generated.h"
+
+UCLASS()
+class YOURHUMANISSICK_API AFloorSwitch : public AActor {
+  GENERATED_BODY()
+
+public:
+  AFloorSwitch();
+
+  UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Floor Switch")
+  class UBoxComponent* pTriggerBox;
+
+  UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Floor Switch")
+  class UStaticMeshComponent* pFloorSwitchMesh;
+
+  UPROPERTY(BlueprintReadWrite, Category = "Floor Switch")
+  FVector InitialSwitchLocation;
+
+  /** Time to raise the Floor Switch */
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Switch")
+  float SwitchTime;
+
+  /** One time Switches does not raise up again */
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Switch")
+  bool bIsOneTimeSwitch;
+
+  /** Timer Handle so the box does not immediately deactivate */
+  FTimerHandle SwitchTimerHandle;
+
+  int NumberOfCharactersOnSwitch;
+
+  /** Was activated? Used to not activate one-time switches more than once */
+  bool bWasSwitchActivated;
+
+  UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Floor Switch")
+  bool bIsFloorSwitchPressed;
+
+  FORCEINLINE bool GetFloorSwitchPressed() const { return bIsFloorSwitchPressed; }
+
+protected:
+  virtual void BeginPlay() override;
+
+public:	
+  virtual void Tick(float DeltaTime) override;
+
+  UFUNCTION()
+  void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+  UFUNCTION()
+  void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+  /** Actions when the player steps on the floor switch */
+  UFUNCTION(BlueprintImplementableEvent, Category = "Floor Switch")
+  void SteppedOnFloorSwitch();
+
+  UFUNCTION(BlueprintImplementableEvent, Category = "Floor Switch")
+  void LeftFloorSwitch();
+
+  /** Floor Switch Position Update*/
+  UFUNCTION(BlueprintImplementableEvent, Category = "Floor Switch")
+  void LowerFloorSwitch();
+
+  UFUNCTION(BlueprintImplementableEvent, Category = "Floor Switch")
+  void RaiseFloorSwitch();
+
+  UFUNCTION(BlueprintCallable, Category = "Floor Switch")
+  void UpdateSwitchLocation(float ZIncrement);
+
+  void LeftFloorSwitchProcedure();
+};                        
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="floorswitchOverlapAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#floorSwitchOverlap" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-code"></i> Code Snippet: Floor Switch Overlapping Handle
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="floorSwitchOverlap" class="collapse show" aria-labelledby="headingOne" data-parent="#floorswitchOverlapAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cpp">
+void AFloorSwitch::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+  UE_LOG(LogTemp, Warning, TEXT("Floor Switch - Player Stepped"))
+  if (!bWasSwitchActivated && (NumberOfCharactersOnSwitch == 0) ) {
+    bWasSwitchActivated = true;
+    LowerFloorSwitch();
+    SteppedOnFloorSwitch();
+    bIsFloorSwitchPressed = true;
+  }
+
+  NumberOfCharactersOnSwitch++;
+}
+
+void AFloorSwitch::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) {
+  UE_LOG(LogTemp, Warning, TEXT("Floor Switch - Player Left"))
+
+  // We only call the left floor switch if it is not a one time only switch
+  if (!bIsOneTimeSwitch && (--NumberOfCharactersOnSwitch == 0) ) {
+    GetWorldTimerManager().SetTimer(SwitchTimerHandle, this, &AFloorSwitch::LeftFloorSwitchProcedure, SwitchTime);
+    bWasSwitchActivated = false;
+    bIsFloorSwitchPressed = false;
+  }
+}                      
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="floorSwitchBPAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#floorSwitchBP" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Blueprint: Sample Floor Switch
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="floorSwitchBP" class="collapse show" aria-labelledby="headingOne" data-parent="#floorSwitchBPAccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/YHIS/FloorSwitchBlueprint.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
 
                 <div class="page-footer">
                   <div class="header-icons">
