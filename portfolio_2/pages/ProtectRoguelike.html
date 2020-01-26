@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Guilherme de Oliveira - Protect Roguelike</title>
+        <title>Guilherme de Oliveira - Defensees</title>
         <meta name="description" content="Gameplay Programmer">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -31,7 +31,7 @@
           </div>
 
             <div class="project-page-header">
-                <h1>Protect Roguelike</h1>
+                <h1>Defensees</h1>
                 <table>
                     <tr>
                         <td><em>Project Type:</em></td>
@@ -50,10 +50,424 @@
 
             <div class="project-page-content">
               <div class="project-img-holder">
-                <img class="img-fluid project-page-img" src="../assets/img/FourthDimension/SpaceJourney.png">
+                <img class="img-fluid project-page-img" src="../assets/img/ProtectRoguelike/Level2.png">
               </div>
 
-                <p>Quick Paragraph</p>
+                <p class="project-item-description">I love turn-based games and I love roguelikes, more than a year ago I started my adventure into trying to make roguelikes and started developing some systems. Up to this day, it was three different roguelike projects, three different level generation systems and one turn-based system, which I really like the outcome and I'm really proud of the result!</p>
+
+                <p class="project-item-description">At one point, I realizing that making roguelikes was too much for the short amount of time I wanted to put in the project to finish it, and then started to find ways to scale things down, that's when Defensees came to mind. A simple turn-based game where you had to defend a door. It was simple, fun, and had a lot of run where I could put roguelike elements in the future.</p>
+
+                <h4>Turn-based System</h4>
+                <p class="project-item-description">The concept of the system is really simple, and I talked a little more about this system on <a href="https://fourthdimension.studio/devlog/2019-11-27-Turn-Based-System-Aglarond/" target="_BLANK">this devlog post.</a> - But the general idea is that there is a turn-based manager that holds a reference to all actors, which are objects that takes turns, so the manager is always asking the actor taking the turn something on the lines of: "Hey, did you take your turn yet?" Which on code looks something like this</p>
+
+                <pre class="prettyprint linenums lang-cs">
+private void ProcessCurrentActorTurn() {
+  if(m_AllActorsOnScene[m_CurrentActorTurn].TakeTurn()) {
+      if(m_AllActorsOnScene.Count > 0) {
+          m_CurrentActorTurn = ((m_CurrentActorTurn + 1) % m_AllActorsOnScene.Count);
+      }
+
+      OnTurnWasTaken?.Invoke();
+  }
+}
+                </pre>
+
+                <p class="project-item-description">The diagram below shows a little bit better how the hierarchy goes.</p>
+
+                <div class="project-img-holder">
+                  <img class="img-fluid project-page-img small-img" src="../assets/img/ProtectRoguelike/TBSDiagram.png">
+                </div>
+
+                <p class="project-item-description">But how does an actor move? you might ask. The piece of code below shows how that is done, whenever performing a movement, the dynamic actor checks if it will engage in combat, if it will not, then it checks if there's nothing blocking it on that direction.</p>
+                <pre class="prettyprint linenums lang-cs">
+public bool Move(Vector2 _MovementDirection) {
+    bool bWillEngageInCombat = WillEngageOnCombatOnMovement(_MovementDirection);
+    bool bCanMoveOnDirection = false;
+
+    if(!bWillEngageInCombat) {
+        bCanMoveOnDirection = CanMoveOnDirection(_MovementDirection);
+    }
+
+    return Move(_MovementDirection, bCanMoveOnDirection, bWillEngageInCombat);
+}
+                  </pre>
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="allFunctionsAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#allfunctions" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: All Functions to check movement and combat
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="allfunctions" class="collapse show" aria-labelledby="headingOne" data-parent="#allFunctionsAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+#region CHECKING WHAT MOVEMENTS ARE VALID
+public bool Move(Vector2 _MovementDirection) {
+    bool bWillEngageInCombat = WillEngageOnCombatOnMovement(_MovementDirection);
+    bool bCanMoveOnDirection = false;
+
+    if(!bWillEngageInCombat) {
+        bCanMoveOnDirection = CanMoveOnDirection(_MovementDirection);
+    }
+
+    return Move(_MovementDirection, bCanMoveOnDirection, bWillEngageInCombat);
+}
+
+private bool WillEngageOnCombatOnMovement(Vector2 _MovementDirection) {
+    if(_MovementDirection == Vector2.zero) {
+        return false;
+    }
+
+    Vector2 PositionToCheck = m_CurrentPosition + _MovementDirection;
+    Actor ActorToInteract = TurnBasedManager.instance.WhatActorIsAt(PositionToCheck);
+
+    if(ActorToInteract != null) {
+
+        if(ActorToInteract is DynamicActor && ActorToInteract.ActorType != m_ActorType) {
+            TurnBasedManager.instance.HandleCombat(this, (DynamicActor)ActorToInteract, _MovementDirection);
+            return true;
+        } else if(m_ActorType == EActorType.EAT_Enemy && ActorToInteract is Door) {
+            TurnBasedManager.instance.HandleCombatWithDoor(this, _MovementDirection);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+protected bool CanMoveOnDirection(Vector2 _MovementDirection) {
+    if(_MovementDirection == Vector2.zero) {
+        return false;
+    }
+
+    // Special Case for the door, because it is an actor that can be moved on
+    Actor ActorOnPosition = TurnBasedManager.instance.WhatActorIsAt(m_CurrentPosition + _MovementDirection);
+    // Checking if there is an actor on that position, if it's one of my types, don't go there
+    // AI will use this function to know where to move beforehand, that's why this check is important
+    if(ActorOnPosition != null && ActorOnPosition.ActorType == m_ActorType) {
+        return false;
+    }
+
+    bool HasCollision = CheckIfHasCollision(m_CurrentPosition + _MovementDirection);
+    Collider2D TriggerCollision = Physics2D.OverlapCircle(m_CurrentPosition + _MovementDirection, 0.05f, TriggerLayers);
+
+    if(HasCollision) {
+        return false;
+    } else if(TriggerCollision) {
+        IInteractable Interactable = TriggerCollision.GetComponent<IInteractable>();
+
+        Interactable?.Interact();
+        ActorInteracted(_MovementDirection);
+        OnActorInteracted?.Invoke();
+        return false;
+    }
+
+    return true;
+}
+
+protected bool CheckIfHasCollision(Vector2 _Position) {
+    Collider2D BlockedCollision = Physics2D.OverlapCircle(_Position, 0.05f, CollideWithLayers);
+    return (BlockedCollision != null);
+}
+
+#endregion
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="movingactingAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#movingacting" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Actually moving and acting
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="movingacting" class="collapse show" aria-labelledby="headingOne" data-parent="#movingactingAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+#region HANDLING ACTUAL MOVEMENT
+private bool Move(Vector2 _MovementDirection, bool _bCanMove, bool _bHasActed) {
+    if(m_IsActorCurrentlyMoving) {
+        return false;
+    }
+
+    if(_bHasActed) {
+        OnActorAttacked?.Invoke();
+        ActorActed(_MovementDirection);
+        return true;
+    } else if(_bCanMove) {
+        OnActorMoved?.Invoke();
+        ActorMoved(_MovementDirection);
+        return true;
+    } else {
+        OnActorMoveDenied?.Invoke();
+        ActorMovementDenied(_MovementDirection);
+        return false;
+    }
+}
+
+private void ActorActed(Vector2 _DirectionWhichActed) {
+    InitializeMovementAndAction(_DirectionWhichActed);
+
+    if(ActorAttackedSounds.Length > 0) {
+        this.PlaySoundEffect(ActorAttackedSounds.RandomOrDefault());
+    }
+
+    Sequence ActionSequence = DOTween.Sequence();
+
+    if (m_ActorAnimator) {
+        if(_DirectionWhichActed.x != 0) {
+            m_ActorAnimator.Play(RIGHT_ATTACK_ANIMATION);
+        } else if(_DirectionWhichActed.y != 0) {
+            if(_DirectionWhichActed.y > 0) {
+                m_ActorAnimator.Play(UP_ATTACK_ANIMATION);
+            } else {
+                m_ActorAnimator.Play(DOWN_ATTACK_ANIMATION);
+            }
+        }
+    }
+
+    ActionSequence.AppendInterval(ACTION_TIME);
+    ActionSequence.onComplete += (() => {
+        m_ActorAnimator.Play(IDLE_ANIMATION);
+    });
+    ActionSequence.onComplete += MovementRoutineFinished;
+    ActionSequence.Play();
+}
+
+private void ActorMoved(Vector2 _MovementDirection) {
+    InitializeMovementAndAction(_MovementDirection);
+
+    Vector2 MidwayPoint = m_CurrentPosition + new Vector2(_MovementDirection.x / 2, _MovementDirection.y / 2 + 0.25f);
+    Vector2 DestinationPoint = m_CurrentPosition + _MovementDirection;
+    m_CurrentPosition = DestinationPoint;
+
+    Sequence MovementSequence = DOTween.Sequence();
+    MovementSequence.Append(transform.DOMove(MidwayPoint, MOVEMENT_TIME / 2.0f).SetEase(Ease.InOutQuint));
+    MovementSequence.Append(transform.DOMove(DestinationPoint, MOVEMENT_TIME / 2.0f).SetEase(Ease.OutBack));
+    MovementSequence.onComplete += MovementRoutineFinished;
+    MovementSequence.Play();
+}
+
+private void ActorInteracted(Vector2 _InteractionDirection) {
+    InitializeMovementAndAction(_InteractionDirection);
+
+    Sequence InteractionSequence = DOTween.Sequence();
+    InteractionSequence.Append(transform.DOMove(m_CurrentPosition + _InteractionDirection, INTERACTION_TIME / 2.0f).SetEase(Ease.InOutExpo));
+    InteractionSequence.AppendInterval(0.1f);
+    InteractionSequence.Append(transform.DOMove(m_CurrentPosition, INTERACTION_TIME / 2.0f).SetEase(Ease.InOutExpo));
+    InteractionSequence.onComplete += MovementRoutineFinished;
+    InteractionSequence.Play();
+}
+
+private void ActorMovementDenied(Vector2 _MovementDirection) {
+    InitializeMovementAndAction(_MovementDirection);
+
+    Sequence TriedMovementSequence = DOTween.Sequence();
+    TriedMovementSequence.Append(transform.DOMove(m_CurrentPosition + new Vector2(0.0f, 0.25f), MOVEMENT_TIME / 2.0f).SetEase(Ease.InOutQuint));
+    TriedMovementSequence.Append(transform.DOMove(m_CurrentPosition, MOVEMENT_TIME / 2.0f).SetEase(Ease.OutBack));
+    TriedMovementSequence.onComplete += MovementRoutineFinished;
+    TriedMovementSequence.Play();
+}
+
+private void InitializeMovementAndAction(Vector2 _MovementDirection) {
+    m_IsActorCurrentlyMoving = true;
+    if(_MovementDirection.x != 0) {
+        transform.localScale = new Vector3(Mathf.Sign(_MovementDirection.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+}
+
+private void MovementRoutineFinished() {
+    m_IsActorCurrentlyMoving = false;
+    transform.position = m_CurrentPosition;
+}
+#endregion
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <hr>
+                <h4>Spawning System</h4>
+                <p class="project-item-description">The spawning system in this game has a very simple behavior: it has to accomodate me adding percentages for spawning specific monsters for a specific wave, and also has to accomodate the number of monsters I input for that wave. When specific waves are defined, everything in between those waves is defined by a linear interpolation.</p>
+
+                <div class="project-img-holder">
+                  <img class="img-fluid project-page-img" src="../assets/img/ProtectRoguelike/Wave.png">
+                </div>
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="waveProbAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#waveprob" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Wave Probability Distribution ScriptableObject
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="waveprob" class="collapse show" aria-labelledby="headingOne" data-parent="#waveProbAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+using UnityEngine;
+
+namespace FourthDimension.TurnBased {
+    [CreateAssetMenu(fileName = "WaveProbabilityDistribution", menuName = "TurnBased/WaveDistribution")]
+    public class WaveProbabilityDistribution : ScriptableObject {
+        public int Wave;
+        public int MonstersInWave;
+        public float[] ProbabilityDistribution = new float[7];
+    }
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="lerpingAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lerping" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Lerping Waves
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="lerping" class="collapse show" aria-labelledby="headingOne" data-parent="#lerpingAccordion">
+                      <div class="card-body">
+                        <p class="card-paragraph">KEEP IN MIND: The code for the WaveManager is code that I didn't clean up, this represents the first iteration of such code and there are many points that I marked as needed for cleanup, I have this piece of code to showcase because I think the lerping aspect of this system is interesting, but this is absolutely no final code and need revisions!</p>
+
+                        <pre class="prettyprint linenums lang-cs">
+if(CurrentWaveProbabilityDistributionIndex == WaveProbabilityDistributionList.Length - 1) {
+    int LastIndex = WaveProbabilityDistributionList.Length - 1;
+    int WaveDiff = m_CurrentWave - WaveProbabilityDistributionList[LastIndex].Wave;
+    FillInSpawners(WaveProbabilityDistributionList[LastIndex].ProbabilityDistribution, WaveProbabilityDistributionList[LastIndex].MonstersInWave + WaveDiff);
+} else {
+    // We are not on the last wave, so we have to lerp the current and the next one to find out probabilities and monster count
+    float Pass = Mathf.Abs((1.0f / (float)(WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex].Wave - WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex + 1].Wave)));
+    int WaveDiff = m_CurrentWave - WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex].Wave;
+
+    int Monsters = Mathf.RoundToInt(Mathf.Lerp(WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex].MonstersInWave, WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex+1].MonstersInWave, Pass));
+
+    float[] CurrentWaveProbabilityDistribution = new float[7];
+    float[] CurrentIndexWaveProbabilityDistribution = WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex].ProbabilityDistribution;
+    float[] NextIndexWaveProbabilityDistribution = WaveProbabilityDistributionList[CurrentWaveProbabilityDistributionIndex + 1].ProbabilityDistribution;
+
+    for (int i = 0; i < CurrentWaveProbabilityDistribution.Length; i++) {
+        CurrentWaveProbabilityDistribution[i] = Mathf.Lerp(CurrentIndexWaveProbabilityDistribution[i], NextIndexWaveProbabilityDistribution[i], WaveDiff * Pass);
+    }
+
+    FillInSpawners(CurrentWaveProbabilityDistribution, Monsters);
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="spawnersAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#spawner" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Filling in Spawners
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="spawner" class="collapse show" aria-labelledby="headingOne" data-parent="#spawnersAccordion">
+                      <div class="card-body">
+
+                        <pre class="prettyprint linenums lang-cs">
+private void FillInSpawners(float[] ProbabilityDistribution, int MonstersInWave) {
+  // Creating the Actual Probability Distribution in a way I can use a random float between 0 and 1 to know which monster I have to generate...
+  float[] ActualProbabilityDistribution = new float[ProbabilityDistribution.Length];
+  ActualProbabilityDistribution[0] = ProbabilityDistribution[0];
+  for(int i = 1; i < ProbabilityDistribution.Length; i++) {
+      ActualProbabilityDistribution[i] = ActualProbabilityDistribution[i - 1] + ProbabilityDistribution[i]; 
+  }
+
+  // Adding all the monsters on the Spawner Queue
+  foreach(TurnBased.Actor.Spawner Spawner in m_AllSpawners) {
+      for(int i = 0; i < MonstersInWave; i++) {
+          float RandomFloat = Random.value;
+          for(int j = 0; j < ActualProbabilityDistribution.Length; j++) {
+              if(RandomFloat < ActualProbabilityDistribution[j]) {
+                  Spawner.AddToQueue(AllMonsters[j]);
+                  break;
+              }
+          }
+      }
+
+      Spawner.ResetTurnCounter();
+  }
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <div class="page-footer">
+                  <div class="header-icons">
+                    <ul class="header-icons-list">
+                      <a href="https://fourthdimension.itch.io/defensees" target="_BLANK"><li><i class="fas fa-gamepad"> play online</i></li></a>
+                      <a href="https://fourthdimension.itch.io/defensees/devlog/120061/pre-considerations" target="_BLANK"><li><i class="fas fa-window-maximize"> early design considerations</i></li></a>
+                      <a href="https://fourthdimension.itch.io/defensees/devlog/121186/quick-postmortem" target="_BLANK"><li><i class="fas fa-window-maximize"> postmortem</i></li></a>
+                    </ul>
+                  </div>
+                </div>
 
                 <div class="page-footer">
                   <div class="header-icons">

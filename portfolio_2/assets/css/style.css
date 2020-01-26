@@ -103,6 +103,10 @@ div.header-icons > ul > a > li > i {
     transition: all .2s;
 }
 
+.project-img-holder > .small-img {
+    width: 45%;
+}
+
 .project-item-img:hover {
     box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
     opacity: .8;
