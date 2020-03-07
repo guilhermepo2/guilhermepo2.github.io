@@ -245,6 +245,162 @@ void AFloorSwitch::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor
                   END OF ACCORDION
                 -->
 
+                <p class="project-item-description">When the project started to reach its end, a lot of small holes remain unfilled, and designers and developers in the game already had many tasks and a lot of small fixes to do, so for that I had to put my developer hat back on! Two big things that I made was integrating player and enemy animations and making functionality for the user interface, we didn't have people versatile with any those two aspects in the team, so it went to the bottom of priorities, but I believe it was important to do those things, and do them right, so I took some time to get back into the game and do those things.</p>
+
+                <h4>Enemy Animations</h4>
+
+                <div class="center-content">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/cIHNG7OxDeY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <p class="project-item-description">Creating animations in Unreal usually involves a lot moving pieces, changes have to be made on the character blueprint, an animation blueprint has to be created, a state machine for the animation transition has to be set up and if you want to get a little bit fancy you have to use Animation Montages.</p>
+
+                <p class="project-item-description">I implemented animations on the player character and in four different enemy types, on the video above and on the images below you can see how the Charging Enemy works, it's listed the animation graph, the locomotion state machine and the event graph, there is also the blueprint for the Charging Enemy Character, but it just sets bools with information given by the Behavior Tree.</p>
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="animgraphaccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#animgraph" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Charge Enemy Animation Graph
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="animgraph" class="collapse show" aria-labelledby="headingOne" data-parent="#animgraphaccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/YHIS/ChargeEnemy_AnimGraph.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                 <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="locomotiongraphaccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#locomotiongraph" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Charge Enemy Locomotion Graph
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="locomotiongraph" class="collapse show" aria-labelledby="headingOne" data-parent="#locomotiongraphaccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/YHIS/ChargeEnemy_LocomotionGraph.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="eventgraphaccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#eventgraph" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Charge Enemy Event Graph
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="eventgraph" class="collapse show" aria-labelledby="headingOne" data-parent="#eventgraphaccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/YHIS/ChargeEnemy_EventGraph.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <h4>User Interface Functionality</h4>
+
+                <div class="center-content">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/OjxeE7sC_60" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <p class="project-item-description">An interesting point that I could make in the game was the User Interface functionality, such as scene transitions, save/load game screens, options screens, controls screens, credits screen, etc... Previously I had only very basic experience with Unreal Widgets and it was the first making an UI that supported controller in Unreal.</p>
+
+                <div class="center-content">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/O0AJjqPQl8I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <p class="project-item-description">A point worth mentioning is the "Confirmation Screen" - It appears when you select if you want to go to the main menu, retry the level, etc... And it prompts a screen saying "Are you sure you want to do this?" - The thing is that I wanted to reuse the Widget, so the solution I came up with is having Event Dispatchers for the "Yes" and "No" options, so wichever part of the game calls this widget is responsible for saying what "Yes" and "No" means, an example is illustrated on the images below.</p>
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="callingeventsaccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#callingevents" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Calling Events
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="callingevents" class="collapse show" aria-labelledby="headingOne" data-parent="#callingeventsaccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/YHIS/UI_CalingEvents.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="bindingeventsaccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bindingevents" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Binding Events
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="bindingevents" class="collapse show" aria-labelledby="headingOne" data-parent="#bindingeventsaccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/YHIS/UI_BindingEvents.png" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
                 <div class="page-footer">
                   <div class="header-icons">
                     <ul class="header-icons-list">

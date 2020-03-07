@@ -117,6 +117,8 @@ div.header-icons > ul > a > li > i {
 }
 
 .project-item-description {
+    padding-top: 1em;
+    padding-bottom: 1em;
     text-align:justify
 }
 
@@ -209,4 +211,8 @@ li.L5, li.L6, li.L7, li.L8 {
 li.L0, li.L1, li.L2, li.L3,
 li.L5, li.L6, li.L7, li.L8, li.L9 {
    background: #000;
+}
+
+.center-content {
+    text-align: center;
 }
