@@ -3,14 +3,17 @@
     <div class="page-wrapper">
       <Header></Header>
       <Links></Links>
-      <div v-if="this.MyRepos">
-        <h3>Public GitHub Activity</h3>
-        <div v-for="repository in MyRepos.slice(0, 5)" :key="repository.name">
-          <p><a :href="repository.html_url" target="_BLANK">{{ repository.name }}</a> (Last Update: {{ GetDate(repository.updated_at) }})</p>
+
+      <!-- TODO: Transform this into its own component? -->
+      <div class="github-activity" v-if="this.MyRepos">
+        <h3 class="title">Public GitHub Activity</h3>
+        <div class="row">
+          <div class="github-activity-entry col-sm-6 col-md-6 col-lg-6" v-for="repository in MyRepos.slice(0, 5)" :key="repository.name">
+            <p><a :href="repository.html_url" target="_BLANK">{{ repository.name }}</a> (Last Update: {{ GetDate(repository.updated_at) }})</p>
+          </div>
         </div>
       </div>
-      
-      <!-- <div v-if="this.MyProfile">{{ MyProfile["updated_at"]}}</div> -->
+
       <PortfolioWorks></PortfolioWorks>
     </div>
   </div>
@@ -73,8 +76,26 @@ export default {
 </script>
 
 <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 body {
   background: #161616;
   color: #b0b0b0;
+}
+
+.github-activity {
+  padding: 1em 0;
+  text-align: center;
+}
+
+.github-activity .title {
+  padding: .5em 0;
+}
+
+.github-activity-entry {
+  text-align: center;
 }
 </style>
