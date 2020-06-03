@@ -1,10 +1,21 @@
 <template>
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-lg-6" v-for="game in works.tier1" :key="game.title">
-            <img v-bind:src="require(`../assets/${game.preview}`)"/>
-            <h1>{{ game.title }}</h1>
-            <h4>{{ game.year }}</h4>
-            <p>{{ game.shortDescription }}</p>
+    <div class="row row-eq-height">
+        <div class="portfolio-entry-wrapper col-sm-6 col-md-6 col-lg-6" v-for="game in works.tier1" :key="game.title">
+            <div class="portfolio-entry-content">
+                <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
+                <h1 class="portfolio-title">{{ game.title }}</h1>
+                <!-- <h4>{{ game.year }}</h4> -->
+                <p>{{ game.shortDescription }}</p>
+            </div>
+        </div>
+
+        <div class="portfolio-entry-wrapper col-sm-3 col-md-3 col-lg-3" v-for="game in works.tier2" :key="game.title">
+            <div class="portfolio-entry-content">
+                <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
+                <h1 class="portfolio-title">{{ game.title }}</h1>
+                <!-- <h4>{{ game.year }}</h4> -->
+                <p>{{ game.shortDescription }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -15,9 +26,31 @@ import Works from '../works/overview.json'
 export default {
     data: function() {
         return {
-            works: Works,
-            publicPath: process.env.BASE_URL
+            works: Works
         }
     }
 }
 </script>
+
+<style scoped>
+.portfolio-entry-wrapper {
+    padding: 1px;
+}
+
+.portfolio-entry-content {
+    padding: .5em;
+    background: #333;
+    color: #aaa;
+}
+
+.portfolio-image {
+    border-radius: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-title {
+    text-align:center;
+}
+</style>

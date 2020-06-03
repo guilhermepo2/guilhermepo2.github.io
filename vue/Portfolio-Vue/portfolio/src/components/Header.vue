@@ -7,8 +7,11 @@
             </div>
 
             <div class="col-sm-8 col-md-8 col-lg-8">
+            <p>I MAKE GAMES</p>
+            <!--
                 <p>My name is Guilherme de Oliveira and I am a Gameplay Programmer currently taking a Master's in Game Design, with a Bachelor in Computer Science. I currently have over 5 years of experience with programming and I'm versatile in Unity/C# and Unreal 4 using C++ and Blueprints.</p>
-                <p>I am motivated by all things related to how the player interacts with the game, such as character movement and actions, how the player perceives the game, such as AI and Game Feel, as well as technical challenges, like optimization and coming up systems that are both efficient and friendly to designers!</p>    
+                <p>I am motivated by all things related to how the player interacts with the game, such as character movement and actions, how the player perceives the game, such as AI and Game Feel, as well as technical challenges, like optimization and coming up systems that are both efficient and friendly to designers!</p>
+            -->
             </div>  
         </div>
         

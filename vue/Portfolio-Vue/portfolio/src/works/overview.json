@@ -7,10 +7,44 @@
             "shortDescription": "3D Top Down Adventure game about exploring your immune system."
         },
         {
+            "title": "Twin-Stick Shooter",
+            "year": "2020",
+            "preview": "abilitysystem.png",
+            "shortDescription": "Ability System for a proof of concept for a shooter game."
+        },
+        {
             "title": "Defensees",
             "year": "2020",
             "preview": "ProtectRoguelike.png",
             "shortDescription": "A weird mix of turn based and tower defense, with big inspirations from roguelikes"
+        },
+        {
+            "title": "Bopping Blobs",
+            "year": "2019",
+            "preview": "BoppingBlobs.png",
+            "shortDescription": "King of the Hill style game where you are always fighting to be the true king."
+        }
+    ],
+    "tier2": [
+        {
+            "title": "Upside Down",
+            "preview": "UpsideDown.png",
+            "shortDescription": "Had a short internship at GILP Studio, where I worked updating and adding futures to an already existing game."
+        },
+        {
+            "title": "Fourth Dimension",
+            "preview": "FourthDimension.png",
+            "shortDescription": "Developed and released two mobile games"
+        }, 
+        {
+            "title": "2D Platformers",
+            "preview": "Platformers.png",
+            "shortDescription": "Developed 4 different 2D platformers, 3 for GameJams, and iterated upon previous code."
+        },
+        {
+            "title": "GameMaker: Studio 2",
+            "preview": "GameMaker.png",
+            "shortDescription": "Developed two games in GameMaker: Studio 2 for the GameMaker Community Jam 7 and for the Heartjam in 2018."
         }
     ]
 }
