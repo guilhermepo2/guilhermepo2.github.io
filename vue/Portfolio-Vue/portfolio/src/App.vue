@@ -8,7 +8,7 @@
       <div class="github-activity" v-if="this.MyRepos">
         <h3 class="title">Public GitHub Activity</h3>
         <div class="row">
-          <div class="github-activity-entry col-sm-6 col-md-6 col-lg-6" v-for="repository in MyRepos.slice(0, 5)" :key="repository.name">
+          <div class="github-activity-entry col-sm-6 col-md-6 col-lg-6" v-for="repository in MyRepos.slice(0, 6)" :key="repository.name">
             <p><a :href="repository.html_url" target="_BLANK">{{ repository.name }}</a> (Last Update: {{ GetDate(repository.updated_at) }})</p>
           </div>
         </div>

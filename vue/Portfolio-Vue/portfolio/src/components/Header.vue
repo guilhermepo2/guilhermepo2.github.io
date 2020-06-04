@@ -8,9 +8,9 @@
 
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <div class="about-me-text">
-                    <p>My name is Guilherme de Oliveira and I am a Gameplay Programmer. 
-                    <p>My name is Guilherme de Oliveira and I am a Gameplay Programmer. currently taking a Master's in Game Design, with a Bachelor in Computer Science. I currently have over 5 years of experience with programming and I'm versatile in Unity/C# and Unreal 4 using C++ and Blueprints.</p>
-                    <p>I am motivated by all things related to how the player interacts with the game, such as character movement and actions, how the player perceives the game, such as AI and Game Feel, as well as technical challenges, like optimization and coming up systems that are both efficient and friendly to designers!</p>
+                    <p>My name is Guilherme de Oliveira and I am a Gameplay Programmer. I have a background in Game Design (Master's) and Computer Science (Undergraduate). I've been coding for more than 5 years now and I'm versatily with Unity/C#, Unreal 4 with C++ and Blueprints, as well as C++ with SDL2!</p>
+
+                    <p>I have released 2 games solo, and 3 games with CelleC Games, being 1 for Steam. I also joined 7 gamejam games up to this day, I am passionate about making things feel good, look good and creating systems and tools so the team can iterate faster and create a better game!</p>
                 </div>
             </div>  
         </div>
@@ -47,6 +47,6 @@
 }
 
 .about-me-text p {
-    
+    text-align: justify;
 }
 </style>
