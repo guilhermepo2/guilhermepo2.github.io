@@ -22,6 +22,7 @@
 .about-me-header {
     padding-top: 2em;
 }
+
 .about-me-header .selfie {
     max-width: 100%;
     margin-bottom: 25px;

@@ -4,47 +4,79 @@
             "title": "Your Human is Sick",
             "year": "2020",
             "preview": "yhis.png",
-            "shortDescription": "3D Top Down Adventure game about exploring your immune system."
+            "shortDescription": "3D Top Down Adventure game about exploring your immune system.",
+
+            "projectType": "Capstone (University)",
+            "engine": "Unreal",
+            "languages": "C++, Blueprints"
         },
         {
             "title": "Twin-Stick Shooter",
             "year": "2020",
             "preview": "abilitysystem.png",
-            "shortDescription": "Ability System for a proof of concept for a shooter game."
+            "shortDescription": "Ability System for a proof of concept for a shooter game.",
+
+            "projectType": "Capstone (University)",
+            "engine": "Unreal",
+            "languages": "C++, Blueprints"
         },
         {
             "title": "Defensees",
             "year": "2020",
             "preview": "ProtectRoguelike.png",
-            "shortDescription": "A weird mix of turn based and tower defense, with big inspirations from roguelikes"
+            "shortDescription": "A weird mix of turn based and tower defense, with big inspirations from roguelikes",
+
+            "projectType": "Solo Project",
+            "engine": "Unity",
+            "languages": "C#"
         },
         {
             "title": "Bopping Blobs",
             "year": "2019",
             "preview": "BoppingBlobs.png",
-            "shortDescription": "King of the Hill style game where you are always fighting to be the true king."
+            "shortDescription": "King of the Hill style game where you are always fighting to be the true king.",
+
+            "projectType": "Capstone (University)",
+            "engine": "Unity",
+            "languages": "C#"
         }
     ],
     "tier2": [
         {
             "title": "Upside Down",
             "preview": "UpsideDown.png",
-            "shortDescription": "Had a short internship at GILP Studio, where I worked updating and adding futures to an already existing game."
+            "shortDescription": "Had a short internship at GILP Studio, where I worked updating and adding futures to an already existing game.",
+
+            "projectType": "Partnership with Gilp Studio",
+            "engine": "Unity",
+            "languages": "C#"
         },
         {
             "title": "Fourth Dimension",
             "preview": "FourthDimension.png",
-            "shortDescription": "Developed and released two mobile games"
+            "shortDescription": "Developed and released two mobile games",
+
+            "projectType": "Solo Projects",
+            "engine": "Unity",
+            "languages": "C#"
         }, 
         {
             "title": "2D Platformers",
             "preview": "Platformers.png",
-            "shortDescription": "Developed 4 different 2D platformers, 3 for GameJams, and iterated upon previous code."
+            "shortDescription": "Developed 4 different 2D platformers, 3 for GameJams, and iterated upon previous code.",
+
+            "projectType": "Game Jams",
+            "engine": "Unity",
+            "languages": "C#"
         },
         {
             "title": "GameMaker: Studio 2",
             "preview": "GameMaker.png",
-            "shortDescription": "Developed two games in GameMaker: Studio 2 for the GameMaker Community Jam 7 and for the Heartjam in 2018."
+            "shortDescription": "Developed two games in GameMaker: Studio 2 for the GameMaker Community Jam 7 and for the Heartjam in 2018.",
+
+            "projectType": "Game Jams",
+            "engine": "GameMaker: Studio 2",
+            "languages": "GML"
         }
     ]
 }

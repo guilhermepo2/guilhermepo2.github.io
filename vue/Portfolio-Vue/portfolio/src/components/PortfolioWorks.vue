@@ -2,8 +2,11 @@
     <div class="row row-eq-height">
         <div class="portfolio-entry-wrapper col-sm-6 col-md-6 col-lg-6" v-for="game in works.tier1" :key="game.title">
             <div class="portfolio-entry-content">
-                <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
-                <h1 class="portfolio-title">{{ game.title }}</h1>
+                <router-link :to="{ name: 'portfolio-entry', params: {game: game} }">
+                    <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
+                </router-link>
+
+                <router-link :to="{ name: 'portfolio-entry', params: { game: game } }"><h1 class="portfolio-title">{{ game.title }}</h1></router-link>
                 <!-- <h4>{{ game.year }}</h4> -->
                 <p>{{ game.shortDescription }}</p>
             </div>
@@ -11,8 +14,11 @@
 
         <div class="portfolio-entry-wrapper col-sm-3 col-md-3 col-lg-3" v-for="game in works.tier2" :key="game.title">
             <div class="portfolio-entry-content">
-                <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
-                <h1 class="portfolio-title">{{ game.title }}</h1>
+                <router-link :to="{ name: 'portfolio-entry', params: {game: game} }">
+                    <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
+                </router-link>
+
+                <router-link :to="{ name: 'portfolio-entry', params: { game: game } }"><h1 class="portfolio-title">{{ game.title }}</h1></router-link>
                 <!-- <h4>{{ game.year }}</h4> -->
                 <p>{{ game.shortDescription }}</p>
             </div>
