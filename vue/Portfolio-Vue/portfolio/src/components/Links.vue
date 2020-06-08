@@ -21,7 +21,7 @@
 }
 
 .header-icons-list a {
-    color: indigo;
+    color: #b0b0b0;
     text-decoration: none;
 }
 

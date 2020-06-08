@@ -95,7 +95,7 @@ export default {
 }
 
 .portfolio-entry-wrapper {
-    padding: 1px;
+    padding: .1em;
     color: #aaa;
 }
 

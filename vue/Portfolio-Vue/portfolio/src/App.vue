@@ -1,12 +1,18 @@
 <template>
   <div class="container">
     <div class="page-wrapper">
-      <router-view></router-view>
+    <Home></Home>
     </div>
   </div>
 </template>
 
 <script>
+import Home from './components/Home.vue'
+export default {
+  components: {
+    Home
+  }
+}
 </script>
 
 <style>
