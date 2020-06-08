@@ -8,7 +8,24 @@
 
             "projectType": "Capstone (University)",
             "engine": "Unreal",
-            "languages": "C++, Blueprints"
+            "languages": "C++, Blueprints",
+            "bulletPoints": [
+                "Made base functionality in C++ for designers to implement behaviors",
+                "Implemented animations for player character and enemies",
+                "Created functionality for the UI",
+                "Designed, pitched and created GDD for the game",
+                "Acted as Creative Director for the game, supervising all designers and artists"
+            ],
+            "badges": [
+                "ue4",
+                "c++",
+                "blueprints",
+                "steam"
+            ],
+            "links": [
+                { "name": "steam page", "url": "https://store.steampowered.com/app/1290510/Your_Human_is_Sick/" },
+                { "name": "trailer", "url": "https://www.youtube.com/watch?v=bG8Opf1v6mI" }
+            ]
         },
         {
             "title": "Twin-Stick Shooter",
@@ -18,7 +35,24 @@
 
             "projectType": "Capstone (University)",
             "engine": "Unreal",
-            "languages": "C++, Blueprints"
+            "languages": "C++, Blueprints",
+            "badges": [
+                "ue4",
+                "c++",
+                "blueprints",
+                "in development"
+            ],
+
+            "bulletPoints": [
+                "Created and replicated ability component in C++",
+                "Created abilities in C++ that can be implemented in Blueprints",
+                "Created enemy spawner system",
+                "Prototyped multiplayer proof of concept"
+            ],
+
+            "links": [
+                {"name": "read more (soon!)", "url": "#" }
+            ]
         },
         {
             "title": "Defensees",
@@ -28,7 +62,26 @@
 
             "projectType": "Solo Project",
             "engine": "Unity",
-            "languages": "C#"
+            "languages": "C#",
+
+            "badges": [
+                "unity",
+                "c#",
+                "solo project",
+                "html5"
+            ],
+
+            "bulletPoints": [
+                "Designed and developed a turn-based system in C#",
+                "Designed and developed a wave progression system",
+                "Created and integrated a variety of enemies",
+                "Added extensive polish to the game, such as particle effects, sound effects and screen shake"   
+            ],
+
+            "links": [
+                { "name": "itch.io", "url": "https://fourthdimension.itch.io/defensees" },
+                { "name": "postmortem", "url": "https://fourthdimension.itch.io/defensees/devlog/121186/quick-postmortem" }
+            ]
         },
         {
             "title": "Bopping Blobs",
@@ -38,7 +91,26 @@
 
             "projectType": "Capstone (University)",
             "engine": "Unity",
-            "languages": "C#"
+            "languages": "C#",
+
+            "badges": [
+                "unity",
+                "c#",
+                "gameplay programming",
+                "ai programming",
+                "android"
+            ],
+
+            "bulletPoints": [
+                "Created gameplay (character movement and attack)",
+                "Created AI behavior for enemies",
+                "Create simple behavior tree framework for Unity",
+                "Added and integrated polish, such as particle, sound and decals"
+            ],
+
+            "links": [
+                {"name": "play store", "url": "https://play.google.com/store/apps/details?id=com.blackbanshee.boppingblobs&hl=en_US" }
+            ]
         }
     ],
     "tier2": [
@@ -49,7 +121,23 @@
 
             "projectType": "Partnership with Gilp Studio",
             "engine": "Unity",
-            "languages": "C#"
+            "languages": "C#",
+
+            "badges": [
+                "unity",
+                "c#",
+                "android"
+            ],
+
+            "bulletPoints": [
+                "Updated engine version, google play services, Firebase and AdMob",
+                "Added polish to the user interface and improved music transition on FMOD",
+                "Started working on iOS port"   
+            ],
+
+            "links": [
+                {"name": "play store", "url": "https://play.google.com/store/apps/details?id=studio.gilp.upsidedown&hl=en" }
+            ]
         },
         {
             "title": "Fourth Dimension",
@@ -58,7 +146,24 @@
 
             "projectType": "Solo Projects",
             "engine": "Unity",
-            "languages": "C#"
+            "languages": "C#",
+
+            "badges": [
+                "unity",
+                "c#",
+                "solo projects",
+                "android"
+            ],
+
+            "bulletPoints": [
+                "Created game studio website and identity",
+                "Created and released a casual game",
+                "Created and released an idle game"   
+            ],
+
+            "links": [
+                {"name": "fourthdimension", "url": "https://fourthdimension.studio/" }
+            ]
         }, 
         {
             "title": "2D Platformers",
@@ -67,7 +172,24 @@
 
             "projectType": "Game Jams",
             "engine": "Unity",
-            "languages": "C#"
+            "languages": "C#",
+
+            "badges": [
+                "unity",
+                "c#",
+                "solo projects",
+                "game jams"
+            ],
+
+            "bulletPoints": [
+                "Created 2D character controller using raycasts in C#",
+                "Created walljump and dash variations",
+                "Iterated and improved from previous projects"   
+            ],
+
+            "links": [
+                {"name": "read more (soon!)", "url": "#" }
+            ]
         },
         {
             "title": "GameMaker: Studio 2",
@@ -76,7 +198,23 @@
 
             "projectType": "Game Jams",
             "engine": "GameMaker: Studio 2",
-            "languages": "GML"
+            "languages": "GML",
+
+            "badges": [
+                "gms2",
+                "gml",
+                "game jams"
+            ],
+
+            "bulletPoints": [
+                "Made procedural dungeon generation in GML",
+                "Top-down melee combat system",
+                "Top-down shooter"   
+            ],
+
+            "links": [
+                {"name": "read more (soon!)", "url": "#" }
+            ]
         }
     ]
 }
