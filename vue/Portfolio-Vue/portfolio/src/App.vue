@@ -2,6 +2,11 @@
   <div class="container">
     <div class="page-wrapper">
     <Home></Home>
+
+    <hr>
+    <footer class="portfolio-footer">
+      <p>Guilherme Oliveira © 2020</p>
+    </footer>
     </div>
   </div>
 </template>
@@ -36,6 +41,12 @@ body {
 }
 
 .github-activity-entry {
+  text-align: center;
+}
+
+.portfolio-footer p {
+  padding-top: 3em;
+  padding-bottom: 3em;
   text-align: center;
 }
 </style>

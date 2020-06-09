@@ -4,17 +4,16 @@
             "title": "Your Human is Sick",
             "year": "2020",
             "preview": "yhis.png",
-            "shortDescription": "3D Top Down Adventure game about exploring your immune system.",
+            "shortDescription": "Your Human is Sick is an adventure game where you are a naive T-cell fighting through an infection through puzzles and combat!",
 
             "projectType": "Capstone (University)",
             "engine": "Unreal",
             "languages": "C++, Blueprints",
             "bulletPoints": [
-                "Made base functionality in C++ for designers to implement behaviors",
-                "Implemented animations for player character and enemies",
-                "Created functionality for the UI",
-                "Designed, pitched and created GDD for the game",
-                "Acted as Creative Director for the game, supervising all designers and artists"
+                "Acted as Creative Director for the game, supervising all designers, programmers and artists",
+                "Designed and implemented functionality for the UI with Blueprints",
+                "Created a Save System in C++ and Blueprints",
+                "Designed, pitched and created GDD for the game"
             ],
             "badges": [
                 "ue4",
@@ -31,7 +30,7 @@
             "title": "Twin-Stick Shooter",
             "year": "2020",
             "preview": "abilitysystem.png",
-            "shortDescription": "Ability System for a proof of concept for a shooter game.",
+            "shortDescription": "Currently working on a multiplayer twin-stick shooter",
 
             "projectType": "Capstone (University)",
             "engine": "Unreal",
@@ -46,12 +45,12 @@
             "bulletPoints": [
                 "Created and replicated ability component in C++",
                 "Created abilities in C++ that can be implemented in Blueprints",
-                "Created enemy spawner system",
-                "Prototyped multiplayer proof of concept"
+                "Empowered designers to create content by a data-driven spawning system in C++ with data tables",
+                "Prototyped multiplayer proof of concept along other programmers in the team"
             ],
 
             "links": [
-                {"name": "read more (soon!)", "url": "#" }
+                
             ]
         },
         {
@@ -81,7 +80,9 @@
             "links": [
                 { "name": "itch.io", "url": "https://fourthdimension.itch.io/defensees" },
                 { "name": "postmortem", "url": "https://fourthdimension.itch.io/defensees/devlog/121186/quick-postmortem" }
-            ]
+            ],
+
+            "gameTemplate": "DefenseesComponent"
         },
         {
             "title": "Bopping Blobs",

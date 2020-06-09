@@ -1,15 +1,8 @@
 <template>
     <div class="portfolio-entry">
-        <div class="portfolio-entry-intro">
-            <a href="/">
-                <img class="selfie" alt="It's me!" src="../assets/portrait2.jpg" />
-            </a>
-            <h4>Guilherme de Oliveira</h4>
-        </div>
-
         <div class="portfolio-icons">
             <ul class="icons-list">
-                <a href="/"><li><i class="fas fa-home"> home</i></li></a>
+                <a href="/"><li><i class="fas fa-home"> all projects</i></li></a>
             </ul>
         </div>
 
@@ -31,13 +24,21 @@
             </table>
         </div>
 
-        <!-- <p>{{ game.shortDescription }}</p> -->
+        <!-- TERRIBLE CODE FIX THIS -->
+        <div v-if="game.gameTemplate == 'DefenseesComponent'">
+            <DefenseesComponent></DefenseesComponent>
+        </div>
     </div>
 </template>
 
 <script>
+import DefenseesComponent from './gameComponents/Defensees.vue'
+
 export default {
     props: ['game'],
+    components: {
+        DefenseesComponent
+    },
     mounted: function() {
         if(!this.game) {
             window.location.href = '/';
@@ -100,5 +101,10 @@ export default {
     border: 1px solid #c44e45;
     padding: .5em 1.5em;
     color: #c44e45;
+}
+
+.portfolio-image-holder {
+    padding: 1em 0;
+    text-align: center;
 }
 </style>
