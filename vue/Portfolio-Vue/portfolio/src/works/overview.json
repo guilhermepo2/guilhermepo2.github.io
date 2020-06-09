@@ -2,6 +2,7 @@
     "tier1": [
         {
             "title": "Your Human is Sick",
+            "pageLink": "http://gueepo.me/PortfolioProjects/2020-05-15-your-human-is-sick/",
             "year": "2020",
             "preview": "yhis.png",
             "shortDescription": "Your Human is Sick is an adventure game where you are a naive T-cell fighting through an infection through puzzles and combat!",
@@ -55,6 +56,7 @@
         },
         {
             "title": "Defensees",
+            "pageLink": "http://gueepo.me/PortfolioProjects/2020-01-15-defensees/",
             "year": "2020",
             "preview": "ProtectRoguelike.png",
             "shortDescription": "A weird mix of turn based and tower defense, with big inspirations from roguelikes",
@@ -80,9 +82,7 @@
             "links": [
                 { "name": "itch.io", "url": "https://fourthdimension.itch.io/defensees" },
                 { "name": "postmortem", "url": "https://fourthdimension.itch.io/defensees/devlog/121186/quick-postmortem" }
-            ],
-
-            "gameTemplate": "DefenseesComponent"
+            ]
         },
         {
             "title": "Bopping Blobs",
@@ -189,7 +189,7 @@
             ],
 
             "links": [
-                {"name": "read more (soon!)", "url": "#" }
+                
             ]
         },
         {
@@ -214,7 +214,7 @@
             ],
 
             "links": [
-                {"name": "read more (soon!)", "url": "#" }
+                
             ]
         }
     ]

@@ -5,17 +5,16 @@
     <div v-else class="row display-flex">
         <div class="portfolio-entry-wrapper col-sm-6 col-md-6 col-lg-6" v-for="game in works.tier1" :key="game.title">
             <div class="portfolio-entry-content">
-
-                <!-- IMAGE AND TITLE
-                <router-link :to="{ name: 'portfolio-entry', params: {game: game} }">
+                <div v-if="game.pageLink">
+                    <a v-bind:href="game.pageLink" target="_BLANK">
+                        <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
+                        <h1 class="portfolio-title">{{ game.title }}</h1>
+                    </a>
+                </div>
+                <div v-else>
                     <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
-                </router-link>
-                <router-link :to="{ name: 'portfolio-entry', params: { game: game } }"><h1 class="portfolio-title">{{ game.title }}</h1></router-link>
-                TODO: Page with specific details
-                -->
-                <!-- <img @click="RenderProject(game)" class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/> -->
-                <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
-                <h1 class="portfolio-title">{{ game.title }}</h1>
+                    <h1 class="portfolio-title">{{ game.title }}</h1>
+                </div>
                 
                 <!-- BADGES -->
                 <div v-if="game.badges" class="work-badges">
@@ -81,21 +80,11 @@
 
 <script>
 import Works from '../works/overview.json'
-import PortfolioEntry from './PortfolioEntry.vue'
 
 export default {
     data: function() {
         return {
             works: Works,
-            workLoaded: null
-        }
-    },
-    components: {
-        "portfolio-entry": PortfolioEntry
-    },
-    methods: {
-        RenderProject(project) {
-            this.workLoaded = project
         }
     }
 }
