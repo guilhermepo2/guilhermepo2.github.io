@@ -86,6 +86,7 @@
         },
         {
             "title": "Bopping Blobs",
+            "pageLink": "http://gueepo.me/PortfolioProjects/2019-10-15-bopping-blobs/",
             "year": "2019",
             "preview": "BoppingBlobs.png",
             "shortDescription": "King of the Hill style game where you are always fighting to be the true king.",
@@ -117,6 +118,7 @@
     "tier2": [
         {
             "title": "Upside Down",
+            "pageLink": "http://gueepo.me/PortfolioProjects/2019-04-15-UpsideDown/",
             "preview": "UpsideDown.png",
             "shortDescription": "Had a short internship at GILP Studio, where I worked updating and adding futures to an already existing game.",
 
@@ -142,6 +144,7 @@
         },
         {
             "title": "Fourth Dimension",
+            "pageLink": "http://gueepo.me/PortfolioProjects/2019-03-15-FourthDimension/",
             "preview": "FourthDimension.png",
             "shortDescription": "Developed and released two mobile games",
 

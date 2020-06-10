@@ -42,15 +42,16 @@
 
         <div class="portfolio-entry-wrapper col-sm-3 col-md-3 col-lg-3" v-for="game in works.tier2" :key="game.title">
             <div class="portfolio-entry-content">
-                <!-- IMAGE AND TITLE
-                <router-link :to="{ name: 'portfolio-entry', params: {game: game} }">
+                <div v-if="game.pageLink">
+                    <a v-bind:href="game.pageLink" target="_BLANK">
+                        <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
+                        <h3 class="portfolio-title">{{ game.title }}</h3>
+                    </a>
+                </div>
+                <div v-else>
                     <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
-                </router-link>
-                <router-link :to="{ name: 'portfolio-entry', params: { game: game } }"><h1 class="portfolio-title">{{ game.title }}</h1></router-link>
-                TODO: Page with specific details
-                -->
-                <img class="portfolio-image" v-bind:src="require(`../assets/${game.preview}`)"/>
-                <h2 class="portfolio-title">{{ game.title }}</h2>
+                    <h3 class="portfolio-title">{{ game.title }}</h3>
+                </div>
                 
                 <!-- BADGES -->
                 <div v-if="game.badges" class="work-badges">
@@ -115,13 +116,18 @@ export default {
     margin-right: auto;
 }
 
+.portfolio-title {
+    padding-top: .5em;
+    margin-bottom: 0;
+}
+
 .portfolio-title, .portfolio-description {
     text-align:center;
 }
 
 .work-badges {
     text-align: center;
-    padding: .1em 0;
+    padding: .75em 0;
 }
 
 .portfolio-bullet-points {
