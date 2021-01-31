@@ -1,0 +1,219 @@
+body {
+    background: #161616;
+    line-height: 1.5;
+    font: 16px, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #b0b0b0;
+    margin: 0;
+    display:block;
+}
+
+a {
+    color: indigo;
+    text-decoration: none;
+}
+
+/*
+/* about me
+*/
+.about-me-container {
+    padding: 3%;
+}
+
+.about-me-container .about-me-text {
+    padding: 0.25%;
+}
+
+.about-me-container h2, .about-me-container h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.about-me-container .selfie {
+    max-width: 100%;
+    margin-bottom: 25px;
+    border-radius: 100%;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.about-me-container .selfie:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+}
+
+.about-me-container p {
+    text-align:justify;
+}
+
+/*
+/* header icons
+*/
+
+.header-icons-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content:center;
+}
+
+div.header-icons > ul > a > li > i {
+    color: #b0b0b0;
+    text-decoration: none;
+}
+
+.header-icons-list li {
+    border-radius: 20px;
+    border: 1px solid #b0b0b0;
+    margin: .5rem;
+    padding: .5rem 1rem;
+    transition: all .2s;
+    font-weight: 600;
+}
+
+.header-icons-list li:hover {
+    border: 1px solid #c44e45;
+    padding: .5rem 1.5rem;
+    color: #c44e45;
+}
+
+.page-footer {
+    padding-top: 3rem;
+}
+
+/*
+/* projects
+*/
+.project-container-title {
+    width: 100%;
+    text-align: center;
+    padding: 2em 0;
+}
+
+.project-item-outer {
+    padding: 1% .25em;
+}
+
+.project-item-img {
+    max-width: 350px;
+    padding: 2%;
+    border-radius: 10%;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.project-img-holder > .small-img {
+    width: 45%;
+}
+
+.project-item-img:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+}
+
+.project-item-tags {
+    margin-bottom: 1rem;
+}
+
+.project-item-description {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-align:justify
+}
+
+.project-item-description a {
+    color: white;
+    text-decoration: underline;
+}
+
+.card {
+    background-color: #222222;
+    border: none;
+    border-radius: 1rem;
+}
+
+.card-header button {
+    color: white;
+    background-color: #3d3d3d;
+}
+
+.card-header button:hover {
+    color: white;
+}
+
+/*
+* PROJECT PAGES
+*/
+
+.project-page-intro {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.project-page-intro .selfie {
+    width: 200px;
+    border-radius: 100%;
+    margin-bottom: 1rem;
+    box-shadow: 0;
+    opacity: 1;
+    transition: all .2s;
+} 
+
+.project-page-intro .selfie:hover {
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18),0 0px 12px 0 rgba(0,0,0,0.15);
+    opacity: .8;
+} 
+
+.card .card-paragraph {
+    text-align: justify;
+    padding: .25rem 2rem;
+}
+
+.project-page-header {
+    margin: 2.5% 0;
+    text-align: center;
+}
+
+.project-page-header table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-page-header table tr td {
+    padding: 5px;
+}
+
+.project-page-content {
+    font-size: 18px;
+    text-align: justify;
+    padding-bottom: 10%;
+}
+
+.project-img-holder {
+    text-align: center;
+}
+
+.project-page-img {
+    width: 75%;
+    margin: 2.5em 0 2.5em 0;
+}
+
+.accordion {
+    padding: 1% 0;
+}
+
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8 {
+  list-style-type: decimal !important;
+}
+
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8, li.L9 {
+   background: #000;
+}
+
+.center-content {
+    text-align: center;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Guilherme de Oliveira - Twin Stick</title>
+        <meta name="description" content="Gameplay Programmer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/desert.css">
+
+        <script src="https://kit.fontawesome.com/8b7fa406c3.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+          <div class="project-page-intro">
+            <a href="../index.html"><img class="selfie" alt="Guilherme Oliveira" src="../assets/img/portrait2.jpg"></a>
+            <h4>Guilherme de Oliveira</h4>
+            <p>Gameplay Programmer</p>
+          </div>
+
+          <div class="header-icons">
+            <ul class="header-icons-list">
+            <a href="../index.html"><li><i class="fas fa-home"> portfolio page</i></li></a>
+            </ul>
+          </div>
+
+            <div class="project-page-header">
+                <h1>Twin Stick Shooter</h1>
+                <table>
+                    <tr>
+                        <td><em>Project Type:</em></td>
+                        <td>Class Project</td>
+                    </tr>
+                    <tr>
+                        <td><em>Engine:</em></td>
+                        <td>Unreal</td>
+                    </tr>
+                    <tr>
+                        <td><em>Languages:</em></td>
+                        <td>Blueprints</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="project-page-content">
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/TwinStick/Melee_BT.png">
+              </div>
+
+                <p class="project-item-description">This Twin Stick project is a class project that I worked on January 2020, during my Master's Degree in Game Design. I was mainly responsible for doing the AI for the game, it was something I got very excited about, AI is personally something I like coding. And it would be the first time actually doing it using all the framework in Unreal, using Behavior Trees. The way the course is structured, I only worked on the project for around 40 hours during the entire month, but I'm still happy with my output and what I learned in the process.</p>
+
+                <p class="project-item-description">The main thing I worked on was doing two different types of AI: A Melee and a Ranged enemy, I spent a lot of time on these two as I had to create individual blueprints, create the behaviors and balance it while playing the game, so I could adjust numbers and find a combination that made the game more interesting.</p>
+
+                <div class="accordion" id="meleeBTAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#meleeBT" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Behavior Tree: Melee Enemy
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="meleeBT" class="collapse show" aria-labelledby="headingOne" data-parent="#meleeBTAccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/TwinStick/Melee_BT.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion" id="rangedBTAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#rangedBT" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Behavior Tree: Ranged Enemy
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="rangedBT" class="collapse show" aria-labelledby="headingOne" data-parent="#rangedBTAccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/TwinStick/Ranged_BT.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="project-item-description">My bread and butter for this, which were things I liked a lot, were Behavior Tree Tasks and Behavior Tree Decorators, the way they are set up in Unreal make it very easy to make them reusable, so there are a lot behaviors and tasks that are shared between these two types of enemies and the boss of the games.</p>
+
+                <div class="accordion" id="lookatplayerBTTAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lookatplayer" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Behavior Tree Tasks: Look At the Player
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="lookatplayer" class="collapse show" aria-labelledby="headingOne" data-parent="#lookatplayerBTTAccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/TwinStick/LookAtPlayer_BTTask.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion" id="lookAwayAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lookaway" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Behavior Tree Tasks: Run Away from Player
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="lookaway" class="collapse show" aria-labelledby="headingOne" data-parent="#lookAwayAccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/TwinStick/LookAwayFromPlayer_BTTask.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion" id="moveTowardsAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#movetowards" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file"></i> Behavior Tree Tasks: Run Towards Player
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="movetowards" class="collapse show" aria-labelledby="headingOne" data-parent="#moveTowardsAccordion">
+                      <div class="card-body">
+                        <img class="card-img-top" src="../assets/img/TwinStick/MoveTowardsPlayer_BTTask.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="page-footer">
+                  <div class="header-icons">
+                    <ul class="header-icons-list">
+                      <a href="../index.html"><li><i class="fas fa-home"> portfolio home</i></li></a>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+           <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+    $('.collapse').collapse()
+    </script>
+    </body>
+</html>
