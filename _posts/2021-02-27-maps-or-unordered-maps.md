@@ -39,7 +39,7 @@ And we know that 1 (one) is smaller than log(n)!
 
 So how do we change from a map to an unordered map? Well, they were both designed to do the same things and solve the same problems, but in different ways, so luckily their function signatures and everything is the same, so the only change needed was changing from `std::map<std::string, AnimationClip*> m_AnimationList;` to `std::unordered_map<std::string, AnimationClip*> m_AnimationList;` and we have our lovely pirate running again!
 
-![run animation]({{site.baseurl}}/assets/r2d_runanimation2.gif)
+![run animation]({{site.baseurl}}/images/cppmeditations/r2d_runanimation2.gif)
 
 Follow me on [twitter](https://twitter.com/guilhermepo2)!!
 
