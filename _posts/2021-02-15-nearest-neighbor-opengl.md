@@ -10,7 +10,7 @@ For some context, I am developing a lightweight 2D game engine, [realiti2D](http
 
 But when loading a gorgeous pixel art pirate character, this is what I saw:
 
-![Linear Filter]({{site.baseurl}}/assets/filter_linear.png)
+![Linear Filter]({{site.baseurl}}/images/cppmeditations/filter_linear.png)
 
 Oh no, that's **not** what I want.
 
@@ -34,7 +34,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 So this is how it looks now:
 
-![Nearest Neighbor Filter]({{site.baseurl}}/assets/filter_nearest.png)
+![Nearest Neighbor Filter]({{site.baseurl}}/images/cppmeditations/filter_nearest.png)
 
 Perfect!
 

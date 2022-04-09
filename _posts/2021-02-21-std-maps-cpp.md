@@ -32,7 +32,7 @@ AnimationClip* GetAnimationClip(std::string ClipID) {
 
 And finally, to play an animation I just have a pointer to the current animation being played, and that's where all the logic and sprites come from: `m_CurrentAnimation = m_AnimationList[AnimationName]`.
 
-![run animation]({{site.baseurl}}/assets/r2d_runanimation2.gif)
+![run animation]({{site.baseurl}}/images/cppmeditations/r2d_runanimation2.gif)
 
 Now, it's beyond this short post to talk about unordered maps, whether you should be using strings as a key or not, so maybe in the future I can briefly bring that up?!
 
