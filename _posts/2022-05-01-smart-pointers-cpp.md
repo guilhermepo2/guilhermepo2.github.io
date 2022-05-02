@@ -78,7 +78,7 @@ int main() {
 }
 ```
 
-Going back to our raw pointer example, how could we fix it? The below is perflectly possible!
+Going back to our raw pointer example, how could we fix it? The below is perfectly possible!
 
 ```cpp
 vec2* v = new vec2();
