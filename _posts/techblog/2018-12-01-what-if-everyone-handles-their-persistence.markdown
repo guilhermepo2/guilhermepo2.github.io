@@ -4,6 +4,7 @@ title: What if everyone handles their own persistence?
 date: 2018-12-01 09:00:00 -0200
 image:  '/images/techblog/persistent-cat.jpg'
 tags:   [game-development]
+type: techblog
 ---
 
 Persistence is one of those things that I never want to do and always procrastinate. Persistence is basically having data available at all times on software, to not lose your data when you turn it off, to have it back to you when you turn it on and it is really important for games.

@@ -4,6 +4,7 @@ title:  Coding a simple State Machine
 date:   2019-07-03 09:00:00 -0200
 image:  '/images/techblog/stateMachineWorkflow.png'
 tags:   [game-development]
+type: techblog
 ---
 
 This blog post is my simple take on State Machines and how I usually use them in my projects, specially in games made in Unity. The image on the header is from another article on the same subject that I consider to be more complete and better explained, I highly recommend you to read the article: [State Pattern](https://gameprogrammingpatterns.com/state.html) - If you still want to read my take and how I approach it, keep reading!

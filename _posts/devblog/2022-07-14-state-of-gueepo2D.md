@@ -4,6 +4,7 @@ title:  state of gueepo2D
 date:   2022-07-14 10:00
 image:  '/images/gueepo2D.png'
 tags:   [gueepo2D]
+type: devblog
 ---
 
 In case you are here by accident or some other reason, I am currently developing a simple 2D game engine in C++, you can find it on [github](https://github.com/guilhermepo2/gueepo2D) - even it's been enough time, maybe you can even make a game with it now!

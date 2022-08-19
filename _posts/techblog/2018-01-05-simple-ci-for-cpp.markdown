@@ -4,6 +4,7 @@ title:  Setting Up Circle CI on GitHub for C++ and CMake
 date:   2018-01-10 10:37:20 -0200
 image:  '/images/techblog/mistake.jpg'
 tags:   [c++, cmake, ci]
+type: techblog
 ---
 
 It’s been 3 months or more since I started my internship on automated testing. I studied and learned about docker, testing libraries, automated testing (of course), continuous development and, finally, continuous integration. Knowing about all of this made me a programmer twice as better than I was. This is a lot of improvement for 3 months and some days. So I started picking interest in testing related tasks also on personal projects and on my most recent one I decided to set up a CI environment on GitHub.

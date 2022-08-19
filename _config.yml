@@ -85,6 +85,18 @@ defaults:
     values:
       layout: "posts"
       type: "cppmeditations"
+  -
+    scope:
+      path: "_posts/techblog"
+    values:
+      layout: "posts"
+      type: "techblog"
+  -
+    scope:
+      path: "_posts/devblog"
+    values:
+      layout: "posts"
+      type: "devblog"
 
 relative_links:
   enabled:     true

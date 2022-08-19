@@ -4,6 +4,7 @@ title: Even better Screenshake in Unity!
 date: 2019-04-07 09:00:00 -0200
 image:  '/images/techblog/theshake2.jpg'
 tags:   [game-development]
+type: techblog
 ---
 
 Some months ago I wrote about doing Screenshake in Unity, and now I'm writing about an even better way to make Screenshake in Unity! I will just repeat the beggining of the other post here now.

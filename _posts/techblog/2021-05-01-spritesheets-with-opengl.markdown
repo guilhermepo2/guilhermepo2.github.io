@@ -4,6 +4,7 @@ title:  Figuring out spritesheets on Modern OpenGL
 date:   2021-05-01 09:00:00 -0200
 image:  '/images/techblog/opengl_spritesheets.png'
 tags: [game-engine, opengl]
+type: techblog
 ---
 
 Probably one of the classicals problems you will face when doing a 2D game, or a 2D game engine, is: "How to make a sprite sheet?". 
