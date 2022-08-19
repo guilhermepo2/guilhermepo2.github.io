@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://gueepo.me//sitemap.xml
+Sitemap: https://gueepo.me/sitemap.xml
