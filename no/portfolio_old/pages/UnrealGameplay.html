@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Guilherme de Oliveira - Unreal</title>
+        <meta name="description" content="Gameplay Programmer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/desert.css">
+
+        <script src="https://kit.fontawesome.com/8b7fa406c3.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+          <div class="project-page-intro">
+            <a href="../index.html"><img class="selfie" alt="Guilherme Oliveira" src="../assets/img/portrait2.jpg"></a>
+            <h4>Guilherme de Oliveira</h4>
+            <p>Gameplay Programmer</p>
+          </div>
+
+          <div class="header-icons">
+            <ul class="header-icons-list">
+            <a href="../index.html"><li><i class="fas fa-home"> portfolio page</i></li></a>
+            </ul>
+          </div>
+
+            <div class="project-page-header">
+                <h1>Unreal Gameplay</h1>
+                <table>
+                    <tr>
+                        <td><em>Project Type:</em></td>
+                        <td>Gameplay Practice Projects</td>
+                    </tr>
+                    <tr>
+                        <td><em>Engine:</em></td>
+                        <td>Unreal</td>
+                    </tr>
+                    <tr>
+                        <td><em>Languages:</em></td>
+                        <td>C++, Blueprints</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="project-page-content">
+              
+              <p class="project-item-description">During my free time I enjoy practicing and prototyping Gameplay Mechanics, this way I can always be improving and seeing different challenges that can come up in this job. I enjoy taking high quality assets and putting things together, adding the design and code part of the equation to it - in these examples, I'm using one Paragon character (Sparrow) and a free model from the Mixamo website.</p>
+
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/UnrealPractice/Sparrow.png">
+              </div>
+
+              <h2>Unreal Sparrow</h2>
+              <p class="project-item-description">The Challenge I'm imposing to myself with this one is getting something that was made for a game, in this case, Paragon, and how I can adapt it to another type of game and putting all these things together. I always wanted to prototype a shooting mechanic with a bow, so I decided to use Sparrow to try this.</p>
+
+              <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="statesAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#states" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Sparrow States
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="states" class="collapse show" aria-labelledby="headingOne" data-parent="#statesAccordion">
+                      <div class="card-body">
+                        <p class="card-paragraph">
+                          The Sparrow Gameplay Character has 4 main states: BowDown, BowAiming, FastShot and HeavyShot, with a simple difference between those.
+
+                          <ul>
+                            <li>Bow Down: High velocity and no aiming capabilities</li>
+                            <li>Bow Aiming: Medium Velocity, can aim to prepare to shoot</li>
+                            <li>Fast Shot: Locks movements for a little while, shots for low damage</li>
+                            <li>Heavy Shot: Locks movement while charging bow, player has to release key to shot for higher damage</li>
+                          </ul>
+                        </p>
+
+                        <pre class="prettyprint linenums lang-cpp">
+UENUM(BlueprintType)
+enum class EBowStatus : uint8 {
+  EBS_BowDown       UMETA(DisplayName = "BowDown"),
+  EBS_BowAiming     UMETA(DisplayName = "BowAiming"),
+  EBS_FastShot      UMETA(DisplayName = "FastShot"),
+  EBS_HeavyShot     UMETA(DisplayName = "HeavyShot"),
+  EBS_MAX           UMETA(DisplayName = "DefautMAX")
+};
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="stateToggleAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#stateToggle" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Movement and Changing States
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="stateToggle" class="collapse show" aria-labelledby="headingOne" data-parent="#stateToggleAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cpp">
+void AThirdPersonShooterCharacter::MoveForward(float Value) {
+  LastFrameUpValue = Value;
+  MoveCharacterWithAxis(EAxis::X, Value);
+}
+
+void AThirdPersonShooterCharacter::MoveRight(float Value) {
+  LastFrameRightValue = Value;
+  MoveCharacterWithAxis(EAxis::Y, Value);
+}
+
+void AThirdPersonShooterCharacter::MoveCharacterWithAxis(EAxis::Type AxisType, float Value) {
+  if (Controller != nullptr && Value != 0.0f) {
+    const FRotator Rotation = Controller->GetControlRotation();
+    const FRotator YawRotation = FRotator(0.0f, Rotation.Yaw, 0.0f);
+    const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(AxisType);
+    AddMovementInput(Direction, Value);
+  }
+}
+
+/*
+	Set the Current Bow Status for the Player Character
+	- The only reason this function is not FORCEINLINE is that we might want to execute some behavior when going to some states
+*/
+void AThirdPersonShooterCharacter::SetBowStatus(EBowStatus BowStatus) {
+	if (BowStatus == EBowStatus::EBS_BowDown) {
+		GetCharacterMovement()->MaxWalkSpeed = BowAimingPlayerVelocity;
+		GetCharacterMovement()->bOrientRotationToMovement = true;
+		GetCharacterMovement()->bUseControllerDesiredRotation = false;
+	}
+	else if (BowStatus == EBowStatus::EBS_BowAiming) {
+		GetCharacterMovement()->MaxWalkSpeed = BowDownPlayerVelocity;
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+		GetCharacterMovement()->bUseControllerDesiredRotation = true;
+	}
+
+	CurrentBowStatus = BowStatus;
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/UnrealPractice/ARPG.png">
+              </div>
+
+              <h2>ARPG Demo</h2>
+              <p class="project-item-description">The point of this Demo is to challenge myself into making an Action RPG combat mechanic, Dark Souls and Bloodborne are games that I take as a reference for everything as a designer and developer, so trying and understanding what goes into that type of combat is something that takes me interest!</p>
+
+              <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="attackAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#attack" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Character Attack
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="attack" class="collapse show" aria-labelledby="headingOne" data-parent="#attackAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cpp">
+void AMainCharacter::Attack() {
+  if (!bIsAttacking) {
+    bIsAttacking = true;
+
+    UAnimInstance* pAnimInstance = GetMesh()->GetAnimInstance();
+    if (pAnimInstance != nullptr && pCombatMontage != nullptr) {
+      int32 Section = FMath::RandRange(0, 1);
+
+      switch (Section) {
+      case 0:
+        pAnimInstance->Montage_Play(pCombatMontage, 1.5f);
+        pAnimInstance->Montage_JumpToSection(FName("Attack_2"), pCombatMontage);
+        break;
+      case 1:
+        pAnimInstance->Montage_Play(pCombatMontage, 2.0f);
+        pAnimInstance->Montage_JumpToSection(FName("Attack_1"), pCombatMontage);
+        break;
+      default:
+        break;
+      }
+    }
+  }
+}
+
+void AMainCharacter::FinishedAttack() {
+  bIsAttacking = false;
+
+  if (bLeftMouseButtonDown) {
+    Attack();
+  }
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="weaponAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#equipWeapon" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Weapon Equipping
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="equipWeapon" class="collapse show" aria-labelledby="headingOne" data-parent="#weaponAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cpp">
+void AWeapon::EquipWeaponIntoCharacter(AMainCharacter* CharacterToEquip) {
+  if (CharacterToEquip != nullptr) {
+    /** Ignoring the collision with the camera, so it doesn't affect the spring arm */
+    pWeaponSkeletalMesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
+    pWeaponSkeletalMesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
+    pWeaponSkeletalMesh->SetSimulatePhysics(false);
+
+    const USkeletalMeshSocket* pRightHandSocket = CharacterToEquip->GetMesh()->GetSocketByName("RightHandSocket");
+
+    if (pRightHandSocket != nullptr) {
+      pRightHandSocket->AttachActor(this, CharacterToEquip->GetMesh());
+      bRotate = false;
+      
+      AWeapon* CurrentlyEquippedWeapon = CharacterToEquip->GetEquippedWeapon();
+      
+      if (CurrentlyEquippedWeapon != nullptr) {
+        CurrentlyEquippedWeapon->Destroy();
+      }
+
+      CharacterToEquip->SetEquippedWeapon(this);
+      CharacterToEquip->SetActiveOverlappingItem(nullptr);
+    }
+
+    if (pOnEquipSound != nullptr) {
+      UGameplayStatics::PlaySound2D(this, pOnEquipSound);
+    }
+
+    if (!bWeaponParticle) {
+      pIdleParticlesComponent->Deactivate();
+    }
+  }
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <div class="page-footer">
+                  <div class="header-icons">
+                    <ul class="header-icons-list">
+                      <a href="../index.html"><li><i class="fas fa-home"> portfolio home</i></li></a>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+           <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+    $('.collapse').collapse()
+    </script>
+    </body>
+</html>

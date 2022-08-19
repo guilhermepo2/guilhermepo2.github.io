@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Guilherme de Oliveira - 2D Platformers</title>
+        <meta name="description" content="Gameplay Programmer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/desert.css">
+
+        <script src="https://kit.fontawesome.com/8b7fa406c3.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+          <div class="project-page-intro">
+            <a href="../index.html"><img class="selfie" alt="Guilherme Oliveira" src="../assets/img/portrait2.jpg"></a>
+            <h4>Guilherme de Oliveira</h4>
+            <p>Gameplay Programmer</p>
+          </div>
+
+          <div class="header-icons">
+            <ul class="header-icons-list">
+            <a href="../index.html"><li><i class="fas fa-home"> portfolio page</i></li></a>
+            </ul>
+          </div>
+
+            <div class="project-page-header">
+                <h1>2D Platformers</h1>
+                <table>
+                    <tr>
+                        <td><em>Project Type:</em></td>
+                        <td>Game Jams</td>
+                    </tr>
+                    <tr>
+                        <td><em>Engine:</em></td>
+                        <td>Unity</td>
+                    </tr>
+                    <tr>
+                        <td><em>Languages:</em></td>
+                        <td>C#</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="project-page-content">
+
+              <p>What can I say about 2D Platformers? Every single person will tell you about their story about first playing Super Mario World and falling in love with video games or simply remembering how that shaped what they thought about videogames and shaped their childhood somehow. That's not my story. Although I have played Super Mario Word, my SNES experience was more geared towards Donkey Kong Country, but my love for platformers really only came in 2018 when I played through Celeste, and then I played through Super Mario Bros 3 and eventually Super Mario Maker 2.</p>
+
+              <p>It didn't take long until I got curious about making platformers, and making one after the other really made me learn a lot about what makes a feel fun to play and what makes a game feel good, I like to say platformers are like the Calculus of game development, the good old foundation and basics. I still love and am very curious about the genre, one of my biggest career goals/dream is to make a 3D Platformer that would rival any 3D Mario game!</p>
+
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/Platformers/Secludere.png">
+              </div>
+              <h2>Secludere</h2>
+              <p class="project-item-description">Secludere was my game for the "Become Better at Something Jam" - and there is not much interesting things going on here, a basic character movement using Physics, the biggest goal for me on this game jam was to practice pixel art animation and music production.</p>
+
+              <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="RunFunctionAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#runFunction" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Run Function
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="runFunction" class="collapse show" aria-labelledby="headingOne" data-parent="#RunFunctionAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+private void Run() {
+  float movement = m_rigidbody.velocity.x;
+  movement += Input.GetAxisRaw("Horizontal");
+  movement *= Mathf.Pow(1f - horizontalDamping, Time.deltaTime * 10f);
+
+  movement = Mathf.Clamp(movement, -maxPlayerVelocity, maxPlayerVelocity);
+  m_rigidbody.velocity = new Vector2(movement, m_rigidbody.velocity.y);
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="JumpFunctionAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#jumpFunction" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Jump Function
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="jumpFunction" class="collapse show" aria-labelledby="headingOne" data-parent="#JumpFunctionAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+private void Jump() {
+  m_groundedRemember -= Time.fixedDeltaTime;
+  m_jumpPressedRemember -= Time.fixedDeltaTime;
+
+  if(m_feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+    m_groundedRemember = groundedRememberTime;
+  }
+
+  if(Input.GetButtonDown("Jump")) {
+    m_jumpPressedRemember = jumpPressedRememberTime;
+  }
+
+  if(Input.GetButtonUp("Jump")) {
+    if(m_rigidbody.velocity.y > 0) {
+      m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_rigidbody.velocity.y * cutJumpHeight);
+    }
+  }
+
+  if((m_jumpPressedRemember > 0) && ( m_groundedRemember > 0)) {
+    m_jumpPressedRemember = 0;
+    m_groundedRemember = 0;
+
+    m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce);
+    SoundManager.instance.PlayClip(jumpClip);
+  }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+              <div class="page-footer">
+                <div class="header-icons">
+                  <ul class="header-icons-list">
+                    <a href="https://gueepo.itch.io/secludere" target="_BLANK"><li><i class="fas fa-gamepad"> play secludere</i></li></a>
+                    <a href="https://gueepo.itch.io/secludere/devlog/49559/secludere-postmortem" target="_BLANK"><li><i class="fas fa-window-maximize"> postmortem</i></li></a>
+                    <a href="https://github.com/guilhermepo2/becomeBetterJam" target="_BLANK"><li><i class="fab fa-github-alt"> source code</i></li></a>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/Platformers/Journey.png">
+              </div>
+              <h2>Journey to the Light</h2>
+              <p class="project-item-description">Journey to the Light was my entry for Jimjam, a Game Jam hosted by Game Development Underground's host Tim Ruswick. The theme was Ouroboros. Mechanics-wise this game is an iteration on Secludere, but I added a double jump and my first attempt to make a dash mechanic work, I also added some attack mechanics to try that.</p>
+
+              <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="journeyRunFunctionAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#journeyRunFunction" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Air Dash Function
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="journeyRunFunction" class="collapse show" aria-labelledby="headingOne" data-parent="#journeyRunFunctionAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+private IEnumerator AirDashRoutine(float returnTime) {
+  m_rigidbody.gravityScale = dashGravity;
+  maxPlayerVelocity = airDashForce;
+  yield return new WaitForSeconds(returnTime);
+  m_rigidbody.gravityScale = m_originalGravity;
+  maxPlayerVelocity = m_originalMaxVelocity;
+}
+
+void AirDash() {
+  if(!m_canDash) return;
+
+  Debug.Log("Air Dash Vertical: " + Input.GetAxisRaw("Vertical"));
+
+  if(Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("Dash")) {
+    StartCoroutine(AirDashRoutine(airDashTime));
+    m_spriteRenderer.color = dashColor;
+    float dashHorizontalMovement = Input.GetAxisRaw("Horizontal");
+    float dashVerticalMovement = Input.GetAxisRaw("Vertical");
+
+    Debug.Log("Air Dash Horizontal: " + dashHorizontalMovement);
+    
+    if(dashHorizontalMovement == 0 && dashVerticalMovement == 0) {
+      dashHorizontalMovement = Mathf.Sign(transform.localScale.x);
+    }
+
+    m_rigidbody.velocity = new Vector2((airDashForce * 2f) * dashHorizontalMovement, (airDashForce / 2f) * dashVerticalMovement);
+    m_canDash = false;
+  }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="journeyJumpAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#journeyJump" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Jump Function
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="journeyJump" class="collapse show" aria-labelledby="headingOne" data-parent="#journeyJumpAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+void Jump() {
+  m_groundedRemember -= Time.fixedDeltaTime;
+  m_jumpPressedRemember -= Time.fixedDeltaTime;
+
+  if(m_feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+    m_groundedRemember = groundedRememberTime;
+    m_spriteRenderer.color = Color.white;
+  }
+
+  if(Input.GetButtonDown("Jump")) {
+    m_jumpPressedRemember = jumpPressedRememberTime;
+    m_canDoubleJump = false;
+  }
+
+  if(Input.GetButtonUp("Jump")) {
+    if(m_rigidbody.velocity.y > 0) {
+      m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_rigidbody.velocity.y * cutJumpHeight);
+    }
+  }
+
+  if(m_jumpPressedRemember > 0 && m_groundedRemember > 0) {
+    m_jumpPressedRemember = 0;
+    m_groundedRemember = 0;
+
+    m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce);
+    m_canDoubleJump = true;
+    m_canDash = true;
+    if(jumpClip) SoundManager.instance.PlaySfx(jumpClip);
+  }
+}
+
+void DoubleJump() {
+  if(m_canDoubleJump && Input.GetButtonDown("Jump")) {
+    m_canDoubleJump = false;
+    m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce);
+    if(jumpClip) SoundManager.instance.PlaySfx(jumpClip);
+  }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+              <div class="page-footer">
+                <div class="header-icons">
+                  <ul class="header-icons-list">
+                    <a href="https://gueepo.itch.io/light-journey" target="_BLANK"><li><i class="fas fa-gamepad"> play journey to the light</i></li></a>
+                    <a href="https://github.com/guilhermepo2/jimjam2" target="_BLANK"><li><i class="fab fa-github-alt"> source code</i></li></a>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/Platformers/Happily.png">
+              </div>
+              <h2>happily(never)after</h2>
+              <p class="project-item-description">happily(never)after is a platformer game made as an entry for Weekly Game Jam 76, where the theme was Afterlife. The biggest inspiration for this one was Celeste and the goal was to have a game that was enjoyable solely by the gameplay itself. It was the first time I didn't use physics to create a player controller, I improved on the jump and felt really good about the wall jump and the dash mechanic.</p>
+
+              <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="happilyJumpAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#happilyJump" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Jump Function
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="happilyJump" class="collapse show" aria-labelledby="headingOne" data-parent="#happilyJumpAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+private void Jump() {
+  m_groundedRemember -= Time.deltaTime;
+  m_jumpPressedRemember -= Time.deltaTime;
+
+  if(Input.GetButtonDown("Jump")) {
+      m_jumpPressedRemember = jumpPressedRememberTime;
+  }
+
+  /* Jumping */
+  if((m_groundedRemember > 0) && (m_jumpPressedRemember > 0)) {
+      /* Jump Statistics */
+      StatisticsCollector.instance.jumpCount++;
+
+      m_jumpPressedRemember = 0;
+      m_groundedRemember = 0;
+      m_velocity.y = Mathf.Sqrt(2f * jumpHeight * -m_gravity);
+
+      if(m_audioSource && jumpClip) {
+          m_audioSource.PlayOneShot(jumpClip);
+      }
+
+      InstantiateDustParticle(dustParticles, transform.position + (Vector3.down / 2f));
+
+      m_currentState = EPlayerState.Jumping;
+      StartCoroutine(ChangeScaleRoutine(spriteChild.localScale * m_goingUpScaleMultiplier));
+  }
+}
+
+private void CutJump() {
+  if(Input.GetButtonUp("Jump")) {
+      if(m_velocity.y > 0) {
+          m_velocity.y = m_velocity.y * cutJumpHeight;
+      }
+  }
+}
+
+private void WallJump() {
+  bool isColliding = (m_controller.IsColliding(Vector2.right) || m_controller.IsColliding(Vector2.left));
+  int dir = m_controller.IsColliding(Vector2.right) ? -1 : 1;
+  bool isJumping = Input.GetButtonDown("Jump");
+
+  if(isColliding && isJumping) {
+      /* Jump Statistics */
+      StatisticsCollector.instance.jumpCount++;
+
+      m_gravity = gravity;
+
+      m_velocity.y = Mathf.Sqrt(2f * jumpHeight * -m_gravity);
+      m_velocity.x = dir * Mathf.Sqrt(m_wallJumpHorizontalMultiplier * runSpeed);
+
+      if(dir == 1) {
+          InstantiateDustParticle(wallJumpLeftParticle, transform.position + (Vector3.left / 4f));
+      } else if(dir == -1) {
+          InstantiateDustParticle(wallJumpRightParticle, transform.position + (Vector3.right / 4f));
+      }
+
+      if(m_audioSource && jumpClip) {
+          m_audioSource.PlayOneShot(jumpClip);
+      }
+      
+      /* Updating Scale on Wall Jump */
+      spriteChild.localScale = new Vector3(Mathf.Sign(m_velocity.x) * Mathf.Abs(spriteChild.localScale.x), spriteChild.localScale.y, spriteChild.localScale.z);
+
+      m_currentState = EPlayerState.Jumping;
+  }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="happilyDashAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#happilyDash" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Dash Function
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="happilyDash" class="collapse show" aria-labelledby="headingOne" data-parent="#happilyDashAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+private IEnumerator DashRoutine() {
+  yield return null;
+
+  if(m_audioSource && dashClip) {
+      m_audioSource.PlayOneShot(dashClip);
+  }
+
+  /* CineMachine camera */
+  // Screenshake.instance.ShakeCamera(0.2f);
+  CameraScript.instance.ShakeScreen(.05f);
+
+  float horizontalMovement = Input.GetAxisRaw("Horizontal");
+  float verticalMovement = Input.GetAxisRaw("Vertical");
+  Vector2 dir;
+
+  if(horizontalMovement == 0 && verticalMovement == 0) {
+      dir = new Vector2(Mathf.Sign(spriteChild.localScale.x), 0f);
+  } else {
+      dir = new Vector2(horizontalMovement, verticalMovement);   
+  }
+
+  Vector2 dashVelocity = dir.normalized * dashSpeed;
+  m_velocity = dashVelocity;
+  m_currentState = EPlayerState.Dashing;
+  m_gravity = 0;
+
+  
+  float fractionedTime = m_dashTime / 3f;
+  for(int i = 0; i < 3; i++) {
+      InstantiateDustParticle(dustParticles, transform.position);
+      yield return new WaitForSeconds(fractionedTime);
+  }
+
+  m_gravity = gravity;
+  m_currentState = EPlayerState.Jumping;
+
+}
+
+private void Dash() {
+  if(Input.GetButtonDown("Dash")) {
+      /* Dash Statistics */
+      StatisticsCollector.instance.dashCount++;
+
+      StartCoroutine(DashRoutine());
+  }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+              <div class="page-footer">
+                <div class="header-icons">
+                  <ul class="header-icons-list">
+                    <a href="https://gueepo.itch.io/happilyneverafter" target="_BLANK"><li><i class="fas fa-gamepad"> play happily(never)after</i></li></a>
+                    <a href="https://github.com/guilhermepo2/wgj76" target="_BLANK"><li><i class="fab fa-github-alt"> source code</i></li></a>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="project-img-holder">
+                <img class="img-fluid project-page-img" src="../assets/img/Platformers/MarioReverse.gif">
+              </div>
+              <h2>Super Mario Bros 3 Reverse Engineering</h2>
+              <p class="project-item-description">All these led to my 2D Platformer Masterpiece: Reverse Engineering Super Mario Bros 3, the GOAT itself - I created my own Character Controller using Raycasts, wrote all the jumping behavior in functions of how fast the player moved and how tall and wide the jump should be, these made me able to fine tune the jump to get a feel really close to the original game.</p>
+
+              <p class="project-item-description">Although this is not an original game idea and I didn't explore much of Level Design on this one, I'm very proud of this piece and I can definitely see a road that started with Secludere and finished here, a platformer movement/jump mechanics that I believe has a professional level, which makes me really happy!</p>
+              <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="jumpyCCAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#jumpyCC" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Actor (Character Controller)
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="jumpyCC" class="collapse show" aria-labelledby="headingOne" data-parent="#jumpyCCAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+#define DEBUG_CC2D_RAYS
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+
+[RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
+public class Actor : MonoBehaviour {
+
+    [System.Serializable]
+    protected struct ActorRaycastOrigins {
+        public Vector3 topLeft;
+        public Vector3 topRight;
+        public Vector3 bottomRight;
+        public Vector3 bottomLeft;
+    }
+
+    [System.Serializable]
+    public class ActorCollisionState {
+        public bool collisionAbove;
+        public bool collisionRight;
+        public bool collisionBelow;
+        public bool collisionLeft;
+        public bool becameGroundedThisFrame;
+        public bool wasGroundedLastFrame;
+
+        public bool HasCollision() {
+            return (collisionAbove || collisionRight || collisionBelow || collisionLeft);
+        }
+
+        public void ResetCollision() {
+            collisionAbove = collisionRight = collisionBelow = collisionLeft = becameGroundedThisFrame = false;
+        }
+    }
+
+    public event Action<RaycastHit2D> OnControllerCollidedEvent;
+    public event Action<Collider2D> OnTriggerEnterEvent;
+    public event Action<Collider2D> OnTriggerStayEvent;
+    public event Action<Collider2D> OnTriggerExitEvent;
+
+    protected bool ignoreOneWayPlatformsThisFrame;
+    private float m_skinWidth = 0.0625f;
+    public float SkinWidth {
+        get { return m_skinWidth; }
+        set {
+            m_skinWidth = value;
+            RecalculateDistanceBetweenRays();
+        }
+    }
+
+    public LayerMask platformMask = 0;
+    public LayerMask triggerMask = 0;
+    public LayerMask oneWayPlatformMask = 0;
+
+    private const int totalHorizontalRays = 6;
+    private const int totalVerticalRays = 4;
+
+    private BoxCollider2D m_boxCollider;
+    private Rigidbody2D m_rigidBody2D;
+    protected ActorCollisionState collisionState = new ActorCollisionState();
+    public ActorCollisionState CollisionState { get; }
+    public bool isGrounded { get { return collisionState.collisionBelow; } }
+    protected Vector3 m_velocity;
+    private const float km_SkinWidthFloatFudgeFactor = 0.001f;
+
+    protected ActorRaycastOrigins m_raycastOrigins;
+    private RaycastHit2D m_raycastHit;
+    List<RaycastHit2D> m_raycastHitsThisFrame = new List<RaycastHit2D>(2);
+
+    private float m_verticalDistanceBetweenRays;
+    private float m_horizontalDistanceBetweenRays;
+
+    public void OnTriggerEnter2D(Collider2D collision) {
+        OnTriggerEnterEvent?.Invoke(collision);
+    }
+
+    public void OnTriggerStay2D(Collider2D collision) {
+        OnTriggerStayEvent?.Invoke(collision);
+    }
+
+    public void OnTriggerExit2D(Collider2D collision) {
+        OnTriggerExitEvent?.Invoke(collision);
+    }
+
+    void Awake() {
+        Application.targetFrameRate = 60;
+
+        // add our one-way platforms to our normal platform mask so that we can land on them from above
+        platformMask |= oneWayPlatformMask;
+
+        // cache some components
+        m_boxCollider = GetComponent<BoxCollider2D>();
+        m_rigidBody2D = GetComponent<Rigidbody2D>();
+
+        // here, we trigger our properties that have setters with bodies
+        SkinWidth = m_skinWidth;
+
+        // Ignore all layers that are not on Trigger Mask.
+        // Everything else will be handled by the Actor.
+        for (var i = 0; i < 32; i++) {
+            if ((triggerMask.value & 1 << i) == 0) {
+                Physics2D.IgnoreLayerCollision(gameObject.layer, i);
+            }
+        }
+    }
+
+    void OnValidate() {
+        Rigidbody2D tempRigidbody = GetComponent<Rigidbody2D>();
+        // As we are simulating the Actor via code, it has to be Kinematic.
+        tempRigidbody.isKinematic = true;
+
+        // We need these ones to ensure effective collision detection.
+        tempRigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        tempRigidbody.sleepMode = RigidbodySleepMode2D.NeverSleep;
+        tempRigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
+    }
+
+    private void RecalculateDistanceBetweenRays() {
+        // Horizontal
+        var colliderUseableHeight = m_boxCollider.size.y - (2f * m_skinWidth);
+        m_verticalDistanceBetweenRays = colliderUseableHeight / (totalHorizontalRays - 1);
+
+        // Vertical
+        var colliderUseableWidth = m_boxCollider.size.x - (2f * m_skinWidth);
+        m_horizontalDistanceBetweenRays = colliderUseableWidth / (totalVerticalRays - 1);
+    }
+
+    private void CalculateRaycastOrigins() {
+        // Raycasts needs to be fired from bounds inset inset by the skin width.
+        var modifiedBounds = m_boxCollider.bounds;
+        modifiedBounds.Expand(-2f * m_skinWidth);
+
+        m_raycastOrigins.topRight = modifiedBounds.max;
+        m_raycastOrigins.topLeft = new Vector2(modifiedBounds.min.x, modifiedBounds.max.y);
+        m_raycastOrigins.bottomRight = new Vector2(modifiedBounds.max.x, modifiedBounds.min.y);
+        m_raycastOrigins.bottomLeft = modifiedBounds.min;
+    }
+
+    [System.Diagnostics.Conditional("DEBUG_CC2D_RAYS")]
+    void DrawRay(Vector3 start, Vector3 dir, Color color) {
+        Debug.DrawRay(start, dir, color);
+    }
+
+    public Vector3 Move(Vector3 deltaMovement) {
+        collisionState.wasGroundedLastFrame = collisionState.collisionBelow;
+        collisionState.ResetCollision();
+        m_raycastHitsThisFrame.Clear();
+        CalculateRaycastOrigins();
+
+        if (deltaMovement.x != 0f) {
+            MoveHorizontal(ref deltaMovement);
+        }
+
+        if (deltaMovement.y != 0f) {
+            MoveVertical(ref deltaMovement);
+        }
+
+        deltaMovement.z = 0;
+        transform.Translate(deltaMovement, Space.World);
+
+        if (Time.deltaTime > 0f) {
+            m_velocity = deltaMovement / Time.deltaTime;
+        }
+
+        if (!collisionState.wasGroundedLastFrame && collisionState.collisionBelow) {
+            collisionState.becameGroundedThisFrame = true;
+        }
+
+        if (OnControllerCollidedEvent != null) {
+            for (int i = 0; i < m_raycastHitsThisFrame.Count; i++) {
+                OnControllerCollidedEvent(m_raycastHitsThisFrame[i]);
+            }
+        }
+
+        ignoreOneWayPlatformsThisFrame = false;
+
+        return m_velocity;
+    }
+
+    void MoveHorizontal(ref Vector3 deltaMovement) {
+        bool isGoingRight = deltaMovement.x > 0;
+        float rayDistance = Mathf.Abs(deltaMovement.x) + m_skinWidth;
+        Vector2 rayDirection = isGoingRight ? Vector2.right : Vector2.left;
+        Vector2 initialRayOrigin = isGoingRight ? m_raycastOrigins.bottomRight : m_raycastOrigins.bottomLeft;
+
+        for (int i = 0; i < totalHorizontalRays; i++) {
+            Vector2 ray = new Vector2(initialRayOrigin.x, initialRayOrigin.y + i * m_verticalDistanceBetweenRays);
+            DrawRay(ray, rayDirection * rayDistance, Color.red);
+
+            // if we are grounded we will include oneWayPlatforms only on the first ray (the bottom one)
+            if (i == 0 && collisionState.wasGroundedLastFrame) {
+                m_raycastHit = Physics2D.Raycast(ray, rayDirection, rayDistance, platformMask);
+            } else {
+                m_raycastHit = Physics2D.Raycast(ray, rayDirection, rayDistance, platformMask & ~oneWayPlatformMask);
+            }
+
+            if(m_raycastHit) {
+                deltaMovement.x = m_raycastHit.point.x - ray.x;
+                rayDistance = Mathf.Abs(deltaMovement.x);
+
+                if (isGoingRight) {
+                    deltaMovement.x -= m_skinWidth;
+                    collisionState.collisionRight = true;
+                } else {
+                    deltaMovement.x += m_skinWidth;
+                    collisionState.collisionLeft = true;
+                }
+
+                // If the MoveHorizontal shall receive a collision funciton, it shall call it here.
+                // But this kind of have the same usability
+                m_raycastHitsThisFrame.Add(m_raycastHit);
+
+                // Breaking if we have an impact already.
+                if (rayDistance < m_skinWidth + km_SkinWidthFloatFudgeFactor) {
+                    break;
+                }
+            }
+        }
+    }
+
+    void MoveVertical(ref Vector3 deltaMovement) {
+        bool isGoingUp = deltaMovement.y > 0;
+        float rayDistance = Mathf.Abs(deltaMovement.y) + m_skinWidth;
+        Vector2 rayDirection = isGoingUp ? Vector2.up : Vector2.down;
+        Vector2 initialRayOrigin = isGoingUp ? m_raycastOrigins.topLeft : m_raycastOrigins.bottomLeft;
+
+        // apply our horizontal deltaMovement here so that we do our raycast from the actual position we would be in if we had moved
+        initialRayOrigin.x += deltaMovement.x;
+
+        // if we are moving up, we should ALWAYS ignore the layers in oneWayPlatformMask
+        var mask = platformMask;
+        if (isGoingUp && !collisionState.wasGroundedLastFrame) {
+            mask &= ~oneWayPlatformMask;
+        }
+
+        for (var i = 0; i < totalVerticalRays; i++) {
+            var ray = new Vector2(initialRayOrigin.x + i * m_horizontalDistanceBetweenRays, initialRayOrigin.y);
+
+            DrawRay(ray, rayDirection * rayDistance, Color.red);
+            m_raycastHit = Physics2D.Raycast(ray, rayDirection, rayDistance, mask);
+
+            if(m_raycastHit) {
+                deltaMovement.y = m_raycastHit.point.y - ray.y;
+                rayDistance = Mathf.Abs(deltaMovement.y);
+
+                // remember to remove the skinWidth from our deltaMovement
+                if (isGoingUp) {
+                    deltaMovement.y -= m_skinWidth;
+                    collisionState.collisionAbove = true;
+                } else {
+                    deltaMovement.y += m_skinWidth;
+                    collisionState.collisionBelow = true;
+                }
+
+                m_raycastHitsThisFrame.Add(m_raycastHit);
+
+                // Direct Impact
+                if (rayDistance < m_skinWidth + km_SkinWidthFloatFudgeFactor) break;
+            }
+        }
+    }
+
+    protected bool IsNear(Vector2 initialPosition, Vector2 checkDirection, float distanceToCheck) {
+        for (int i = 0; i < totalHorizontalRays; i++) {
+            // need to subtract from the initialPosition.y because we are receiving the TOP left or right
+            Vector2 ray = new Vector2(initialPosition.x, initialPosition.y - i * m_verticalDistanceBetweenRays);
+
+            DrawRay(ray, checkDirection, Color.red);
+
+            RaycastHit2D raycastHit = Physics2D.Raycast(ray, checkDirection, distanceToCheck, platformMask);
+
+            if (raycastHit) return true;
+        }
+
+        return false;
+    }
+}
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+                <!--
+                *
+                * START OF ACCORDION
+                *
+                -->
+                <div class="accordion" id="jumpyPCAccordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#fullPC" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-file-code"></i> Code Snippet: Full Player Controller
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="fullPC" class="collapse show" aria-labelledby="headingOne" data-parent="#jumpyPCAccordion">
+                      <div class="card-body">
+                        <pre class="prettyprint linenums lang-cs">
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour {
+
+    [Header("Jumping Parameters")]
+    public float jumpPeakHeight = 2;
+    public float horizontalDistanceToPeak = 2;
+    public float footSpeed = 5;
+    public float groundDamping = 1f;
+    public float airDamping = 1f;
+    public float jumpCutValue = 0.25f;
+    public float goingDownGravityMultiplier = 2f;
+
+    [Header("Sound Effects")]
+    public AudioClip jumpingClip;
+    private SoundManager m_soundManagerReference;
+
+    [Header("Particles")]
+    public ParticleSystem footParticles;
+
+    // Handling Jump and Velocity
+    private float m_jumpInitialVelocity;
+    private float m_gravity;
+    private float m_goingUpGravity;
+    private float m_goingDownGravity;
+    private Vector3 m_playerVelocity;
+    private float inputHorizontalSpeed;
+
+    // Input Buffering
+    private const float m_pressedToJumpRememberTime = 0.125f;
+    private const float m_playerGroundedRememberTime = 0.125f;
+    private float m_pressedJumpTime;
+    private float m_wasGroundedTime;
+
+    // Animation Stuff
+    private Actor m_actorReference;
+    private Transform m_playerSpriteTransform;
+    private Animator m_playerSpriteAnimator;
+    private const string IDLE_ANIMATION = "Idle";
+    private const string RUNNING_ANIMATION = "Running";
+    private const string JUMPING_ANIMATION = "Jumping";
+    private const string CHANGING_DIRECTION = "ChangingDirection";
+    private Vector2 goingUpScaleMultiplier = new Vector2(0.6f, 1.4f);
+    private Vector2 goingDownScaleMultiplier = new Vector2(1.4f, 0.6f);
+
+    // Player State
+    public enum EPlayerState {
+        Grounded,
+        Jumping,
+    }
+
+    private EPlayerState m_currentPlayerState;
+
+    // Events
+    public event Action PlayerDeath; 
+
+    void OnControllerCollider(RaycastHit2D hit) {
+        ICollideWithPlayer collideWithPlayer = hit.transform.GetComponent<ICollideWithPlayer>();
+
+        if(hit.normal.y == -1.0f) {
+            if(collideWithPlayer != null) {
+                collideWithPlayer.CollidedWithPlayer();
+            }
+        }
+    }
+
+    void HandleTriggerEnter(Collider2D other) {
+        IDangerousInteraction dangerousInteraction = other.GetComponent<IDangerousInteraction>();
+        IEnemy enemyCollision = other.GetComponent<IEnemy>();
+        IInteraction interactionWithTrigger = other.GetComponent<IInteraction>();
+
+        if(enemyCollision != null) {
+            Vector2 positionDifference = transform.position - other.transform.position;
+
+            // checking if we kill or die
+            if(positionDifference.y >= 0.25f) {
+                enemyCollision.Kill();
+                m_gravity = m_goingUpGravity;
+                m_playerVelocity.y = m_jumpInitialVelocity * 0.5f;
+            } else {
+                OnPlayerDeath();
+            }
+        }
+
+        if(dangerousInteraction != null) {
+            dangerousInteraction.Interact();
+            OnPlayerDeath();
+        }
+
+        if(interactionWithTrigger != null) {
+            interactionWithTrigger.Interact();
+        }
+    }
+
+    void Awake() {
+        m_soundManagerReference = FindObjectOfType<SoundManager>();
+        m_actorReference = GetComponent<Actor>();
+        m_playerSpriteTransform = GetComponentInChildren<SpriteRenderer>().transform;
+        m_playerSpriteAnimator = GetComponentInChildren<Animator>();
+
+        // v0 = (2 * jump_height) / (jump_time)
+        // jump_time = distance to peak / foot speed
+        m_jumpInitialVelocity = (2 * jumpPeakHeight * footSpeed) / (horizontalDistanceToPeak);
+
+        // g = (-2 * jump_height) / (jump_time^2)
+        m_goingUpGravity = -((2 * jumpPeakHeight * footSpeed * footSpeed) / (horizontalDistanceToPeak * horizontalDistanceToPeak));
+        m_goingDownGravity = m_goingUpGravity * goingDownGravityMultiplier;
+        m_gravity = m_goingDownGravity;
+        inputHorizontalSpeed = 0;
+        m_currentPlayerState = EPlayerState.Grounded;
+
+        m_actorReference.OnControllerCollidedEvent += OnControllerCollider;
+        m_actorReference.OnTriggerEnterEvent += HandleTriggerEnter;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        m_pressedJumpTime -= Time.deltaTime;
+        m_wasGroundedTime -= Time.deltaTime;
+
+        inputHorizontalSpeed = Input.GetAxisRaw("Horizontal");
+
+        if(Input.GetButtonDown("Jump")) {
+            m_pressedJumpTime = m_pressedToJumpRememberTime;
+        }
+
+        if(m_actorReference.isGrounded) {
+            m_wasGroundedTime = m_playerGroundedRememberTime;
+            m_playerVelocity.y = 0;
+        }
+
+        switch(m_currentPlayerState) {
+            case EPlayerState.Grounded:
+                ProcessGroundedState();
+                break;
+            case EPlayerState.Jumping:
+                ProcessJumpingState();
+                break;
+        }
+
+        ProcessSpriteScale();
+        ProcessAnimation();
+
+        if(m_playerVelocity.y < 0) {
+            m_gravity = m_goingDownGravity;
+            m_currentPlayerState = EPlayerState.Jumping;
+        }
+
+        float smoothedMovementFactor = m_actorReference.isGrounded ? groundDamping : airDamping;
+        float xVelocityLerp = Mathf.Clamp01(Time.deltaTime * smoothedMovementFactor);
+
+        // force removing any momentum when there is no input
+        if(inputHorizontalSpeed == 0) {
+            xVelocityLerp *= 3.5f;
+        }
+
+
+        m_playerVelocity.x = Mathf.Lerp(m_playerVelocity.x, inputHorizontalSpeed * footSpeed, xVelocityLerp);
+        m_playerVelocity.y += m_gravity * Time.deltaTime;
+
+        Vector3 eulerDeltaMovement = m_playerVelocity * Time.deltaTime;
+        Vector3 velocityVerletDeltaMovement = new Vector3(eulerDeltaMovement.x, eulerDeltaMovement.y + (0.5f * m_gravity * Time.deltaTime * Time.deltaTime), 0f);
+        m_playerVelocity = m_actorReference.Move(eulerDeltaMovement);
+    }
+
+    private void ProcessGroundedState() {
+        if(m_pressedJumpTime > 0 && m_wasGroundedTime > 0) {
+            m_pressedJumpTime = 0;
+            m_wasGroundedTime = 0;
+            m_gravity = m_goingUpGravity;
+            m_playerVelocity.y = m_jumpInitialVelocity;
+            JuiceScale(goingUpScaleMultiplier);
+            m_currentPlayerState = EPlayerState.Jumping;
+
+            // Playing Audio Clip
+            if(m_soundManagerReference) {
+                m_soundManagerReference.PlayEffect(jumpingClip);
+            }
+
+            PlayFootParticle();
+        }
+    }
+
+    private void ProcessJumpingState() {
+        if(Input.GetButtonUp("Jump") && m_playerVelocity.y > 0) {
+            m_playerVelocity.y *= jumpCutValue;
+        }
+
+        if (m_actorReference.isGrounded) {
+            PlayFootParticle();
+            JuiceScale(goingDownScaleMultiplier);
+            m_currentPlayerState = EPlayerState.Grounded;
+        }
+    }
+
+    private void ProcessSpriteScale() {
+        if(inputHorizontalSpeed == 0) {
+            return;
+        }
+
+        transform.localScale = new Vector3(Mathf.Sign(inputHorizontalSpeed) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    private void ProcessAnimation() {
+        if(m_playerSpriteAnimator == null) {
+            return;
+        }
+
+        if(!m_actorReference.isGrounded) {
+            m_playerSpriteAnimator.Play(JUMPING_ANIMATION);
+        } else if(Mathf.Sign(m_playerVelocity.x) != Mathf.Sign(inputHorizontalSpeed) && inputHorizontalSpeed != 0) {
+            m_playerSpriteAnimator.Play(CHANGING_DIRECTION);
+            PlayFootParticle();
+        } else if (Mathf.Abs(m_playerVelocity.x) > 0.5f) {
+            m_playerSpriteAnimator.Play(RUNNING_ANIMATION);
+        } else {
+            m_playerSpriteAnimator.Play(IDLE_ANIMATION);
+        }
+    }
+
+    private void JuiceScale(Vector2 scaleMultiplier) {
+        // StartCoroutine(JuiceScaleRoutine(scaleMultiplier));
+    }
+
+    private IEnumerator JuiceScaleRoutine(Vector2 scaleMultiplier) {
+        m_playerSpriteTransform.localScale *= scaleMultiplier;
+        yield return new WaitForSeconds(0.048f);
+        m_playerSpriteTransform.localScale /= scaleMultiplier;
+    }
+
+    private void PlayFootParticle() {
+        if(footParticles) {
+            ParticleSystem particles = Instantiate(footParticles, transform.position + (Vector3.down / 2), Quaternion.identity);
+            particles.Play();
+        }
+    }
+
+    public void OnPlayerDeath() {
+        PlayerDeath?.Invoke();
+    }
+}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  END OF ACCORDION
+                -->
+
+              <div class="page-footer">
+                <div class="header-icons">
+                  <ul class="header-icons-list">
+                    <a href="https://github.com/guilhermepo2/JumpyJump" target="_BLANK"><li><i class="fab fa-github-alt"> source code</i></li></a>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="page-footer">
+                <div class="header-icons">
+                  <ul class="header-icons-list">
+                    <a href="../index.html"><li><i class="fas fa-home"> portfolio home</i></li></a>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+           <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+    $('.collapse').collapse()
+    </script>
+    </body>
+</html>

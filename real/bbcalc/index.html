@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bloodborne Level Echoes Calculator</title>
+    <meta name="description" content="Use this calculator to know how much Blood Echoes you need to Level Up!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="echoes.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-8 col-xs-offset-2">
+          <h1>Bloodborne Level Up Calculator</h1>
+          <img class="img-responsive img-rounded" src="levelup.png">
+
+          <div class="field single">
+            <h2>Single Level</h2>
+            <label for="from">Current Level: </label><input class="" type="number" name="clevel" id="clevel">
+            <input class="btn btn-default btn-sm" type="submit" value="Calculate!" onclick="calculate_single();">
+            <p class="result">Hello!</p>
+          </div>
+
+          <div class="field multiple">
+            <h3>Many Levels</h3>
+            <label for="from">From Level </label><input type="number" id="m_from">
+            <label for="to">To</label><input type="number" id="m_to">
+            <button class="btn btn-default btn-sm" onclick="calculate_multiple()">Calculate!</button>
+            <p class="result">Hello!</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="echoes.js"></script>
+    <script data-ad-client="ca-pub-8035026822309726" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </body>
+</html>
