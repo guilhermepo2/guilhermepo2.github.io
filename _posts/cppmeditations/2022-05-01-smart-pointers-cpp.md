@@ -4,6 +4,7 @@ title:  smart pointers in C++
 date:   2022-05-01 15:00
 image:  '/images/cppmeditations/cppmeditations.png'
 tags:   [cpp-meditations]
+type: cppmeditations
 ---
 
 It was on my list for a long time, and now I'll finally take a look at smart pointers, how they work, and how to better use them. And, as always, I will write about them.

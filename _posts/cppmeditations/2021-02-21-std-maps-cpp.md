@@ -4,6 +4,7 @@ title:  In which I talk about std::map
 date:   2021-02-21 13:20
 image:  '/images/cppmeditations/cppmeditations.png'
 tags:   [cpp-meditations]
+type: cppmeditations
 ---
 
 I've dabbled with std::map(s) in C++ already, yes. But for some reason it just never sticks, so here I am writing a tad bit about it in hopes I will remember it better this time ?!

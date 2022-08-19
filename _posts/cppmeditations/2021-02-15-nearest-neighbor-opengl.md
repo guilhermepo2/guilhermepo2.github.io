@@ -4,6 +4,7 @@ title:  Nearest Neighbor filtering in OpenGL textures
 date:   2021-02-15 13:53
 image:  '/images/cppmeditations/cppmeditations.png'
 tags:   [cpp-meditations]
+type: cppmeditations
 ---
 
 For some context, I am developing a lightweight 2D game engine, [realiti2D](https://github.com/guilhermepo2/realiti2D), as a fun experiment - And recently I decided to take the next step and start making a game on it, I feel like by doing a game I can get a better grasp on what needs to be added to the engine and I can have a better sense of workflow to decide which tools I will want to make.

@@ -4,6 +4,7 @@ title:  What if strings were ints?
 date:   2022-03-24 15:00
 image:  '/images/cppmeditations/cppmeditations.png'
 tags:   [cpp-meditations]
+type: cppmeditations
 ---
 
 There comes a time in everyone's life where they ask themselves: "What if strings, but integers?"

@@ -4,6 +4,7 @@ title:  In which I talk about std::unordered_map
 date:   2021-02-27 19:20
 image:  '/images/cppmeditations/cppmeditations.png'
 tags:   [cpp-meditations]
+type: cppmeditations
 ---
 
 
