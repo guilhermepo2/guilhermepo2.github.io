@@ -242,7 +242,7 @@ section {
 }
 
 section {
-	margin-top: 5.5rem;
+	margin-top: 8rem;
 }
 
 blockquote {
@@ -804,15 +804,20 @@ $link-color: var(--link-color);
 // ------------------------------------
 // ------------------------------------
 .pfp-bio {
-  text-align: center;
+  text-align: right;
 }
 
 .home-pfp {
   width: 200px;
-  margin-bottom: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   border-radius: 50%;
   border-color: #333;
   border-width: 3px;
   border-style: solid;
   opacity: 1;
+}
+
+.posts {
+  margin-top: 1rem;
 }
