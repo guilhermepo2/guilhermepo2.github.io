@@ -1,23 +1,34 @@
 ---
 layout: default
 ---
-
-{% include hero.html %}
-
-<div class="container">
-  <div class="row">
-    <div class="col col-12">
-      <div class="contaniner__inner animate">
-        <div class="row">
-          {% if site.posts.size > 0 %}
-            {% for post in paginator.posts %}
-              {% include article-content.html %}
-            {% endfor %}
-          {% endif %}
-        </div>
-      </div>
+<section id="intro">
+    <div class="flex-row-between">
+        <h5>#todo: write something cool here</h5>
+        <button title="Change theme" id="theme-toggle" onclick="modeSwitcher()">
+            <div></div>
+        </button>
     </div>
-  </div>
-</div>
+    <div class="bio">
+        <div class="pfp-bio">
+            <img class="home-pfp" src="./assets/img/pfp1.png">
+        </div>
 
-{% include pagination.html %}
+	    <p>Hello, my name is Guilherme and I got tired of creating and maintaining fancy websites, so this is what you get.</p><br/>
+        <p>still under construction so come back later maybe ??</p>
+
+        <!--
+        <br/>
+        <p>stuff I write</p>
+        <p><a href="cppmeditations">cpp meditations</a></p>
+        <p><a href="cppmeditations">techblog</a></p>
+        <p><a href="cppmeditations">devblog</a></p>
+
+        <br/>
+        <p>social media or whatever</p>
+        <a href="https://github.com/guilhermepo2" target="_BLANK">github</a> -
+        <a href="https://twitter.com/guilhermepo2" target="_BLANK">twitter</a> -
+        <a href="https://www.youtube.com/channel/UCOIlr-LtVmaIRdI0oe2lthg" target="_BLANK">youtube</a> -
+        <a href="https://gueepo.itch.io/" target="_BLANK">itch.io</a>
+        -->
+    </div>
+</section>

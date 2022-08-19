@@ -1,116 +1,93 @@
-#-------------------------------
-# General Site Settings
-title: Guilherme de Oliveira
-logo: # You can add own logo. For example '/images/logo.png'.
-description: Guilherme de Oliveira - Personal website and blog
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://gueepo.me" # the base hostname & protocol for your site, e.g. http://example.com
-blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
+site: gueepo
+title: gueepo
+lang: en-US
+timezone:  Europe/Rome
+data-theme: dark # default theme "dark" | "light"
+# discus-identifier: powex # replace with your disqus shortname
 
-
-#-------------------------------
-# Author Settings
 author:
-  name: Guilherme de Oliveira
-  image: '/images/portrait2.jpg'
+  name: gueepo
+  bio: just a weird personal website
+  userpicture: 
+  username: guilhermepo2
+  github: guilhermepo2
+  twitter: guilhermepo2
 
+# Font Settings
+googlewebfonts: family=Play:wght@400;700&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900
 
-#-------------------------------
-# Hero Settings
-hero:
-  hero__title: Guilherme de Oliveira
- # hero__job: 
-  hero__description: Game Programmer
- # hero__button__text: Read about my past
- # hero__button__link: '/about'
-  hero__image: '/images/portrait2.jpg'
+# URL settings
+url: "https://gueepo.me/"
+baseurl: "/" # sub folder for jekyll site. only if jekyll site not in root of host. leave blank if not wishd. always add / in front.
+permalink: pretty
 
+# local
+# url: "http://localhost:4000" # 
+# baseurl: "" # 
 
-#-------------------------------
-# Newsletter (_includes/footer-widgets/widget-subscribe.html)
-mailchimp__title: Subscribe to new posts # Add your Title
-mailchimp__text: Subscribe to our newsletter and we’ll send you the emails of latest posts. # Add your description.
-mailchimp__identifier: # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e
-mailchimp__button__text: Subscribe # Add your button text
-
-
-#-------------------------------
-# Contact Settings
-contact:
-  email: your@email.com # Add your email for contant form
-  description: Atega comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want. # Add a description of your form
-
-# NOTE
-# Atega comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want.
-
-
-#-------------------------------
-# Social Links (Footer)
-# Example of adding a new link to the footer - {icon: "ion-logo-facebook", link: "https://facebook.com"}
-# Other icons can be found at https://ionicons.com/v4/
-social:
-- {icon: "ion-logo-twitter", link: "https://twitter.com/guilhermepo2"}
-- {icon: "ion-logo-github", link: "https://github.com/guilhermepo2"}
-- {icon: "ion-logo-youtube", link: "https://www.youtube.com/channel/UCOIlr-LtVmaIRdI0oe2lthg"}
-- {icon: "ion-logo-game-controller-b", link: "https://gueepo.itch.io/"}
-
-
-#-------------------------------
-# Comment Section (Disqus)
-# disqus-identifier: mr-brown # add your shortname for Disqus Comment. For example mr-brown
-
-
-#-------------------------------
-# Gallery Footer Section
-gallery:
-  title: Gallery
-  images:
-    - alt: 'Minimalism'
-      url: '/images/06.jpg'
-    - alt: 'Minimalism'
-      url: '/images/05.jpg'
-    - alt: 'Minimalism'
-      url: '/images/08.jpg'
-    - alt: 'Minimalism'
-      url: '/images/03.jpg'
-    - alt: 'Minimalism'
-      url: '/images/09.jpg'
-    - alt: 'Minimalism'
-      url: '/images/04.jpg'
-
-
-#-------------------------------
-# Google Analytics
-google-analytics: # Add your identifier. For example UA-99631805-1.
-
-
-#-------------------------------
-# Build Settings
 markdown: kramdown
-permalink: /:title
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll/tagging
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
-paginate: 9
-paginate_path: "/page/:num"
 
-# Pages Path
-defaults:
-  - scope:
-      path: '_pages'
-    values:
-      permalink: /:basename:output_ext
-
-include:
-  - _pages
-
-# Tags
-tag_page_dir:         tag
-tag_page_layout:      tag_page
-tag_permalink_style:  /:title
+exclude:
+  - .jekyll-cache
+  - .obsidian
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE.md
+  - README.md
+  - CONTRIBUTING.md
+  
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
 
 sass:
   sass_dir: _sass
   style: compressed
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-relative-links
+
+collections:
+  pages:
+    output: true
+    permalink: /:name
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:slug
+  
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: "_posts/cppmeditations"
+    values:
+      layout: "posts"
+      type: "cppmeditations"
+
+relative_links:
+  enabled:     true
+  collections: false
+
+
