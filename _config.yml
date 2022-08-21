@@ -97,6 +97,12 @@ defaults:
     values:
       layout: "posts"
       type: "devblog"
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+      type: "resources"
 
 relative_links:
   enabled:     true
