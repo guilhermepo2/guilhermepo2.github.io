@@ -2,8 +2,6 @@
 layout: post
 title:  smart pointers in C++
 date:   2022-05-01 15:00
-image:  '/images/cppmeditations/cppmeditations.png'
-tags:   [cpp-meditations]
 type: cppmeditations
 ---
 

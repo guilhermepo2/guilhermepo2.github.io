@@ -2,8 +2,6 @@
 layout: post
 title:  In which I talk about std::map
 date:   2021-02-21 13:20
-image:  '/images/cppmeditations/cppmeditations.png'
-tags:   [cpp-meditations]
 type: cppmeditations
 ---
 

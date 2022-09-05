@@ -2,8 +2,6 @@
 layout: post
 title: Even better Screenshake in Unity!
 date: 2019-04-07 09:00:00 -0200
-image:  '/images/techblog/theshake2.jpg'
-tags:   [game-development]
 type: techblog
 ---
 

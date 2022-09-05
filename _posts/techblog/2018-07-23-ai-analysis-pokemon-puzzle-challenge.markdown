@@ -2,8 +2,6 @@
 layout: post
 title:  AI Analysis of Pokemon Puzzle Challenge
 date:   2018-07-23 19:31:20 -0300
-image:  '/images/techblog/pkm-puzzle.jpg'
-tags:   [game-development]
 type: techblog
 ---
 

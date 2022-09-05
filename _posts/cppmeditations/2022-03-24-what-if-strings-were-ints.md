@@ -2,8 +2,6 @@
 layout: post
 title:  What if strings were ints?
 date:   2022-03-24 15:00
-image:  '/images/cppmeditations/cppmeditations.png'
-tags:   [cpp-meditations]
 type: cppmeditations
 ---
 

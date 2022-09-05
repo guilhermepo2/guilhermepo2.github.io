@@ -2,8 +2,6 @@
 layout: post
 title:  Coding a simple State Machine
 date:   2019-07-03 09:00:00 -0200
-image:  '/images/techblog/stateMachineWorkflow.png'
-tags:   [game-development]
 type: techblog
 ---
 

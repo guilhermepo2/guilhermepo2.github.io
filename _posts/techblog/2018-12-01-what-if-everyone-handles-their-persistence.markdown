@@ -2,8 +2,6 @@
 layout: post
 title: What if everyone handles their own persistence?
 date: 2018-12-01 09:00:00 -0200
-image:  '/images/techblog/persistent-cat.jpg'
-tags:   [game-development]
 type: techblog
 ---
 

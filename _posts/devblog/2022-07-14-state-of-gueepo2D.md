@@ -2,8 +2,6 @@
 layout: post
 title:  state of gueepo2D
 date:   2022-07-14 10:00
-image:  '/images/gueepo2D.png'
-tags:   [gueepo2D]
 type: devblog
 ---
 

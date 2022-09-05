@@ -2,8 +2,6 @@
 layout: post
 title:  A Better Random Alternative to Straight Random Range
 date:   2018-07-15 21:37:20 -0300
-image:  '/images/techblog/dice-roll.jpg'
-tags:   [game-development]
 type: techblog
 ---
 

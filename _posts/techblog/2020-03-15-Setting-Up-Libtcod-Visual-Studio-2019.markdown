@@ -2,8 +2,6 @@
 layout: post
 title:  Setting up Libtcod on Visual Studio 2019
 date:   2020-03-15 09:00:00 -0200
-image:  '/images/techblog/roguelike-thumbnail.png'
-tags:   [roguelike, game-development]
 type: techblog
 ---
 

@@ -2,8 +2,6 @@
 layout: post
 title:  Setting Up Circle CI on GitHub for C++ and CMake
 date:   2018-01-10 10:37:20 -0200
-image:  '/images/techblog/mistake.jpg'
-tags:   [c++, cmake, ci]
 type: techblog
 ---
 

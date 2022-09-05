@@ -2,8 +2,6 @@
 layout: post
 title:  Player Blocking using the Dot Product
 date:   2020-02-14 09:00:00 -0200
-image:  '/images/techblog/blueprint_dot_shield.jpg'
-tags:   [game-development]
 type: techblog
 ---
 

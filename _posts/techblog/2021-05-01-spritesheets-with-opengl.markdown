@@ -2,8 +2,6 @@
 layout: post
 title:  Figuring out spritesheets on Modern OpenGL
 date:   2021-05-01 09:00:00 -0200
-image:  '/images/techblog/opengl_spritesheets.png'
-tags: [game-engine, opengl]
 type: techblog
 ---
 

@@ -2,8 +2,6 @@
 layout: post
 title:  Nearest Neighbor filtering in OpenGL textures
 date:   2021-02-15 13:53
-image:  '/images/cppmeditations/cppmeditations.png'
-tags:   [cpp-meditations]
 type: cppmeditations
 ---
 
