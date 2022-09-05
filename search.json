@@ -1,10 +1,19 @@
 [
   
     {
+      "title"    : "where have you been mate",
+      "description" : "",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/2022/09/04/where-youve-been",
+      "date"     : "2022-09-04 10:00:00 +0200"
+    } ,
+  
+    {
       "title"    : "state of gueepo2D",
       "description" : "",
       "category" : "",
-      "tags"     : "gueepo2D",
+      "tags"     : "",
       "url"      : "/2022/07/14/state-of-gueepo2d",
       "date"     : "2022-07-14 10:00:00 +0200"
     } ,
@@ -13,7 +22,7 @@
       "title"    : "the YouTube channel overhaul - may update",
       "description" : "",
       "category" : "",
-      "tags"     : "youtube-updates",
+      "tags"     : "",
       "url"      : "/2022/06/03/may-2022",
       "date"     : "2022-06-03 10:00:00 +0200"
     } ,
@@ -22,7 +31,7 @@
       "title"    : "April? You mean the Fourth Month?",
       "description" : "",
       "category" : "",
-      "tags"     : "youtube-updates",
+      "tags"     : "",
       "url"      : "/2022/05/01/april-2022",
       "date"     : "2022-05-01 16:00:00 +0200"
     } ,
@@ -31,7 +40,7 @@
       "title"    : "smart pointers in C++",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2022/05/01/smart-pointers-cpp",
       "date"     : "2022-05-01 15:00:00 +0200"
     } ,
@@ -40,7 +49,7 @@
       "title"    : "How come it&#39;s always March?",
       "description" : "",
       "category" : "",
-      "tags"     : "youtube-updates",
+      "tags"     : "",
       "url"      : "/2022/03/27/march-2022",
       "date"     : "2022-03-27 01:06:52 +0100"
     } ,
@@ -49,7 +58,7 @@
       "title"    : "What if strings were ints?",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2022/03/24/what-if-strings-were-ints",
       "date"     : "2022-03-24 15:00:00 +0100"
     } ,
@@ -58,7 +67,7 @@
       "title"    : "What about C++17 filesystem?",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2021/09/06/cpp-17-filesys",
       "date"     : "2021-09-06 15:00:00 +0200"
     } ,
@@ -67,7 +76,7 @@
       "title"    : "Iterating on a for loop with ++i or i++?",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2021/05/31/for-loop",
       "date"     : "2021-05-31 15:00:00 +0200"
     } ,
@@ -76,7 +85,7 @@
       "title"    : "Figuring out spritesheets on Modern OpenGL",
       "description" : "",
       "category" : "",
-      "tags"     : "game-engine, opengl",
+      "tags"     : "",
       "url"      : "/2021/05/01/spritesheets-with-opengl",
       "date"     : "2021-05-01 13:00:00 +0200"
     } ,
@@ -85,7 +94,7 @@
       "title"    : "In which I talk about std::unordered_map",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2021/02/27/maps-or-unordered-maps",
       "date"     : "2021-02-27 19:20:00 +0100"
     } ,
@@ -94,7 +103,7 @@
       "title"    : "In which I talk about std::map",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2021/02/21/std-maps-cpp",
       "date"     : "2021-02-21 13:20:00 +0100"
     } ,
@@ -103,7 +112,7 @@
       "title"    : "Nearest Neighbor filtering in OpenGL textures",
       "description" : "",
       "category" : "",
-      "tags"     : "cpp-meditations",
+      "tags"     : "",
       "url"      : "/2021/02/15/nearest-neighbor-opengl",
       "date"     : "2021-02-15 13:53:00 +0100"
     } ,
@@ -112,7 +121,7 @@
       "title"    : "Setting up Libtcod on Visual Studio 2019",
       "description" : "",
       "category" : "",
-      "tags"     : "roguelike, game-development",
+      "tags"     : "",
       "url"      : "/2020/03/15/setting-up-libtcod-visual-studio-2019",
       "date"     : "2020-03-15 12:00:00 +0100"
     } ,
@@ -121,7 +130,7 @@
       "title"    : "Player Blocking using the Dot Product",
       "description" : "",
       "category" : "",
-      "tags"     : "game-development",
+      "tags"     : "",
       "url"      : "/2020/02/14/player-blocking-using-the-dot-product",
       "date"     : "2020-02-14 12:00:00 +0100"
     } ,
@@ -130,7 +139,7 @@
       "title"    : "Coding a simple State Machine",
       "description" : "",
       "category" : "",
-      "tags"     : "game-development",
+      "tags"     : "",
       "url"      : "/2019/07/03/simple-state-machines",
       "date"     : "2019-07-03 13:00:00 +0200"
     } ,
@@ -139,7 +148,7 @@
       "title"    : "Even better Screenshake in Unity!",
       "description" : "",
       "category" : "",
-      "tags"     : "game-development",
+      "tags"     : "",
       "url"      : "/2019/04/07/screenshake-unity-2",
       "date"     : "2019-04-07 13:00:00 +0200"
     } ,
@@ -148,7 +157,7 @@
       "title"    : "What if everyone handles their own persistence?",
       "description" : "",
       "category" : "",
-      "tags"     : "game-development",
+      "tags"     : "",
       "url"      : "/2018/12/01/what-if-everyone-handles-their-persistence",
       "date"     : "2018-12-01 12:00:00 +0100"
     } ,
@@ -157,7 +166,7 @@
       "title"    : "AI Analysis of Pokemon Puzzle Challenge",
       "description" : "",
       "category" : "",
-      "tags"     : "game-development",
+      "tags"     : "",
       "url"      : "/2018/07/24/ai-analysis-pokemon-puzzle-challenge",
       "date"     : "2018-07-24 00:31:20 +0200"
     } ,
@@ -166,7 +175,7 @@
       "title"    : "A Better Random Alternative to Straight Random Range",
       "description" : "",
       "category" : "",
-      "tags"     : "game-development",
+      "tags"     : "",
       "url"      : "/2018/07/16/a-better-random-alternative",
       "date"     : "2018-07-16 02:37:20 +0200"
     } ,
@@ -175,7 +184,7 @@
       "title"    : "Setting Up Circle CI on GitHub for C++ and CMake",
       "description" : "",
       "category" : "",
-      "tags"     : "c++, cmake, ci",
+      "tags"     : "",
       "url"      : "/2018/01/10/simple-ci-for-cpp",
       "date"     : "2018-01-10 13:37:20 +0100"
     } 
