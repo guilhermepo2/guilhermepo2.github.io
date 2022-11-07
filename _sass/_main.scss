@@ -804,14 +804,14 @@ $link-color: var(--link-color);
 // ------------------------------------
 // ------------------------------------
 .pfp-bio {
-  text-align: right;
+  text-align: center;
 }
 
 .home-pfp {
-  width: 200px;
+  width: 500px;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  border-radius: 50%;
+  border-radius: 0%;
   border-color: #333;
   border-width: 3px;
   border-style: solid;

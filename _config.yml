@@ -81,24 +81,6 @@ defaults:
       layout: "post"
   -
     scope:
-      path: "_posts/cppmeditations"
-    values:
-      layout: "posts"
-      type: "cppmeditations"
-  -
-    scope:
-      path: "_posts/techblog"
-    values:
-      layout: "posts"
-      type: "techblog"
-  -
-    scope:
-      path: "_posts/devblog"
-    values:
-      layout: "posts"
-      type: "devblog"
-  -
-    scope:
       path: ""
     values:
       layout: "default"

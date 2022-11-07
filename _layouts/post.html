@@ -5,15 +5,7 @@ layout: default
 
 <section class="post">
   <div class="flex-row-between">
-    {% if page.type == "cppmeditations" %}
-    <a href="{{ site.url }}{{ site.baseurl }}/cppmeditations/">« back</a>
-    {% elsif page.type == "techblog" %}
-    <a href="{{ site.url }}{{ site.baseurl }}/techblog/">« back</a>
-    {% elsif page.type == "devblog" %}
-    <a href="{{ site.url }}{{ site.baseurl }}/devblog/">« back</a>
-    {% else %}
     <a href="{{ site.url }}{{ site.baseurl }}/">« back</a>
-    {% endif %}
 	  
     <button title="Change theme" id="theme-toggle" onclick="modeSwitcher()">
       <div></div>
