@@ -1,93 +1,31 @@
-site: gueepo
-title: gueepo
-lang: en-US
-timezone:  Europe/Rome
-data-theme: dark # default theme "dark" | "light"
-# discus-identifier: powex # replace with your disqus shortname
+#-------------------------------
+# General Site Settings
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-author:
-  name: gueepo
-  bio: just a weird personal website
-  userpicture: 
-  username: guilhermepo2
-  github: guilhermepo2
-  twitter: guilhermepo2
 
-# Font Settings
-googlewebfonts: family=Play:wght@400;700&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900
-
-# URL settings
-url: "https://gueepo.me"
-baseurl: "" # sub folder for jekyll site. only if jekyll site not in root of host. leave blank if not wishd. always add / in front.
-permalink: pretty
-
-# local
-# url: "http://localhost:4000" # 
-# baseurl: "" # 
-
+#-------------------------------
+# Build Settings
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+permalink: /:title/
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+
+paginate: 6
+paginate_path: "/page/:num"
+
+# Pages Path
+defaults:
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename:output_ext
 
 
-exclude:
-  - .jekyll-cache
-  - .obsidian
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE.md
-  - README.md
-  - CONTRIBUTING.md
-  
-compress_html:
-  clippings: all
-  comments: ["<!-- ", " -->"]
+include:
+  - _pages
 
 sass:
   sass_dir: _sass
   style: compressed
-
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-relative-links
-
-collections:
-  pages:
-    output: true
-    permalink: /:name
-  posts:
-    output: true
-    permalink: /:year/:month/:day/:slug
-  
-defaults:
-  -
-    scope:
-      path: ""
-    values:
-      layout: "default"
-  -
-    scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  -
-    scope:
-      path: ""
-    values:
-      layout: "default"
-      type: "resources"
-
-relative_links:
-  enabled:     true
-  collections: false
-
-

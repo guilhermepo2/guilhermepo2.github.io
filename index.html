@@ -1,48 +1,17 @@
 ---
 layout: default
 ---
-<section id="intro">
-    <div class="flex-row-between">
-        <h5>#todo: write something cool here</h5>
-        <button title="Change theme" id="theme-toggle" onclick="modeSwitcher()">
-            <div></div>
-        </button>
-    </div>
-    <div class="bio">
-        <div class="pfp-bio">
-            <img class="home-pfp" src="./assets/img/pfp3.png">
-        </div>
 
-	    <p>Hello, my name is Guilherme and I got tired of creating and maintaining fancy websites, so this is what you get.</p>
+{% include hero.html %}
 
-        <br/>
-        <a href="https://github.com/guilhermepo2" target="_BLANK">github</a> -
-        <a href="https://twitter.com/guilhermepo2" target="_BLANK">twitter</a> -
-        <a href="https://www.youtube.com/channel/UCOIlr-LtVmaIRdI0oe2lthg" target="_BLANK">youtube</a> -
-        <a href="https://gueepo.itch.io/" target="_BLANK">itch.io</a>
+<div class="container animate">
+  <div class="row">
+    {% if site.posts.size > 0 %}
+      {% for post in paginator.posts %}
+        {% include article.html %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
 
-        <section class="posts" id="Blog">
-            <h2>stuff I write</h2>
-            <ul>
-                {% for post in site.posts %}
-                    <li>
-                    <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-                        <time datetime="{{ post.date | date_to_xmlschema }}">
-                            {% if post.type == "cppmeditations" %}
-                                <i>cppmeditations</i> @
-                            {% elsif post.type == "devblog" %}
-                                <i>devlog</i> @
-                            {% elsif post.type == "techblog" %}
-                                <i>techblog</i> @
-                            {% endif %}
-                            
-                             {{ post.date | date: "%b %d, %Y" }}
-                            </time>
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        
-    </div>
-</section>
+{% include pagination.html %}

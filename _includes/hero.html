@@ -1,0 +1,71 @@
+<!-- begin hero (I took this from the About page, I think this looks better) -->
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="author-profile">
+
+          {% if site.data.settings.author.author__avatar %}
+          <div class="author-profile__avatar">
+            <img class="lazy" data-src="{{ site.data.settings.author.author__avatar }}" alt="{{ site.data.settings.author.author__name }}'s Picture" class="author-avatar__img">
+          </div>
+          {% endif %}
+
+          {% if site.data.settings.author.author__name %}
+          <h1 class="author-profile__name">{{ site.data.settings.author.author__name }}</h1>
+          {% endif %}
+
+          {% if site.data.settings.author.author__bio %}
+          <p class="author-profile__desc">{{ site.data.settings.author.author__bio }}</p>
+          {% endif %}
+
+          {% include social-links.html %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero -->
+
+<!-- begin hero -->
+<!--
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner">
+
+          <div class="hero__left">
+            {% if site.data.settings.hero.hero__title %}
+            <h1 class="hero__title">{{ site.data.settings.hero.hero__title }}</h1>
+            {% endif %}
+            {% if site.data.settings.hero.hero__job %}
+            <h2 class="hero__job">{{ site.data.settings.hero.hero__job }}</h2>
+            {% endif %}
+            {% if site.data.settings.hero.hero__description %}
+            <p class="hero__description">{{ site.data.settings.hero.hero__description }}</p>
+            {% endif %}
+            {% if site.data.settings.hero.hero__button__text %}
+            <a class="hero__button" href="{{ site.data.settings.hero.hero__button__link | relative_url }}">
+              <span class="hero__button__arrow"><i class="ion ion-ios-arrow-forward"></i></span>
+              <span>{{ site.data.settings.hero.hero__button__text }}</span>
+            </a>
+            {% endif %}
+          </div>
+
+          {% if site.data.settings.hero.hero__image %}
+          <div class="hero__right">
+            <div class="hero__image">
+              <img class="lazy" data-src="{{ site.data.settings.hero.hero__image }}" alt="{{ site.data.settings.author.name }}'s Picture">
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<!-- end hero -->
