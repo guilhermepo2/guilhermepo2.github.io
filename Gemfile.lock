@@ -11,6 +11,7 @@ GEM
     eventmachine (1.2.7)
     eventmachine (1.2.7-x64-mingw32)
     ffi (1.15.0)
+    ffi (1.15.0-x64-mingw32)
     forwardable-extended (2.6.0)
     http_parser.rb (0.6.0)
     i18n (1.8.10)
@@ -72,8 +73,9 @@ GEM
     webrick (1.7.0)
 
 PLATFORMS
-  x64-mingw-ucrt
+  universal-darwin-21
   x64-mingw32
+  x64-unknown
 
 DEPENDENCIES
   jekyll
@@ -85,4 +87,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-   2.3.20
+   2.3.25
