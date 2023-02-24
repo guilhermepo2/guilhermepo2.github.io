@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Hello World</title>
-  <meta name='description' content='Hello World'>
+  <title>Modern OpenGL SpriteSheets</title>
+  <meta name='description' content='How to render pieces and slices of a sprite with modern OpenGL'>
 
-  <link rel="canonical" href="/hello-world/">
+  <link rel="canonical" href="/spritesheets-with-opengl/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hello World – gueepo">
-  <meta name="twitter:description" content="Hello World">
-  <meta name="twitter:image:src" content="/images/mistake.jpg">
+  <meta name="twitter:title" content="Modern OpenGL SpriteSheets – gueepo">
+  <meta name="twitter:description" content="How to render pieces and slices of a sprite with modern OpenGL">
+  <meta name="twitter:image:src" content="/images/opengl_spritesheets.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="Hello World – gueepo">
-  <meta property="og:description" content="Hello World">
-  <meta property="og:image" content="/images/mistake.jpg">
+  <meta property="og:title" content="Modern OpenGL SpriteSheets – gueepo">
+  <meta property="og:description" content="How to render pieces and slices of a sprite with modern OpenGL">
+  <meta property="og:image" content="/images/opengl_spritesheets.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -138,17 +138,17 @@
             
             <div class="post-tags">
               
-              <a href="/tags/?tag=hello" class="post-tag">hello</a>
+              <a href="/tags/?tag=c%2B%2B" class="post-tag">c++</a>
               
-              <a href="/tags/?tag=world" class="post-tag">world</a>
+              <a href="/tags/?tag=graphics" class="post-tag">graphics</a>
               
             </div>
             
 
-            <h1 class="hero__title">Hello World</h1>
+            <h1 class="hero__title">Modern OpenGL SpriteSheets</h1>
 
             
-            <p class="post-description">Hello World</p>
+            <p class="post-description">How to render pieces and slices of a sprite with modern OpenGL</p>
             
 
             <div class="post-meta">
@@ -158,7 +158,7 @@
 
               <div class="post-meta__bottom">
                 <a class="post-author" href="/about/">Guilherme de Oliveira</a>
-                <time class="post-date" datetime="2023-02-21T21:00:00-06:00">21 February, 2023</time>
+                <time class="post-date" datetime="2021-05-01T06:00:00-05:00">1 May, 2021</time>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@
             
             
             <div class="hero__image">
-              <img class="hero__image__primary lazy" data-src="/images/mistake.jpg" alt="Hello World">
+              <img class="hero__image__primary lazy" data-src="/images/opengl_spritesheets.png" alt="Modern OpenGL SpriteSheets">
             </div>
             
             
@@ -187,9 +187,143 @@
   <article class="post">
 
     <div class="post__content">
-      <h1 id="hello-world">Hello World</h1>
+      <p>Probably one of the classicals problems you will face when doing a 2D game, or a 2D game engine, is: “How to make a sprite sheet?”.</p>
 
-<p>There’s nothing for you here.</p>
+<p>A sprite sheet, or a tile sheet, or a texture atlas, or whatever fancy name kids nowadays use, is basically a texture where you are interested in rendering just some parts of it, you don’t want to present the texture in its entirety, just a little piece of it.</p>
+
+<p>There is a performance motivation behind it, of course, creating and binding textures is expensive, so reusing a texture is a good thing, but there is also a productivity aspect to it, working on a tilesheet that is just one file is easier than working on 30 different files.</p>
+
+<p>Image credits goes to <a href="https://www.kenney.nl">Kenney</a>, whose assets I’ve been using to test and implement this feature (and all other features).</p>
+
+<p>Now brace yourselves because we will be looking at a lot of <strong>code</strong>.</p>
+
+<h3 id="where-do-we-start">Where do we start?</h3>
+
+<p>When doing the famous OpenGL boilerplate (which is a lot of work, really), you will end up with something similar as to what I’m about to show.</p>
+
+<p>First, a float array that will represent the vertices positions and texture coordinates on a shader.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">float</span> <span class="n">vertices</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="c1">// positions  // texture coords</span>
+	 <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span>   <span class="c1">// top right</span>
+	 <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>   <span class="c1">// bottom right</span>
+	<span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>   <span class="c1">// bottom left</span>
+	<span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span>    <span class="c1">// top left </span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Second, you will bind the array like so.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_VertexBufferID</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">m_VertexBufferID</span><span class="p">);</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">_numVerts</span> <span class="o">*</span> <span class="p">(</span><span class="n">_vertPropertiesCount</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)),</span> <span class="n">_verts</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+
+<span class="c1">// position attribute</span>
+<span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="c1">// texture coords</span>
+<span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="mi">2</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
+<span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_IndexBufferID</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">m_IndexBufferID</span><span class="p">);</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">_numIndices</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">),</span> <span class="n">_indices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="what-we-have-to-change-to-draw-parts-of-a-texture">What we have to change to draw parts of a texture?</h3>
+
+<p>And this is all fine, but when you want to draw small pieces of a big texture, what you want to change are the texture coordinates, texture coordinates are uv coordinates that ranges from (0, 0) to (1, 1), and you have to find the small piece of the texture you want within that range.</p>
+
+<p>This usually will involve some math.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">float</span> <span class="n">spriteWidth</span> <span class="o">=</span> <span class="mf">48.0</span><span class="n">f</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">spriteHeight</span> <span class="o">=</span> <span class="mf">48.0</span><span class="n">f</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">tw</span> <span class="o">=</span> <span class="n">spriteWidth</span> <span class="o">/</span> <span class="n">texture</span><span class="o">-&gt;</span><span class="n">GetWidth</span><span class="p">();</span>
+<span class="kt">float</span> <span class="n">th</span> <span class="o">=</span> <span class="n">spriteHeight</span> <span class="o">/</span> <span class="n">texture</span><span class="o">-&gt;</span><span class="n">GetHeight</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">xPosition</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">yPosition</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="n">NewTexCoords</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="p">(</span><span class="n">xPosition</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">tw</span><span class="p">,</span> <span class="p">(</span><span class="n">yPosition</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">th</span><span class="p">,</span>
+	<span class="p">(</span><span class="n">xPosition</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">tw</span><span class="p">,</span> <span class="n">yPosition</span> <span class="o">*</span> <span class="n">th</span><span class="p">,</span>
+	<span class="n">xPosition</span> <span class="o">*</span> <span class="n">tw</span> <span class="p">,</span> <span class="n">yPosition</span> <span class="o">*</span> <span class="n">th</span><span class="p">,</span>
+	<span class="n">xPosition</span> <span class="o">*</span> <span class="n">tw</span><span class="p">,</span> <span class="p">(</span><span class="n">yPosition</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">th</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The example above assumes sprites inside a texture that is 48x48, and we are looking to get the sprite on the first row, and tenth column.</p>
+
+<p>And then, boom! You have your new texture coordinates! But as you might see there is still one problem to solve, or one question to ask, if you may wish to frame it like that. <strong>How will I dynamically set the texture coordinates?!</strong> - That’s where I got lost for a good time.</p>
+
+<p>The solution is comprised by two steps.</p>
+
+<p>First, we have to separate vertex position and texture coordinates.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">float</span> <span class="n">vertices</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+	 <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+	 <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+	<span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+	<span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span>
+<span class="p">};</span>
+
+<span class="kt">float</span> <span class="n">texCoords</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span>
+	<span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>
+	<span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>
+	<span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Binding them won’t be much different though, you will end up with a new buffer, and one more variable to keep track of.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_VertexBufferID</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">m_VertexBufferID</span><span class="p">);</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">_numVerts</span> <span class="o">*</span> <span class="p">(</span><span class="n">_vertPropertiesCount</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)),</span> <span class="n">_verts</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+<span class="c1">// position attribute</span>
+<span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_TexCoordsBufferID</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">m_TexCoordsBufferID</span><span class="p">);</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">_numVerts</span> <span class="o">*</span> <span class="p">(</span><span class="n">_vertPropertiesCount</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)),</span> <span class="n">_texCoords</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+<span class="c1">// texture coords</span>
+<span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_IndexBufferID</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">m_IndexBufferID</span><span class="p">);</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">_numIndices</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">),</span> <span class="n">_indices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>It’s worth noting that the vertex shader didn’t change at all!</p>
+
+<p>With this data properly separated, all you have to do is change the data on the texture coordinates buffer!</p>
+
+<p><strong>Should I use glBufferData again?!</strong> No! Let’s take a peek at <em>documentation</em>, shall we? <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml">glBufferData</a> tells us the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>While creating the new storage, any pre-existing data store is deleted. The new data store is created with the specified size in bytes and usage. If data is not NULL, the data store is initialized with data from this pointer.
+</code></pre></div></div>
+
+<p>Creating a new storage? deleting pre-existing data store? Sounds like a bit too much when we just want to move some floats around, right?</p>
+
+<p>That’s where <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml">glBufferSubData</a> kicks in, and its documentation tell us:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>When replacing the entire data store, consider using glBufferSubData rather than completely recreating the data store with glBufferData. This avoids the cost of reallocating the data store.
+</code></pre></div></div>
+
+<p>Avoiding the cost of reallocating data? That sounds like something we want to do!</p>
+
+<p>So changing the data on our Texture Coordinates buffer is as simple as:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">m_TexCoordsBufferID</span><span class="p">);</span>
+<span class="n">glBufferSubData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)),</span> <span class="n">_texCoords</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>And with that I was finally able to get an individual sprite on a spritesheet, and with some extra magic, I was finally able to render a map imported from Tiled!</p>
+
+<p><img src="/images/opengl_spritesheet_1.png" alt="Tilemap Example" /></p>
+
+<p>If you have read so far into this, thank you! I lost a good amount of time wrapping my head around this issue and had trouble figuring out the step of dynamically setting <em>just</em> the texture coordinates.</p>
 
     </div>
 
@@ -197,25 +331,25 @@
   <ul class="share__list list-reset">
     <li class="share__item">
       <a class="share__link share__twitter"
-        href="https://twitter.com/intent/tweet?text=Hello%20World&url=/hello-world/"
+        href="https://twitter.com/intent/tweet?text=Modern%20OpenGL%20SpriteSheets&url=/spritesheets-with-opengl/"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__facebook"
-        href="https://www.facebook.com/sharer/sharer.php?u=/hello-world/"
+        href="https://www.facebook.com/sharer/sharer.php?u=/spritesheets-with-opengl/"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=/hello-world/&amp;media=/images/mistake.jpg&amp;description=Hello%20World"
+        href="http://pinterest.com/pin/create/button/?url=/spritesheets-with-opengl/&amp;media=/images/opengl_spritesheets.png&amp;description=Modern%20OpenGL%20SpriteSheets"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&url=/hello-world/&title=Hello%20World&summary=Hello%20World&source="
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/spritesheets-with-opengl/&title=Modern%20OpenGL%20SpriteSheets&summary=How%20to%20render%20pieces%20and%20slices%20of%20a%20sprite%20with%20modern%20OpenGL&source="
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
