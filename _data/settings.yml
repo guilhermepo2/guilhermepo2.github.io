@@ -113,6 +113,8 @@ social:
 - {icon: "ion-logo-twitter", name: "Twitter", link: "https://twitter.com/guilhermepo2"}
 - {icon: "ion-logo-github", name: "Github", link: "https://github.com/guilhermepo2"}
 - {icon: "ion-logo-youtube", name: "Youtube", link: "https://youtube.com/@gueepotv"}
+- {icon: "ion-logo-wordpress", name: "Wordpress", link: "https://gueepo.wordpress.com/"}
+- {icon: "ion-logo-game-controller-b", name: "itch.io", link: "https://gueepo.itch.io/"}
 # - {icon: "ion-logo-pinterest", name: "Pinterest", link: "https://pinterest.com"}
 # - {icon: "ion-logo-codepen", name: "Codepen", link: "https://codepen.io"}
 # - {icon: "ion-logo-vimeo", name: "Vimeo", link: "https://vimeo.com"}
