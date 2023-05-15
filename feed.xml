@@ -5,8 +5,8 @@
         <description>just a random programmer&apos;s website</description>
         <link>/</link>
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 08 Mar 2023 22:30:17 -0600</pubDate>
-        <lastBuildDate>Wed, 08 Mar 2023 22:30:17 -0600</lastBuildDate>
+        <pubDate>Sun, 14 May 2023 23:51:31 -0500</pubDate>
+        <lastBuildDate>Sun, 14 May 2023 23:51:31 -0500</lastBuildDate>
         <generator>Jekyll v4.3.2</generator>
         
             <item>
@@ -156,6 +156,77 @@
                 <category>c++</category>
                 
                 <category>graphics</category>
+                
+                
+            </item>
+        
+            <item>
+                <title>Setting up Libtcod on Visual Studio 2019</title>
+                <description>&lt;p&gt;Image credits goes to Josh Ge’s post &lt;a href=&quot;https://www.gamasutra.com/blogs/JoshGe/20181029/329512/How_to_Make_a_Roguelike.php&quot;&gt;“How to Make a Roguelike”&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Some time ago I got to know about the &lt;a href=&quot;https://7drl.com/&quot;&gt;7DRL&lt;/a&gt; and I wanted to take part on it. As I was browsing &lt;a href=&quot;https://www.reddit.com/r/roguelikedev/&quot;&gt;r/roguelikedev&lt;/a&gt; I got to see that &lt;a href=&quot;http://www.roguebasin.com/index.php?title=Complete_roguelike_tutorial_using_C%2B%2B_and_libtcod_-_part_1:_setting_up&quot;&gt;there was a tutorial in C++ using libtcod&lt;/a&gt; - I thought with myself that this method could be a good starting point, but the set up seemed outdated for Windows, althought functional and good enough for Linux and OS X. Using Visual Studio can solve a lot of the incoveniences of having to set up the way you have to on Linux/OS X - I have to say, not needing to set up makefiles or cmake is nice. If you are one those (like me) that enjoys knowing exactly what is going on, compiling on command line is interesting, but it eventually gets old, and you don’t want to deal with that when using Windows.&lt;/p&gt;
+
+&lt;p&gt;With all that being said, a lot of the game industry runs on Windows and Visual Studio, and on C++! So might as well start those practices already. If your intent is just to make a roguelike, there’s not really a huge reason to go with C++ - But if you just want to learn the language, or want to eventually be in the AAA Game Industry, or know that you will need the extra memory management and performance, then you should try C++.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-it-up&quot;&gt;Setting it Up&lt;/h2&gt;
+
+&lt;p&gt;This will be just a simple step-by-step process.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;First of all, you have to have &lt;a href=&quot;https://visualstudio.microsoft.com/downloads/&quot;&gt;Visual Studio 2019&lt;/a&gt; installed in your computer, duh.&lt;/li&gt;
+  &lt;li&gt;After that, you have to &lt;a href=&quot;https://github.com/libtcod/libtcod&quot;&gt;download libtcod&lt;/a&gt; on their &lt;a href=&quot;https://github.com/libtcod/libtcod/releases&quot;&gt;release page&lt;/a&gt; - As the day of this writing, 1.15.1 is the most recent stable version - you have to download the “msvc” version of the release, which stands for &lt;em&gt;Microsoft Visual C++&lt;/em&gt;, and then you have x86 (32 bits) and x86_64 (64 bits) - I’m going with the 64 bits version, the entire filename is “libtcod-1.15.1-x86_64-msvc.zip”.&lt;/li&gt;
+  &lt;li&gt;Next step is simply creating a new Empty Project with Visual Studio 2019. After that we can get our feets wet!&lt;/li&gt;
+  &lt;li&gt;First thing, set your debug environment to x64 (or x86 if that’s the version you downloaded).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/techblog/libtcodsetup/x64.png&quot; alt=&quot;x64&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You will need to add the include files from libtcod into your project, the way I do this usually is by having the entire libtcod folder in my project. To do that, I like creating a &lt;em&gt;“lib”&lt;/em&gt; folder and then simply putting the entire &lt;em&gt;“libtcod-1.15.1-x86_640-msvc”&lt;/em&gt; folder inside of it.&lt;/li&gt;
+  &lt;li&gt;You have to copy some files from the libtcod folder to the root of your project (the root is the folder where the “.vcxproj” is located at), those files are on the root folder for libtcode, these are the files: &lt;em&gt;“libtcod.dll”&lt;/em&gt;, &lt;em&gt;“libtcod.exp”&lt;/em&gt;, &lt;em&gt;“libtcod.lib”&lt;/em&gt;, &lt;em&gt;“libtcod.pdb”&lt;/em&gt;, &lt;em&gt;“SDL2.dll”&lt;/em&gt;, &lt;em&gt;“terminal.png”&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Now we have to tell Visual Studio to look at the directories we need and to search for the libraries we need!&lt;/li&gt;
+  &lt;li&gt;Right-click on your project solution and click on “Properties”.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/techblog/libtcodsetup/properties.png&quot; alt=&quot;Properties&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Search for the option &lt;em&gt;“VC++ Directories”&lt;/em&gt; &amp;gt; &lt;em&gt;“Include Directories”&lt;/em&gt; and add the &lt;em&gt;“include”&lt;/em&gt; folder inside libtcod.&lt;/li&gt;
+  &lt;li&gt;Search for &lt;em&gt;“Linker”&lt;/em&gt; &amp;gt; &lt;em&gt;“Input”&lt;/em&gt; &amp;gt; &lt;em&gt;“Additional Dependencies”&lt;/em&gt; and add &lt;em&gt;“libtcod.lib”&lt;/em&gt; to it.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That’s all you need to do! After doing all that, here is a simple sanity test code to see if it works!&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&quot;libtcod.hpp&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TCODConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initRoot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;libtcod C++ tutorial&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TCODConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isWindowClosed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TCOD_key_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TCODSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkForEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TCOD_EVENT_KEY_PRESS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TCODConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TCODConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;putChar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&apos;@&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TCODConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This should be result:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/techblog/libtcodsetup/result.png&quot; alt=&quot;Result&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, that’s it for the post, I just wanted to show the way I go about setting up libtcod, I hope this help someone in some way so you can start creating your own roguelikes in C++!&lt;/p&gt;
+
+&lt;p&gt;If you are feeling venturous enough, you can reach me on &lt;a href=&quot;http://twitter.com/guilhermepo2&quot;&gt;Twitter&lt;/a&gt; or check my &lt;a href=&quot;http://gueepo.me/&quot;&gt;website&lt;/a&gt;!&lt;/p&gt;
+</description>
+                <pubDate>Sun, 15 Mar 2020 06:00:00 -0500</pubDate>
+                <link>/Setting-Up-Libtcod-Visual-Studio-2019/</link>
+                <guid isPermaLink="true">/Setting-Up-Libtcod-Visual-Studio-2019/</guid>
+                
+                <category>c++</category>
                 
                 
             </item>

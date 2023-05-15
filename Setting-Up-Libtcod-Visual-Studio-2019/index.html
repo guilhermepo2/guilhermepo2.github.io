@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>Setting up Libtcod on Visual Studio 2019</title>
+  <meta name='description' content='Setting up Libtcod on Visual Studio 2019'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/Setting-Up-Libtcod-Visual-Studio-2019/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="Setting up Libtcod on Visual Studio 2019 – gueepo">
+  <meta name="twitter:description" content="Setting up Libtcod on Visual Studio 2019">
+  <meta name="twitter:image:src" content="/images/techblog/libtcodsetup/result.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="Setting up Libtcod on Visual Studio 2019 – gueepo">
+  <meta property="og:description" content="Setting up Libtcod on Visual Studio 2019">
+  <meta property="og:image" content="/images/techblog/libtcodsetup/result.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=c%2B%2B" class="post-tag">c++</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">Setting up Libtcod on Visual Studio 2019</h1>
+
+            
+            <p class="post-description">Setting up Libtcod on Visual Studio 2019</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2020-03-15T06:00:00-05:00">15 March, 2020</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/techblog/libtcodsetup/result.png" alt="Setting up Libtcod on Visual Studio 2019">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,118 +180,191 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>Image credits goes to Josh Ge’s post <a href="https://www.gamasutra.com/blogs/JoshGe/20181029/329512/How_to_Make_a_Roguelike.php">“How to Make a Roguelike”</a>.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Some time ago I got to know about the <a href="https://7drl.com/">7DRL</a> and I wanted to take part on it. As I was browsing <a href="https://www.reddit.com/r/roguelikedev/">r/roguelikedev</a> I got to see that <a href="http://www.roguebasin.com/index.php?title=Complete_roguelike_tutorial_using_C%2B%2B_and_libtcod_-_part_1:_setting_up">there was a tutorial in C++ using libtcod</a> - I thought with myself that this method could be a good starting point, but the set up seemed outdated for Windows, althought functional and good enough for Linux and OS X. Using Visual Studio can solve a lot of the incoveniences of having to set up the way you have to on Linux/OS X - I have to say, not needing to set up makefiles or cmake is nice. If you are one those (like me) that enjoys knowing exactly what is going on, compiling on command line is interesting, but it eventually gets old, and you don’t want to deal with that when using Windows.</p>
+
+<p>With all that being said, a lot of the game industry runs on Windows and Visual Studio, and on C++! So might as well start those practices already. If your intent is just to make a roguelike, there’s not really a huge reason to go with C++ - But if you just want to learn the language, or want to eventually be in the AAA Game Industry, or know that you will need the extra memory management and performance, then you should try C++.</p>
+
+<h2 id="setting-it-up">Setting it Up</h2>
+
+<p>This will be just a simple step-by-step process.</p>
+
+<ol>
+  <li>First of all, you have to have <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> installed in your computer, duh.</li>
+  <li>After that, you have to <a href="https://github.com/libtcod/libtcod">download libtcod</a> on their <a href="https://github.com/libtcod/libtcod/releases">release page</a> - As the day of this writing, 1.15.1 is the most recent stable version - you have to download the “msvc” version of the release, which stands for <em>Microsoft Visual C++</em>, and then you have x86 (32 bits) and x86_64 (64 bits) - I’m going with the 64 bits version, the entire filename is “libtcod-1.15.1-x86_64-msvc.zip”.</li>
+  <li>Next step is simply creating a new Empty Project with Visual Studio 2019. After that we can get our feets wet!</li>
+  <li>First thing, set your debug environment to x64 (or x86 if that’s the version you downloaded).</li>
+</ol>
+
+<p><img src="/images/techblog/libtcodsetup/x64.png" alt="x64" /></p>
+
+<ol>
+  <li>You will need to add the include files from libtcod into your project, the way I do this usually is by having the entire libtcod folder in my project. To do that, I like creating a <em>“lib”</em> folder and then simply putting the entire <em>“libtcod-1.15.1-x86_640-msvc”</em> folder inside of it.</li>
+  <li>You have to copy some files from the libtcod folder to the root of your project (the root is the folder where the “.vcxproj” is located at), those files are on the root folder for libtcode, these are the files: <em>“libtcod.dll”</em>, <em>“libtcod.exp”</em>, <em>“libtcod.lib”</em>, <em>“libtcod.pdb”</em>, <em>“SDL2.dll”</em>, <em>“terminal.png”</em>.</li>
+  <li>Now we have to tell Visual Studio to look at the directories we need and to search for the libraries we need!</li>
+  <li>Right-click on your project solution and click on “Properties”.</li>
+</ol>
+
+<p><img src="/images/techblog/libtcodsetup/properties.png" alt="Properties" /></p>
+
+<ol>
+  <li>Search for the option <em>“VC++ Directories”</em> &gt; <em>“Include Directories”</em> and add the <em>“include”</em> folder inside libtcod.</li>
+  <li>Search for <em>“Linker”</em> &gt; <em>“Input”</em> &gt; <em>“Additional Dependencies”</em> and add <em>“libtcod.lib”</em> to it.</li>
+</ol>
+
+<p>That’s all you need to do! After doing all that, here is a simple sanity test code to see if it works!</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"libtcod.hpp"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">TCODConsole</span><span class="o">::</span><span class="n">initRoot</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s">"libtcod C++ tutorial"</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">TCODConsole</span><span class="o">::</span><span class="n">isWindowClosed</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">TCOD_key_t</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">TCODSystem</span><span class="o">::</span><span class="n">checkForEvent</span><span class="p">(</span><span class="n">TCOD_EVENT_KEY_PRESS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+        <span class="n">TCODConsole</span><span class="o">::</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+        <span class="n">TCODConsole</span><span class="o">::</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">putChar</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="sc">'@'</span><span class="p">);</span>
+        <span class="n">TCODConsole</span><span class="o">::</span><span class="n">flush</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This should be result:</p>
+
+<p><img src="/images/techblog/libtcodsetup/result.png" alt="Result" /></p>
+
+<p>Well, that’s it for the post, I just wanted to show the way I go about setting up libtcod, I hope this help someone in some way so you can start creating your own roguelikes in C++!</p>
+
+<p>If you are feeling venturous enough, you can reach me on <a href="http://twitter.com/guilhermepo2">Twitter</a> or check my <a href="http://gueepo.me/">website</a>!</p>
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Setting%20up%20Libtcod%20on%20Visual%20Studio%202019&url=/Setting-Up-Libtcod-Visual-Studio-2019/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/Setting-Up-Libtcod-Visual-Studio-2019/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/Setting-Up-Libtcod-Visual-Studio-2019/&amp;media=/images/techblog/libtcodsetup/result.png&amp;description=Setting%20up%20Libtcod%20on%20Visual%20Studio%202019"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/Setting-Up-Libtcod-Visual-Studio-2019/&title=Setting%20up%20Libtcod%20on%20Visual%20Studio%202019&summary=Setting%20up%20Libtcod%20on%20Visual%20Studio%202019&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+
+  
+  <a class="post__next" href="/spritesheets-with-opengl/">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">Modern OpenGL SpriteSheets</h2>
+    </div>
+    <div class="next__image">
+      
+      <img class="lazy" data-src="/images/opengl_spritesheets.png" alt="Setting up Libtcod on Visual Studio 2019">
+    </div>
+  </a>
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/spritesheets-with-opengl/">
+                    <img class="lazy" data-src="/images/opengl_spritesheets.png" alt="Modern OpenGL SpriteSheets">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-05-01T06:00:00-05:00">1 May, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/spritesheets-with-opengl/">Modern OpenGL SpriteSheets</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/spritesheets-with-opengl/">
-        <img class="lazy" data-src="/images/opengl_spritesheets.png" alt="Modern OpenGL SpriteSheets">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-05-01T06:00:00-05:00">1 May, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/spritesheets-with-opengl/">Modern OpenGL SpriteSheets</a>
-      </h2>
-
-      <p class="article__excerpt">How to render pieces and slices of a sprite with modern OpenGL</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=c%2B%2B" class="article__tag">c++</a>
-        
-        <a href="/tags/?tag=graphics" class="article__tag">graphics</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/Setting-Up-Libtcod-Visual-Studio-2019/">
-        <img class="lazy" data-src="/images/techblog/libtcodsetup/result.png" alt="Setting up Libtcod on Visual Studio 2019">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2020-03-15T06:00:00-05:00">15 March, 2020</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/Setting-Up-Libtcod-Visual-Studio-2019/">Setting up Libtcod on Visual Studio 2019</a>
-      </h2>
-
-      <p class="article__excerpt">Setting up Libtcod on Visual Studio 2019</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=c%2B%2B" class="article__tag">c++</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 

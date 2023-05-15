@@ -5,6 +5,13 @@
       "url"      : "/spritesheets-with-opengl/",
       "date"     : "01 May 2021",
       "image"    : "/images/opengl_spritesheets.png"
+    } ,
+  
+    {
+      "title"    : "Setting up Libtcod on Visual Studio 2019",
+      "url"      : "/Setting-Up-Libtcod-Visual-Studio-2019/",
+      "date"     : "15 March 2020",
+      "image"    : "/images/techblog/libtcodsetup/result.png"
     } 
   
 ]
