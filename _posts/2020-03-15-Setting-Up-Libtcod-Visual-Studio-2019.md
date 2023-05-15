@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: Setting up Libtcod on Visual Studio 2019
 description: Setting up Libtcod on Visual Studio 2019
