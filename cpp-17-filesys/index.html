@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>What about C++17 filesystem?</title>
+  <meta name='description' content='What about C++17 filesystem?'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/cpp-17-filesys/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="What about C++17 filesystem? – gueepo">
+  <meta name="twitter:description" content="What about C++17 filesystem?">
+  <meta name="twitter:image:src" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="What about C++17 filesystem? – gueepo">
+  <meta property="og:description" content="What about C++17 filesystem?">
+  <meta property="og:image" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=cppmeditations" class="post-tag">cppmeditations</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">What about C++17 filesystem?</h1>
+
+            
+            <p class="post-description">What about C++17 filesystem?</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,154 +180,335 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>So here is the issue: In my simple engine I’m developing that are basically two (or more) working directories. There is the game, the engine and the tools, but let’s focus on the game and on the engine.</p>
+
+<p>Obviously, the game will have its own assets, so we need a working path that the game project can easily access to load said assets. But it is also important that the engine have its own assets, which I call “Default Assets”, very creative, eh.</p>
+
+<p>And sure, it’s not difficult to set up the engine default assets path in relation to the game project path. But what about when I’m working directly in the engine?</p>
+
+<p>Let me illustrate that with a better example.</p>
+
+<p>When I’m working directly in the engine, the <strong>DefaultAssets</strong> folder path is <code class="language-plaintext highlighter-rouge">"./src/DefaultAssets"</code> - not the greatest path, I know, why the assets are on the source folder?! But let’s not get caught in details.</p>
+
+<p>When I’m working on the sandbox project, usually for testing things in the engine, the <strong>DefaultAssets</strong> folder path is <code class="language-plaintext highlighter-rouge">"../visions2D/src/DefaultAssets"</code></p>
+
+<p>And now, let’s take a look at the last sample game I’ve made: Flappy ASCII. The path for the <strong>DefaultAssets</strong> folder in this case would be: <code class="language-plaintext highlighter-rouge">"../visions2D/visions2D/src/DefaultAssets"</code> - an even worst path, I know, why there are <strong>two</strong> visions2D folder?</p>
+
+<p>My engine has problems, ok, I know.</p>
+
+<p><strong>But the question I want to pose is:</strong> Wouldn’t it be nice if the engine could figure out by itself a <em>“root engine folder”</em> and a <em>“root current project folder”</em>? - And then we effectively have two working paths and we can design an API to search on each one, and a general API that will search on both.</p>
+
+<p>To try to answer that I did some research on the <strong>std::filesystem</strong> library implemented in <strong>C++17</strong>.</p>
+
+<p>You can check compiler compatibility here: <a href="https://en.cppreference.com/w/cpp/compiler_support">std::filesystem compiler support</a>.</p>
+
+<hr />
+
+<p>There is a lot going on here, and the <a href="https://en.cppreference.com/w/cpp/filesystem">official documentation</a> will be your best friend. I didn’t really find a lot of usage, concrete examples or whatnot with this filesystem, as it is fairly recent. What I did find, though, is <a href="https://github.com/gulrak/filesystem">this implementation of something similar but compatible way back to C++11</a>.</p>
+
+<p>Classes-wise, your best friends are going to be: <strong>path</strong>, <strong>directory_entry</strong>, and <strong>directory_iterator</strong>.</p>
+
+<p>As for non-member functions and file types, <strong>current_path</strong>, <strong>exists</strong>, and <strong>is_directory</strong> are also pretty nice.</p>
+
+<p>And to be fair, what the documentation and these classes entail make it very straightforward to solve the problem I want to solve. It’s also worth noting that the path class has a lot of helpful functions!</p>
+
+<p>On the example I mentioned above: <strong>How do we find the default assets folder on the engine given that we are on the sandbox?!</strong></p>
+
+<p>We can start with this nice little thing:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span> <span class="nf">sandboxpath</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">current_path</span><span class="p">());</span>
+</code></pre></div></div>
+
+<p>Since we know that the visions2D folder and the sandbox folder are on the same level, we can use the nice <code class="language-plaintext highlighter-rouge">replace_filename()</code> function provided to us:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span> <span class="n">visions2Droot</span> <span class="o">=</span> <span class="n">defaultassets</span><span class="p">.</span><span class="n">replace_filename</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="p">(</span><span class="s">"visions2D"</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Another useful operation we can perform here is: <code class="language-plaintext highlighter-rouge">sandboxpath.parent_path()</code></p>
+
+<p>With that, I would have the root of all the roots, on that folder I know I’m one above sandbox, and one above the visions2D core engine, and I can use the root path to pretty much search for anything I need.</p>
+
+<p>But anyway, we have the visions2D core engine path now, how do we search on the files and folders inside of it?</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">directory_entry</span><span class="o">&amp;</span> <span class="n">v22dir</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">directory_iterator</span><span class="p">(</span><span class="n">visions2Droot</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>oof, there’s a lot to unpack here. We are iterating with:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">directory_entry</span><span class="o">&amp;</span>
+</code></pre></div></div>
+
+<p>That’s why I mentioned <code class="language-plaintext highlighter-rouge">directory_entry</code> would be a nice thing to read at, but you can just auto it.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">v22dir</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">directory_iterator</span><span class="p">(</span><span class="n">visions2Droot</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">directory_iterator</code> provides us with a nice constructor that accepts a path. And now that we are iterating on the folder, we check if the individual entries are folders, and if they are we iterate on them, until we find a folder called <em>“DefaultAssets”</em>.</p>
+
+<p>Here’s an example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">visions2Dentry</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">directory_iterator</span><span class="p">(</span><span class="n">visions2Droot</span><span class="p">))</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">is_directory</span><span class="p">(</span><span class="n">visions2Dentry</span><span class="p">))</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">subdir</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">directory_iterator</span><span class="p">(</span><span class="n">visions2Dentry</span><span class="p">))</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">is_directory</span><span class="p">(</span><span class="n">subdir</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">subdir</span><span class="p">.</span><span class="n">path</span><span class="p">().</span><span class="n">filename</span><span class="p">()</span> <span class="o">==</span> <span class="s">"DefaultAssets"</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">LOG_INFO</span><span class="p">(</span><span class="s">"Bingo!"</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Of course there is a lot of repetition here that could be better organized with functions (hey, maybe even recursive functions!) - But it’s just an example.</p>
+
+<p>At the end of this code, the path we desire will be at <code class="language-plaintext highlighter-rouge">subdir.path()</code></p>
+
+<p>We did it! Next step is designing an API and accounting for every edge-case out there!</p>
+
+<p><a href="https://twitter.com/guilhermepo2">twitter</a></p>
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=What%20about%20C++17%20filesystem?&url=/cpp-17-filesys/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/cpp-17-filesys/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/cpp-17-filesys/&amp;media=/images/cppmeditations/cppmeditations.png&amp;description=What%20about%20C++17%20filesystem?"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/cpp-17-filesys/&title=What%20about%20C++17%20filesystem?&summary=What%20about%20C++17%20filesystem?&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/for-loop/">
+    <div class="prev__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">Iterating on a for loop with ++i or i++?</h2>
+    </div>
+  </a>
+  
+
+  
+  <a class="post__next" href="/what-if-strings-were-ints/">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">What if strings were ints?</h2>
+    </div>
+    <div class="next__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+    </div>
+  </a>
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/smart-pointers-cpp/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/smart-pointers-cpp/">smart pointers in C++</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/what-if-strings-were-ints/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 Mar, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/for-loop/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-05-31T15:00:00-05:00">31 May, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/for-loop/">Iterating on a for loop with ++i or i++?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/maps-or-unordered-maps/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="In which I talk about std::unordered_map">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-02-27T19:20:00-06:00">27 Feb, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/maps-or-unordered-maps/">In which I talk about std::unordered_map</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+                  
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/smart-pointers-cpp/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/smart-pointers-cpp/">smart pointers in C++</a>
-      </h2>
-
-      <p class="article__excerpt">smart pointers in C++</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/what-if-strings-were-ints/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
-      </h2>
-
-      <p class="article__excerpt">What if strings were ints?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/cpp-17-filesys/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
-      </h2>
-
-      <p class="article__excerpt">What about C++17 filesystem?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 

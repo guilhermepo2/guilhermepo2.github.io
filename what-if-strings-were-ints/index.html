@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>What if strings were ints?</title>
+  <meta name='description' content='What if strings were ints?'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/what-if-strings-were-ints/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="What if strings were ints? – gueepo">
+  <meta name="twitter:description" content="What if strings were ints?">
+  <meta name="twitter:image:src" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="What if strings were ints? – gueepo">
+  <meta property="og:description" content="What if strings were ints?">
+  <meta property="og:image" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=cppmeditations" class="post-tag">cppmeditations</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">What if strings were ints?</h1>
+
+            
+            <p class="post-description">What if strings were ints?</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,154 +180,394 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>There comes a time in everyone’s life where they ask themselves: “What if strings, but integers?”</p>
+
+<p>Strings are a complicated bit, eh. At first, they might seem fairly straightforward, what is out there that a <code class="language-plaintext highlighter-rouge">std::string</code> can’t handle?! It happens that the answer is a lot, actually.</p>
+
+<p>A big concern on strings is <em>internationalization</em> ( i.e. translating things :) ), but that’s not the point of this post, I just wanted to put that in your mind. The point of this post is to talk a little bit about performance!</p>
+
+<p>Strings are expensive to work with at runtime, for you, a human, it is fairly straightforward to use your capabilities to know if, let’s say, “jalapeno poppers” and “potatoes” are different chains of text. But for a computer? not so much. Give a computer the task to compare the words “microphone” and “microphone” and it will go like “yep, sure that’s the same letter on the first position, yep, sure that’s the same letter on the second position (…)”. The point is that comparing and copying strings is expensive.</p>
+
+<p>According to <a href="https://www.gameenginebook.com/">Jason Gregory</a>:</p>
+<blockquote>
+  <p>“During one project I worked on, we profiled our game’s performance only to discover that strcmp() and strcpy() were the top two most expensive functions!</p>
+</blockquote>
+
+<p>What if there was a way to make it better? Well, what if we could hash our strings?</p>
+
+<p>Although for you, a human, comparing 238403294 and 238043294 might be a difficult task, a computer can look at it and be like “yep, sure they are not the same!”</p>
+
+<p>I know you thought they were the same :)</p>
+
+<p>If we have the ability to hash a string, then checking if a string is the same as another is fairly straightforward, and even better, you can stablish a “less than” and “bigger than” relationship between strings. Whoah, sorting strings!</p>
+
+<p>And maybe we could have a hashmap that establishes a relationship between the hashes and the strings, so if you use the same string in another part of the code, it won’t need to create that string, which is a double win since you don’t have the memory overhead of allocating that string and you don’t have the performance overhead of creating it.</p>
+
+<p>So <strong>how do you hash a string?</strong></p>
+
+<p>Hashing algorithms are not the most straightforward things out there.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="nf">hash</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">K</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">K</span> <span class="o">^=</span> <span class="n">K</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">w</span><span class="o">-</span><span class="n">m</span><span class="p">);</span> 
+   <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">K</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">w</span><span class="o">-</span><span class="n">m</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I mean… Sure… <a href="https://en.wikipedia.org/wiki/Hash_function#Multiplicative_hashing">source</a></p>
+
+<p>And unless you really want to get into it, most of it is finding a function that will work and give the same result for the same string, better trust the smart people coming up with the <strong>MATH</strong> this time.</p>
+
+<p>But in essence, any hashing algorithm will do. A famous one is CRC32. Let’s take a look. <a href="https://stackoverflow.com/questions/34153765/generate-checksum-for-string">Source</a></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x55555555</span><span class="p">)</span> <span class="o">&lt;&lt;</span>  <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span>  <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x55555555</span><span class="p">);</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x33333333</span><span class="p">)</span> <span class="o">&lt;&lt;</span>  <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span>  <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x33333333</span><span class="p">);</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x0F0F0F0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span>  <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span>  <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x0F0F0F0F</span><span class="p">);</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0xFF00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span>
+       <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF00</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">24</span><span class="p">);</span>
+   <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* This is the basic CRC algorithm with no optimizations. It follows the
+logic circuit as closely as possible. */</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">crc32a</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+   <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">byte</span><span class="p">,</span> <span class="n">crc</span><span class="p">;</span>
+
+   <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="n">crc</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span><span class="p">;</span>
+   <span class="k">while</span> <span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">byte</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>            <span class="c1">// Get next byte.</span>
+      <span class="n">byte</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="n">byte</span><span class="p">);</span>         <span class="c1">// 32-bit reversal.</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Do eight times.</span>
+         <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">crc</span> <span class="o">^</span> <span class="n">byte</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+              <span class="n">crc</span> <span class="o">=</span> <span class="p">(</span><span class="n">crc</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x04C11DB7</span><span class="p">;</span>
+         <span class="k">else</span> <span class="n">crc</span> <span class="o">=</span> <span class="n">crc</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">byte</span> <span class="o">=</span> <span class="n">byte</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span>          <span class="c1">// Ready next msg bit.</span>
+      <span class="p">}</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="o">~</span><span class="n">crc</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I mean… Sure dude. What matters here is that if you call <code class="language-plaintext highlighter-rouge">crc32a("Jalapeno Poppers")</code> you will get <code class="language-plaintext highlighter-rouge">3660972395</code>.</p>
+
+<p>And that’s pretty much it?</p>
+
+<p>Let’s take a look at another way to hash a string, this one comes from the book Game Coding Complete, Fourth Edition. <a href="https://github.com/MikeMcShaffry/gamecode4/blob/master/Source/GCC4/Utilities/String.cpp">Source</a></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span><span class="o">*</span> <span class="nf">HashName</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">pIdentString</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">BASE</span> <span class="o">=</span> <span class="mi">65521L</span><span class="p">;</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">NMAX</span> <span class="o">=</span> <span class="mi">5552</span><span class="p">;</span>
+
+<span class="cp">#define DO1(buf, i) { s1 += tolower(buf[i]); s2 += s1;}
+#define DO2(buf, i) DO1(buf, i); DO1(buf, i+1);
+#define DO4(buf, i) DO2(buf, i); DO2(buf, i+2);
+#define DO8(buf, i) DO4(buf, i); DO4(buf, i+4);
+#define DO16(buf) DO8(buf, 0); DO8(buf, 8);
+</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">pIdentString</span> <span class="o">==</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">nullptr</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">s1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">s2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pIdentString</span><span class="p">);</span> <span class="n">len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="cm">/* x */</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">k</span> <span class="o">=</span> <span class="n">len</span> <span class="o">&lt;</span> <span class="n">NMAX</span> <span class="o">?</span> <span class="n">len</span> <span class="o">:</span> <span class="n">NMAX</span><span class="p">;</span>
+		<span class="n">len</span> <span class="o">-=</span> <span class="n">k</span><span class="p">;</span>
+
+		<span class="k">while</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">DO16</span><span class="p">(</span><span class="n">pIdentString</span><span class="p">);</span>
+			<span class="n">pIdentString</span> <span class="o">+=</span> <span class="mi">16</span><span class="p">;</span>
+			<span class="n">k</span> <span class="o">-=</span> <span class="mi">16</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">do</span> <span class="p">{</span>
+				<span class="n">s1</span> <span class="o">+=</span> <span class="n">tolower</span><span class="p">(</span><span class="o">*</span><span class="n">pIdentString</span><span class="o">++</span><span class="p">);</span>
+				<span class="n">s2</span> <span class="o">+=</span> <span class="n">s1</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="n">k</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="n">s1</span> <span class="o">%=</span> <span class="n">BASE</span><span class="p">;</span>
+		<span class="n">s2</span> <span class="o">%=</span> <span class="n">BASE</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">((</span><span class="n">s2</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="n">s1</span><span class="p">);</span>
+
+<span class="cp">#undef DO1
+#undef DO2
+#undef DO4
+#undef DO8
+#undef DO16
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>If this one seems even more cryptic, check the source for some comments and clarifications from the authors. This one returns a <code class="language-plaintext highlighter-rouge">void*</code> because it looks fancier on the editor when debugging, but we can get an unsigned long like so:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">poppers2</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">HashName</span><span class="p">(</span><span class="s">"Jalapeno Poppers"</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>And the result of that will be <code class="language-plaintext highlighter-rouge">906888819</code>.</p>
+
+<p>Of course, we are talking about hash functions, so it’s possible that a collision happens, which means it’s possible that different strings will lead to the same number. But if you use something like CRC-32, your strings can be mapped into 4 billion different values, and your game won’t contain nearly as much that amount of strings, so the likelihood of a collision is very low. But if it happens, a real solution that I’ve seen is just adding a space at the end of one of the strings. If you are not happy with that, listen to Jason Gregory:</p>
+
+<blockquote>
+  <p>That being said, Naughty Dog has moved to a 64-bit hashing function for The Last of Us Part II and all of our future game titles; this should essentially eliminate the possibility of hash collisions.</p>
+</blockquote>
+
+<p>Just add more bits to the hashing function!</p>
+
+<p>It’s still a bit of a jump from having a hashing function to having a full string class able to store a string hashmap and have comparisons, but hey, the most confusing part is over. And if you want more on that, you can look at the Game Coding Complete code: <a href="https://github.com/MikeMcShaffry/gamecode4/blob/master/Source/GCC4/Utilities/String.h">String.h</a> <a href="https://github.com/MikeMcShaffry/gamecode4/blob/master/Source/GCC4/Utilities/String.cpp">String.cpp</a></p>
+
+<p><a href="https://twitter.com/guilhermepo2">twitter</a></p>
+
+<p><a href="https://www.youtube.com/channel/UCOIlr-LtVmaIRdI0oe2lthg">youtube</a></p>
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=What%20if%20strings%20were%20ints?&url=/what-if-strings-were-ints/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/what-if-strings-were-ints/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/what-if-strings-were-ints/&amp;media=/images/cppmeditations/cppmeditations.png&amp;description=What%20if%20strings%20were%20ints?"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/what-if-strings-were-ints/&title=What%20if%20strings%20were%20ints?&summary=What%20if%20strings%20were%20ints?&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/cpp-17-filesys/">
+    <div class="prev__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">What about C++17 filesystem?</h2>
+    </div>
+  </a>
+  
+
+  
+  <a class="post__next" href="/smart-pointers-cpp/">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">smart pointers in C++</h2>
+    </div>
+    <div class="next__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+    </div>
+  </a>
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/smart-pointers-cpp/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/smart-pointers-cpp/">smart pointers in C++</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/cpp-17-filesys/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 Sep, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/for-loop/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-05-31T15:00:00-05:00">31 May, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/for-loop/">Iterating on a for loop with ++i or i++?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/maps-or-unordered-maps/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="In which I talk about std::unordered_map">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-02-27T19:20:00-06:00">27 Feb, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/maps-or-unordered-maps/">In which I talk about std::unordered_map</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+                  
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/smart-pointers-cpp/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/smart-pointers-cpp/">smart pointers in C++</a>
-      </h2>
-
-      <p class="article__excerpt">smart pointers in C++</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/what-if-strings-were-ints/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
-      </h2>
-
-      <p class="article__excerpt">What if strings were ints?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/cpp-17-filesys/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
-      </h2>
-
-      <p class="article__excerpt">What about C++17 filesystem?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 

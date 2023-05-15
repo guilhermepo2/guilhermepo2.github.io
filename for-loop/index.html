@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>Iterating on a for loop with ++i or i++?</title>
+  <meta name='description' content='Iterating on a for loop with ++i or i++?'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/for-loop/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="Iterating on a for loop with ++i or i++? – gueepo">
+  <meta name="twitter:description" content="Iterating on a for loop with ++i or i++?">
+  <meta name="twitter:image:src" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="Iterating on a for loop with ++i or i++? – gueepo">
+  <meta property="og:description" content="Iterating on a for loop with ++i or i++?">
+  <meta property="og:image" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=cppmeditations" class="post-tag">cppmeditations</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">Iterating on a for loop with ++i or i++?</h1>
+
+            
+            <p class="post-description">Iterating on a for loop with ++i or i++?</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2021-05-31T15:00:00-05:00">31 May, 2021</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,154 +180,324 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>I see a lot of for loops around. and sometimes they are written like <code class="language-plaintext highlighter-rouge">for(int i = 0; i &lt; 10; i++)</code> and sometimes they are written like <code class="language-plaintext highlighter-rouge">for(int i = 0; i &lt; 10; ++i)</code>.</p>
+
+<p>And for some reason, they were different in my mind. For some reason, I thought <code class="language-plaintext highlighter-rouge">++i</code> would increment at the beginning of the loop whereas <code class="language-plaintext highlighter-rouge">i++</code> would increment at the end, but upon closer inspection, the code behavior didn’t reflect the assumptions I had. So why not do some investigation?</p>
+
+<p>You may ask: “How do you investigate the differences?” And the answer for that is <strong>Assembly!</strong> Everything has to be translated to assembly at some point, so comparing assemblies will show you the real difference between implementations.</p>
+
+<p>Consider the following code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for(int i = 0; i &lt; 10; i++) { }
+</code></pre></div></div>
+
+<p>Using <a href="https://godbolt.org/">godbolt</a> we can take a look at how this is translated to assembly.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MyFunction():
+    push    rbp
+    mov     rbp, rsp
+    mov     DWORD PTR [rbp-4], 0
+    jmp     .L2
+.L3:
+    add     DWORD PTR [rbp-4], 1
+.L2:
+    cmp     DWORD PTR [rbp-4], 9
+    jle     .L3
+</code></pre></div></div>
+
+<p>In a few words, here’s what’s happening:</p>
+<ul>
+  <li>The value 0 is attributed to a memory address.</li>
+  <li>We then jump to <code class="language-plaintext highlighter-rouge">.L2</code>, where we compare the value with 9 (the final value for the loop)</li>
+  <li>Then we have a Jump Less/Equal (JLE) to the section <code class="language-plaintext highlighter-rouge">.L3</code>. This means we jump to <code class="language-plaintext highlighter-rouge">.L3</code> if the value is less than or equal to 9.</li>
+  <li>Finally, section <code class="language-plaintext highlighter-rouge">.L3</code> adds 1 to that memory address.</li>
+</ul>
+
+<p>Well, I just described what a loop is, but let’s keep going.</p>
+
+<p><strong>What happens when I change <code class="language-plaintext highlighter-rouge">i++</code> to <code class="language-plaintext highlighter-rouge">++i</code>?</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MyFunction():
+    push    rbp
+    mov     rbp, rsp
+    mov     DWORD PTR [rbp-4], 0
+    jmp     .L2
+.L3:
+    add     DWORD PTR [rbp-4], 1
+.L2:
+    cmp     DWORD PTR [rbp-4], 9
+    jle     .L3
+</code></pre></div></div>
+
+<p><strong>Literally nothing!</strong></p>
+
+<p>So that was very anti-climatic and a very complicated way to say that there is no difference at all between those two things.</p>
+
+<p><strong>But hang on!</strong> What if we achieve this same behaviour with a while loop? Like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int i;
+while(i &lt; 10) {
+    i++;
+}
+</code></pre></div></div>
+
+<p>We obtain the following assembly for the above code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MyFunction():
+    push    rbp
+    mov     rbp, rsp
+    jmp     .L2
+.L3:
+    add     DWORD PTR [rbp-4], 1
+.L2:
+    cmp     DWORD PTR [rbp-4], 9
+    jle     .L3
+    nop
+</code></pre></div></div>
+
+<p><strong>It’s the same!</strong> Were you expecting something different?</p>
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Iterating%20on%20a%20for%20loop%20with%20++i%20or%20i++?&url=/for-loop/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/for-loop/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/for-loop/&amp;media=/images/cppmeditations/cppmeditations.png&amp;description=Iterating%20on%20a%20for%20loop%20with%20++i%20or%20i++?"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/for-loop/&title=Iterating%20on%20a%20for%20loop%20with%20++i%20or%20i++?&summary=Iterating%20on%20a%20for%20loop%20with%20++i%20or%20i++?&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/spritesheets-with-opengl/">
+    <div class="prev__image">
+      
+      <img class="lazy" data-src="/images/opengl_spritesheets.png" alt="Iterating on a for loop with ++i or i++?">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">Modern OpenGL SpriteSheets</h2>
+    </div>
+  </a>
+  
+
+  
+  <a class="post__next" href="/cpp-17-filesys/">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">What about C++17 filesystem?</h2>
+    </div>
+    <div class="next__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+    </div>
+  </a>
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/smart-pointers-cpp/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/smart-pointers-cpp/">smart pointers in C++</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/what-if-strings-were-ints/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 Mar, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/cpp-17-filesys/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 Sep, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/maps-or-unordered-maps/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="In which I talk about std::unordered_map">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-02-27T19:20:00-06:00">27 Feb, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/maps-or-unordered-maps/">In which I talk about std::unordered_map</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+                  
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/smart-pointers-cpp/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/smart-pointers-cpp/">smart pointers in C++</a>
-      </h2>
-
-      <p class="article__excerpt">smart pointers in C++</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/what-if-strings-were-ints/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
-      </h2>
-
-      <p class="article__excerpt">What if strings were ints?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/cpp-17-filesys/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
-      </h2>
-
-      <p class="article__excerpt">What about C++17 filesystem?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 

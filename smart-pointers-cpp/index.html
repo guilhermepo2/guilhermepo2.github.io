@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>smart pointers in C++</title>
+  <meta name='description' content='smart pointers in C++'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/smart-pointers-cpp/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="smart pointers in C++ – gueepo">
+  <meta name="twitter:description" content="smart pointers in C++">
+  <meta name="twitter:image:src" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="smart pointers in C++ – gueepo">
+  <meta property="og:description" content="smart pointers in C++">
+  <meta property="og:image" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=cppmeditations" class="post-tag">cppmeditations</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">smart pointers in C++</h1>
+
+            
+            <p class="post-description">smart pointers in C++</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,154 +180,436 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>It was on my list for a long time, and now I’ll finally take a look at smart pointers, how they work, and how to better use them. And, as always, I will write about them.</p>
+
+<p>There’s a lot of reasons to use C/C++ and using pointers is probably among the most common reasons why people use it. Figure this, you have the power to decide when you get memory from the computer, and it’s only fair that you also have the responsibility of giving it back.</p>
+
+<p>Sounds fair, sounds powerful, you take it, you give it back, it’s all under your control! There’s no garbage-collection here, leave this to <em>slow</em> languages like C# and Java.</p>
+
+<p>And then C++11 comes in with… limited <em>garbage-collection</em> and <strong>smart pointers</strong>! Now you don’t need to worry <em>(too much)</em> about giving the memory back. Hmm.</p>
+
+<p>I guess garbage collection isn’t that bad then?</p>
+
+<p>C++11 introduced the <code class="language-plaintext highlighter-rouge">&lt;memory&gt;</code> header responsible for <em>“defining general utilities to manage dynamic memory”</em> <a href="https://www.cplusplus.com/reference/memory/">thanks cpp dot com</a></p>
+
+<p>There are three types of smart pointers:</p>
+<ul>
+  <li>shared pointer</li>
+  <li>a <em>weak</em> shared pointer</li>
+  <li>a <em>unique</em> pointer</li>
+</ul>
+
+<p>A <a href="https://www.cplusplus.com/reference/memory/unique_ptr/">std::unique_ptr</a> owns their pointer <em>uniquely</em>, meaning no one else can point to that data.</p>
+
+<p>For the purpose of an example, suppose you have this complex class right here:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">vec2</span> <span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+    
+    <span class="n">vec2</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"vec2 created</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="o">~</span><span class="n">vec2</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"vec2 destroyed</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The following program</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">vec2</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Would result in the lines “vec2 created”, followed by “vec2 destroyed”. But what happens if you have a pointer and you forget deallocate it?</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec2</span><span class="o">*</span> <span class="n">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">vec2</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Running this program would output just “vec2 created” - You allocated memory and never gave it back, your code has a memory leak, congrats!</p>
+
+<p>That’s where we go back to smart pointers, if they are as smart as they say they are, we shouldn’t have a memory leak, right?</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="k">new</span> <span class="nf">vec2</span><span class="p">());</span>
+</code></pre></div></div>
+
+<p>As expected, with this we see both the creation and destruction messages printed. If you are on C++14 you can make something like this.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>And now if a program like this, you will see the creation and destruction messages three times, once for each pointer.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v3</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span><span class="p">();</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Going back to our raw pointer example, how could we fix it? The below is perfectly possible!</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec2</span><span class="o">*</span> <span class="n">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">vec2</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">sharedV</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>We create the raw pointer ourselves and then give it to a smart pointer, that will get rid of it for us, that’s doable.</p>
+
+<hr />
+
+<p>Cool, we learned that when smart pointers go out of scope they destroy the object automatically, making our lifes easier when managing memory, but what about their particularities?</p>
+
+<p>A <a href="https://www.cplusplus.com/reference/memory/unique_ptr/">std::unique_ptr</a>, as the name implies, is unique. Once a unique pointer owns that pointer, no one else can. For example, this is illegal C++.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">thisIsIllegal</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>And as the name <a href="https://www.cplusplus.com/reference/memory/shared_ptr/">std::shared_ptr</a> implies, this is a shared pointer. The following is perfectly legal in C++.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">notIllegal</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>But here’s a trick question: How smart are these unique pointers, do they have any control over raw pointers? What will happen here?</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec2</span><span class="o">*</span> <span class="n">position</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">vec2</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">vec2</span><span class="o">&gt;</span> <span class="n">legalOrIllegal</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>We don’t get a compilation error. But we do get a crash. That’s not surprising since you are destroying the same thing twice. The compiler won’t magically know that a raw pointer is referenced by a smart pointer.</p>
+
+<p>The thing here is that even if you are using smart pointers you have to be a little careful. And if you are on C++14 then, by all means, use <code class="language-plaintext highlighter-rouge">std::make_unique&lt;T&gt;</code> or <code class="language-plaintext highlighter-rouge">std::make_shared&lt;T&gt;</code></p>
+
+<hr />
+
+<p>The difference between a shared and an unique pointer is pretty clear, but what about weak shared pointers? <a href="https://www.cplusplus.com/reference/memory/weak_ptr/">std::weak_ptr</a></p>
+
+<p>From <strong>cppreference</strong>: <em>“<code class="language-plaintext highlighter-rouge">std::weak_ptr</code> is a smart pointer that holds a non-owning (“weak”) reference to an object that is managed by <a href="https://en.cppreference.com/w/cpp/memory/shared_ptr" title="cpp/memory/shared ptr">std::shared_ptr</a>”</em></p>
+
+<p>So a weak pointer has a reference but doesn’t own the thing. What does that mean? It basically means that you can reference it, but you didn’t allocate and, therefore, you can’t really destroy it.</p>
+
+<p>In more technical terms, all of this works by, behind the curtains, keeping track of how many references a pointer has. So a weak reference has no effect on the reference counting.</p>
+
+<p>I think the right word here is <em>observer</em>, a weak pointer can observe what a shared pointer holds.</p>
+
+<hr />
+
+<p>Fancy this example.</p>
+
+<p>In a game engine, it is common to have an entity-component system, and it’s common that the entity will have a reference to a component, and the component will have a reference to its owner entity.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">entity</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">component</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">component</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">entity</span><span class="o">&gt;</span> <span class="n">ownerEntity</span><span class="p">;</span>
+    
+    <span class="n">component</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"component created</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="o">~</span><span class="n">component</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"component destroyed</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">entity</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">component</span><span class="o">&gt;</span> <span class="n">childrenComponent</span><span class="p">;</span>
+    
+    <span class="n">entity</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"entity created</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="o">~</span><span class="n">entity</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"entity destroyed</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Makes, sense, right?</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">entity</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">(</span><span class="k">new</span> <span class="n">entity</span><span class="p">());</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>This will gives us the messages “entity created” followed by “entity destroyed”</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">component</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="k">new</span> <span class="n">component</span><span class="p">());</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>This will gives us the messages “component created” followed by “component destroyed”</p>
+
+<p>Makes sense, right?</p>
+
+<p>So if we do this</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">entity</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">(</span><span class="k">new</span> <span class="n">entity</span><span class="p">());</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">component</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="k">new</span> <span class="n">component</span><span class="p">());</span>
+    
+    <span class="n">e</span><span class="o">-&gt;</span><span class="n">childrenComponent</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+    <span class="n">c</span><span class="o">-&gt;</span><span class="n">ownerEntity</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We get… “entity created” and “component created”, and that’s all. Nothing is being destroyed. But “Hey!”, you might say, “I thought these <em>smart</em> pointers were <strong>smart!</strong>”</p>
+
+<p><em>Nothing is smart enough to contain the stupidity of us, the programmers :)</em></p>
+
+<p>What is happening here is that the entity is referenced by the component and the component is referenced by the entity. Whoah, <strong>circular dependencies!</strong> (Thanks to this <a href="https://iamsorush.com/posts/weak-pointer-cpp/">blog post here</a> that helped me make a bit more sense of all this)</p>
+
+<p>So when the scope of the main function is over, and we try to destroy the component, the entity is still referencing them, so we can’t delete it. The same happens if we try to destroy the entity first.</p>
+
+<p>The solution here is simple, one of these two pointers <strong>has</strong> to be a weak pointer, so we get rid of this circular dependency. And I think it makes more sense to make the pointer on the component a weak pointer.</p>
+
+<p>Here’s the new component class</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">component</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="n">entity</span><span class="o">&gt;</span> <span class="n">ownerEntity</span><span class="p">;</span>
+    
+    <span class="n">component</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"component created</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="o">~</span><span class="n">component</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"component destroyed</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>And then, if you run the same program again, it works correctly! both entity and component are created and destroyed. Because the weak pointer doesn’t <em>own</em> a reference to the entity, it is not taken in consideration when counting references.</p>
+
+<p>So when the entity pointer of the main function goes out of scope, it can be destroyed, because we don’t care about the reference from the weak pointer!</p>
+
+<p><strong>Wow!</strong> that was a big meditation.</p>
+
+<p><a href="https://twitter.com/guilhermepo2">twitter</a></p>
+
+<p><a href="https://www.youtube.com/channel/UCOIlr-LtVmaIRdI0oe2lthg">youtube</a></p>
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=smart%20pointers%20in%20C++&url=/smart-pointers-cpp/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/smart-pointers-cpp/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/smart-pointers-cpp/&amp;media=/images/cppmeditations/cppmeditations.png&amp;description=smart%20pointers%20in%20C++"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/smart-pointers-cpp/&title=smart%20pointers%20in%20C++&summary=smart%20pointers%20in%20C++&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/what-if-strings-were-ints/">
+    <div class="prev__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">What if strings were ints?</h2>
+    </div>
+  </a>
+  
+
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/what-if-strings-were-ints/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 Mar, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/cpp-17-filesys/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 Sep, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/for-loop/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-05-31T15:00:00-05:00">31 May, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/for-loop/">Iterating on a for loop with ++i or i++?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/maps-or-unordered-maps/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="In which I talk about std::unordered_map">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-02-27T19:20:00-06:00">27 Feb, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/maps-or-unordered-maps/">In which I talk about std::unordered_map</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+                  
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/smart-pointers-cpp/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/smart-pointers-cpp/">smart pointers in C++</a>
-      </h2>
-
-      <p class="article__excerpt">smart pointers in C++</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/what-if-strings-were-ints/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
-      </h2>
-
-      <p class="article__excerpt">What if strings were ints?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/cpp-17-filesys/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
-      </h2>
-
-      <p class="article__excerpt">What about C++17 filesystem?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 

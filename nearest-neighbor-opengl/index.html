@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>Nearest Neighbor filtering in OpenGL textures</title>
+  <meta name='description' content='Nearest Neighbor filtering in OpenGL textures'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/nearest-neighbor-opengl/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="Nearest Neighbor filtering in OpenGL textures – gueepo">
+  <meta name="twitter:description" content="Nearest Neighbor filtering in OpenGL textures">
+  <meta name="twitter:image:src" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="Nearest Neighbor filtering in OpenGL textures – gueepo">
+  <meta property="og:description" content="Nearest Neighbor filtering in OpenGL textures">
+  <meta property="og:image" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=cppmeditations" class="post-tag">cppmeditations</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">Nearest Neighbor filtering in OpenGL textures</h1>
+
+            
+            <p class="post-description">Nearest Neighbor filtering in OpenGL textures</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2021-02-15T13:53:00-06:00">15 February, 2021</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Nearest Neighbor filtering in OpenGL textures">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,154 +180,265 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>For some context, I am developing a lightweight 2D game engine, <a href="https://github.com/guilhermepo2/realiti2D">realiti2D</a>, as a fun experiment - And recently I decided to take the next step and start making a game on it, I feel like by doing a game I can get a better grasp on what needs to be added to the engine and I can have a better sense of workflow to decide which tools I will want to make.</p>
+
+<p>But when loading a gorgeous pixel art pirate character, this is what I saw:</p>
+
+<p><img src="/images/cppmeditations/filter_linear.png" alt="Linear Filter" /></p>
+
+<p>Oh no, that’s <strong>not</strong> what I want.</p>
+
+<p>I’ve seen this problem too many times in multiple different places and I know that this is a matter of using linear texture filtering when I want to use nearest neighbor filtering instead. So this raises the question: <em>“Where do I change that?”</em></p>
+
+<p>And this is what I found right when a new texture is loaded into the engine:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MIN_FILTER</span><span class="p">,</span> <span class="n">GL_LINEAR</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span> <span class="n">GL_LINEAR</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Wait!</strong> You might say, “right when a new texture is loaded?” - Why, yes, this is also something that was made clear to me during this process. The function glTexParameter* acts on the currently bound texture, so it makes sense to set these parameters as the texture is loaded.</p>
+
+<p>But anyway, there is a <strong>GL_LINEAR</strong> there! That’s what I want to change, right? After some googling on OpenGL documentation, I found that the constant for nearest neighbor is <strong>GL_NEAREST</strong>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MIN_FILTER</span><span class="p">,</span> <span class="n">GL_NEAREST</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span> <span class="n">GL_NEAREST</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>So this is how it looks now:</p>
+
+<p><img src="/images/cppmeditations/filter_nearest.png" alt="Nearest Neighbor Filter" /></p>
+
+<p>Perfect!</p>
+
+<p>Also, shoutout to Pixel Frog for making the amazing art at the <a href="https://pixelfrog-store.itch.io/treasure-hunters">Treasure Hunters</a> asset.</p>
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Nearest%20Neighbor%20filtering%20in%20OpenGL%20textures&url=/nearest-neighbor-opengl/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/nearest-neighbor-opengl/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/nearest-neighbor-opengl/&amp;media=/images/cppmeditations/cppmeditations.png&amp;description=Nearest%20Neighbor%20filtering%20in%20OpenGL%20textures"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/nearest-neighbor-opengl/&title=Nearest%20Neighbor%20filtering%20in%20OpenGL%20textures&summary=Nearest%20Neighbor%20filtering%20in%20OpenGL%20textures&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/Setting-Up-Libtcod-Visual-Studio-2019/">
+    <div class="prev__image">
+      
+      <img class="lazy" data-src="/images/techblog/libtcodsetup/result.png" alt="Nearest Neighbor filtering in OpenGL textures">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">Setting up Libtcod on Visual Studio 2019</h2>
+    </div>
+  </a>
+  
+
+  
+  <a class="post__next" href="/std-maps-cpp/">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">In which I talk about std::map</h2>
+    </div>
+    <div class="next__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Nearest Neighbor filtering in OpenGL textures">
+    </div>
+  </a>
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/smart-pointers-cpp/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/smart-pointers-cpp/">smart pointers in C++</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/what-if-strings-were-ints/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 Mar, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/cpp-17-filesys/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 Sep, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/for-loop/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-05-31T15:00:00-05:00">31 May, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/for-loop/">Iterating on a for loop with ++i or i++?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+                  
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/smart-pointers-cpp/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/smart-pointers-cpp/">smart pointers in C++</a>
-      </h2>
-
-      <p class="article__excerpt">smart pointers in C++</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/what-if-strings-were-ints/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
-      </h2>
-
-      <p class="article__excerpt">What if strings were ints?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/cpp-17-filesys/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
-      </h2>
-
-      <p class="article__excerpt">What about C++17 filesystem?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 

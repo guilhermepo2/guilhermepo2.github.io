@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>404</title>
-  <meta name='description' content='The requested page could not be found.'>
+  <title>In which I talk about std::unordered_map</title>
+  <meta name='description' content='In which I talk about std::unordered_map'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/maps-or-unordered-maps/">
   <link rel="alternate" type="application/rss+xml" title="gueepo" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 – gueepo">
-  <meta name="twitter:description" content="The requested page could not be found.">
-  <meta name="twitter:image:src" content="">
+  <meta name="twitter:title" content="In which I talk about std::unordered_map – gueepo">
+  <meta name="twitter:description" content="In which I talk about std::unordered_map">
+  <meta name="twitter:image:src" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="404 – gueepo">
-  <meta property="og:description" content="The requested page could not be found.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="In which I talk about std::unordered_map – gueepo">
+  <meta property="og:description" content="In which I talk about std::unordered_map">
+  <meta property="og:image" content="/images/cppmeditations/cppmeditations.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -132,14 +132,45 @@
   <div class="container">
     <div class="row">
       <div class="col col-12">
-        <div class="hero__inner hero__without__media">
+        <div class="hero__inner">
           <div class="hero__left">
-            <h1 class="hero__title">404</h1>
+
             
-            <p class="post-description">The requested page could not be found.</p>
+            <div class="post-tags">
+              
+              <a href="/tags/?tag=cppmeditations" class="post-tag">cppmeditations</a>
+              
+            </div>
             
+
+            <h1 class="hero__title">In which I talk about std::unordered_map</h1>
+
+            
+            <p class="post-description">In which I talk about std::unordered_map</p>
+            
+
+            <div class="post-meta">
+              <a href="/about/" class="post-author-image">
+                <img class="lazy" data-src="/images/pfp/artdel_pfp.jpg" alt="Guilherme de Oliveira">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="/about/">Guilherme de Oliveira</a>
+                <time class="post-date" datetime="2021-02-27T19:20:00-06:00">27 February, 2021</time>
+              </div>
+            </div>
           </div>
 
+          
+          <div class="hero__right">
+            
+            
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="In which I talk about std::unordered_map">
+            </div>
+            
+            
+          </div>
           
 
         </div>
@@ -149,154 +180,268 @@
 </section>
 <!-- end hero -->
 
-<!-- begin page -->
+<!-- begin post -->
 <div class="container animate">
+  <article class="post">
 
-  <article class="page">
-    <div class="page__content">
-      
+    <div class="post__content">
+      <p>In my last post I talked about doing multiple animations in an Animated Sprite Component, and for that I’ve used <code class="language-plaintext highlighter-rouge">std::map</code>.</p>
+
+<p>Like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">AnimationClip</span><span class="o">*&gt;</span> <span class="n">m_AnimationList</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>And since the last post I’ve been thinking: <em>“I didn’t give much thought to <code class="language-plaintext highlighter-rouge">std::unordered_map</code>, maybe I should?”</em> - And then here I am looking at the differences between a map and an unordered map.</p>
+
+<p><strong>Hint:</strong> Since I’m using a string as the key, I don’t care about order, and not doing something is more time-efficient than doing something, so I’m going into this expecting that an unordered map is what I want.</p>
+
+<p>Time to read some documentation!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unordered map is an associative container that contains key-value pairs with unique keys. Search, insertion, and removal of elements have average constant-time complexity.
+</code></pre></div></div>
+
+<p>Average constant-time complexity? I like that!</p>
+
+<p>Digging deeper, what exactly is the cost of accessing an element? (i.e. <code class="language-plaintext highlighter-rouge">std::unordered_map&lt;Key,T,Hash,KeyEqual,Allocator&gt;::operator[]</code>) and what we find is: <code class="language-plaintext highlighter-rouge">Average case: constant, worst case: linear in size.</code></p>
+
+<p>Interesting. So the next question is, <em>What</em> is the worst-case? It seems that the worst case happens when you try to access a key that is not on the map, which results in an insertion. The documentation is kind enough to recommend us to look at the function <code class="language-plaintext highlighter-rouge">at()</code>, which throws an exception when the key is not found. Yikes.</p>
+
+<p>Now here is the engine design question of the day: If we use <code class="language-plaintext highlighter-rouge">operator[]</code> and the game tries to play an animation that doesn’t exist, what happens? A new “Animation” will be created (and that’s not what we want) and we won’t know that animation didn’t exist! (and that’s not what we want!) - But I guess this is a problem for future me, unordered maps sounds good for me now.</p>
+
+<p>Looking at the <code class="language-plaintext highlighter-rouge">std::map</code> documentation we find a more straight-forward answer for the time-complexity on <code class="language-plaintext highlighter-rouge">std::map&lt;Key,T,Compare,Allocator&gt;::operator[]</code> which happens to be <code class="language-plaintext highlighter-rouge">Logarithmic in the size of the container.</code></p>
+
+<p>And we know that 1 (one) is smaller than log(n)!</p>
+
+<p>So how do we change from a map to an unordered map? Well, they were both designed to do the same things and solve the same problems, but in different ways, so luckily their function signatures and everything is the same, so the only change needed was changing from <code class="language-plaintext highlighter-rouge">std::map&lt;std::string, AnimationClip*&gt; m_AnimationList;</code> to <code class="language-plaintext highlighter-rouge">std::unordered_map&lt;std::string, AnimationClip*&gt; m_AnimationList;</code> and we have our lovely pirate running again!</p>
+
+<p><img src="/images/cppmeditations/r2d_runanimation2.gif" alt="run animation" /></p>
+
+<p>Follow me on <a href="https://twitter.com/guilhermepo2">twitter</a>!!</p>
+
+
     </div>
-  </article>
 
+    <!-- <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=In%20which%20I%20talk%20about%20std::unordered_map&url=/maps-or-unordered-maps/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=/maps-or-unordered-maps/"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=/maps-or-unordered-maps/&amp;media=/images/cppmeditations/cppmeditations.png&amp;description=In%20which%20I%20talk%20about%20std::unordered_map"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=/maps-or-unordered-maps/&title=In%20which%20I%20talk%20about%20std::unordered_map&summary=In%20which%20I%20talk%20about%20std::unordered_map&source="
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div> -->
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/std-maps-cpp/">
+    <div class="prev__image">
+      
+      <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="In which I talk about std::unordered_map">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">In which I talk about std::map</h2>
+    </div>
+  </a>
+  
+
+  
+  <a class="post__next" href="/spritesheets-with-opengl/">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">Modern OpenGL SpriteSheets</h2>
+    </div>
+    <div class="next__image">
+      
+      <img class="lazy" data-src="/images/opengl_spritesheets.png" alt="In which I talk about std::unordered_map">
+    </div>
+  </a>
+  
 </div>
-<!-- end page -->
+
+    
+
+  </article>
+</div>
+<!-- end post -->
 
 
-<!-- begin previous posts -->
-<div class="previous-posts animate">
-  <div class="container">
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
     <div class="row">
       <div class="col col-12">
-        <div class="section__info">
-          <div class="section__head">
-            <h3 class="section__title">Previous Posts</h3>
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/smart-pointers-cpp/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/smart-pointers-cpp/">smart pointers in C++</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/what-if-strings-were-ints/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 Mar, 2022</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/cpp-17-filesys/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 Sep, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+              
+            
+            
+            
+      
+            
+      
+            
+
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  
+                  
+                  <a class="article__image" href="/for-loop/">
+                    <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="Iterating on a for loop with ++i or i++?">
+                  </a>
+                  
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
+                    <time class="article__date" datetime="2021-05-31T15:00:00-05:00">31 May, 2021</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="/for-loop/">Iterating on a for loop with ++i or i++?</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+                
+                
+                  
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/smart-pointers-cpp/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="smart pointers in C++">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-05-01T15:00:00-05:00">1 May, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/smart-pointers-cpp/">smart pointers in C++</a>
-      </h2>
-
-      <p class="article__excerpt">smart pointers in C++</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
+  </section>
 </div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/what-if-strings-were-ints/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What if strings were ints?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2022-03-24T15:00:00-05:00">24 March, 2022</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/what-if-strings-were-ints/">What if strings were ints?</a>
-      </h2>
-
-      <p class="article__excerpt">What if strings were ints?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-        <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-
-      
-      <a class="article__image" href="/cpp-17-filesys/">
-        <img class="lazy" data-src="/images/cppmeditations/cppmeditations.png" alt="What about C++17 filesystem?">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        <a class="article__author__link" href="/about/">Guilherme de Oliveira</a> –
-        <time class="article__date" datetime="2021-09-06T15:00:00-05:00">6 September, 2021</time>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/cpp-17-filesys/">What about C++17 filesystem?</a>
-      </h2>
-
-      <p class="article__excerpt">What about C++17 filesystem?</p>
-
-      
-      <div class="article__tags">
-        
-        <a href="/tags/?tag=cppmeditations" class="article__tag">cppmeditations</a>
-        
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-</div>
-<!-- end previous posts -->
-
+<!-- end related posts -->
     </main>
     <!-- end content -->
 
